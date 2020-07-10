@@ -11,13 +11,13 @@ using System.Web.Mvc;
 namespace MVC.Controllers
 {
     [Authorize]
-    public class MonsterController : Controller
+    public class UserMonsterController : Controller
     {
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
-        private MonsterService CreateMonsterService()
+        private UserMonsterService CreateMonsterService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            return new MonsterService(userId);
+            return new UserMonsterService(userId);
         }
         // GET: Monster
         public ActionResult Index()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    public interface IMonsterService
+    public interface IUserMonsterService
     {
         bool Create(MonsterCreate model);
         IEnumerable<MonsterListItem> GetAllUserMonsters();

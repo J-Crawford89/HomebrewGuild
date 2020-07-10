@@ -170,7 +170,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MonsterController.cs" />
+    <Compile Include="Controllers\MyCreationsController.cs" />
+    <Compile Include="Controllers\UserMonsterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,8 +236,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Monster\Create.cshtml" />
-    <Content Include="Views\Monster\Index.cshtml" />
+    <Content Include="Views\UserMonster\Create.cshtml" />
+    <Content Include="Views\UserMonster\Index.cshtml" />
+    <Content Include="Views\MyCreations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

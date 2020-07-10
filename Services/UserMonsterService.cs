@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class MonsterService : IMonsterService
+    public class UserMonsterService : IUserMonsterService
     {
         private readonly ApplicationDbContext _ctx;
         private readonly Guid _userId;
-        public MonsterService(Guid userId)
+        public UserMonsterService(Guid userId)
         {
             _userId = userId;
             _ctx = new ApplicationDbContext();
