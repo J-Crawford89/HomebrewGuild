@@ -1,7 +1,9 @@
-﻿using Data.Entities.ActionsFeaturesTraits;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,8 +45,20 @@ namespace Data.Entities
         public int Wisdom { get; set; }
         [Required]
         public int Charisma { get; set; }
-        public Dictionary<Ability, string> SavingThrows { get; set; }
-        public Dictionary<Skill, string> Skills { get; set; }
+        internal string _SavingThrows { get; set; }
+        [NotMapped]
+        public Dictionary<Ability, int> SavingThrows
+        {
+            get { return _SavingThrows == null ? null : JsonConvert.DeserializeObject<Dictionary<Ability, int>>(_SavingThrows); }
+            set { _SavingThrows = JsonConvert.SerializeObject(value); }
+        }
+        internal string _Skills { get; set; }
+        [NotMapped]
+        public Dictionary<Skill, int> Skills
+        {
+            get { return _Skills == null ? null : JsonConvert.DeserializeObject<Dictionary<Skill, int> > (_Skills); }
+            set { _Skills = JsonConvert.SerializeObject(value); }
+        }
         public string Vulnerabilities { get; set; }
         public string Resistances { get; set; }
         public string Immunities { get; set; }
@@ -52,13 +66,43 @@ namespace Data.Entities
         public string Languages { get; set; }
         [Required]
         public string ChallengeRating { get; set; }
-        public virtual ICollection<MonsterTrait> Traits { get; set; }
-        public virtual ICollection<MonsterAction> Actions { get; set; }
-        public virtual ICollection<MonsterReaction> Reactions { get; set; }
+        internal string _Traits { get; set; }
+        [NotMapped]
+        public Dictionary<string, string> Traits
+        {
+            get { return _Traits == null ? null : JsonConvert.DeserializeObject<Dictionary<string, string>>(_Traits); }
+            set { _Traits = JsonConvert.SerializeObject(value); }
+        }
+        internal string _Actions { get; set; }
+        [NotMapped]
+        public Dictionary<string, string> Actions
+        {
+            get { return _Actions == null ? null : JsonConvert.DeserializeObject<Dictionary<string, string>>(_Actions); }
+            set { _Actions = JsonConvert.SerializeObject(value); }
+        }
+        internal string _Reactions { get; set; }
+        [NotMapped]
+        public Dictionary<string, string> Reactions
+        {
+            get { return _Reactions == null ? null : JsonConvert.DeserializeObject<Dictionary<string, string>>(_Reactions); }
+            set { _Reactions = JsonConvert.SerializeObject(value); }
+        }
         [Required]
         public int NumberOfLegendaryActions { get; set; }
-        public virtual ICollection<LegendaryAction> LegendaryActions { get; set; }
-        public virtual ICollection<LairAction> LairActions { get; set; }
+        internal string _LegendaryActions { get; set; }
+        [NotMapped]
+        public Dictionary<string, string> LegendaryActions
+        {
+            get { return _LegendaryActions == null ? null : JsonConvert.DeserializeObject<Dictionary<string, string>>(_LegendaryActions); }
+            set { _LegendaryActions = JsonConvert.SerializeObject(value); }
+        }
+        internal string _LairActions { get; set; }
+        [NotMapped]
+        public Dictionary<string, string> LairActions
+        {
+            get { return _LairActions == null ? null : JsonConvert.DeserializeObject<Dictionary<string, string>>(_LairActions); }
+            set { _LairActions = JsonConvert.SerializeObject(value); }
+        }
         public DateTime DateCreated { get; set; }
         public DateTime? LastUpdated { get; set; }
         public bool IsDeleted { get; set; }

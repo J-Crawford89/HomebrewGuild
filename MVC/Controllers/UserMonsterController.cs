@@ -14,7 +14,7 @@ namespace MVC.Controllers
     public class UserMonsterController : Controller
     {
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
-        private UserMonsterService CreateMonsterService()
+        private UserMonsterService CreateUserMonsterService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             return new UserMonsterService(userId);
@@ -22,14 +22,15 @@ namespace MVC.Controllers
         // GET: Monster
         public ActionResult Index()
         {
-            var monsterService = CreateMonsterService();
-            var model = monsterService.GetAllUserMonsters();
+            var userMonsterService = CreateUserMonsterService();
+            var model = userMonsterService.GetAllUserMonsters();
             return View(model);
         }
         // GET: Monster/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new MonsterCreate();
+            return View(model);
         }
         // POST: Monster/Create
         [HttpPost]
@@ -40,13 +41,21 @@ namespace MVC.Controllers
             {
                 return View(model);
             }
-            var monsterService = CreateMonsterService();
-            if (monsterService.Create(model))
+            var userMonsterService = CreateUserMonsterService();
+            if (userMonsterService.Create(model))
             {
                 TempData["SaveResult"] = "Monster Created!";
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "There was an error creating your monster.");
+            return View(model);
+        }
+        // GET: Monster/Details/{id}
+        public ActionResult Details(int id)
+        {
+            var userMonsterService = CreateUserMonsterService();
+            var model = userMonsterService.GetMonsterDetailById(id);
+
             return View(model);
         }
     }

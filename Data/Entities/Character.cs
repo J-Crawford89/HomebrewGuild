@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,9 +68,21 @@ namespace Data.Entities
         [Required]
         public int Charisma { get; set; }
         [Required]
-        public List<Ability> SavingThrows { get; set; }
+        internal string _SavingThrows { get; set; }
+        [NotMapped]
+        public List<Ability> SavingThrows
+        {
+            get { return _SavingThrows == null ? null : JsonConvert.DeserializeObject<List<Ability>>(_SavingThrows); }
+            set { _SavingThrows = JsonConvert.SerializeObject(value); }
+        }
         [Required]
-        public List<Skill> Skills { get; set; }
+        internal string _Skills { get; set; }
+        [NotMapped]
+        public List<Skill> Skills
+        {
+            get { return _Skills == null ? null : JsonConvert.DeserializeObject<List<Skill>>(_Skills); }
+            set { _Skills = JsonConvert.SerializeObject(value); }
+        }
         public string NotableInventory { get; set; }
         public string Appearance { get; set; }
         public string Backstory { get; set; }

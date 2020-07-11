@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,12 @@ namespace Data.Entities
         [Required]
         public string Name { get; set; }
         [Required]
-        public List<Skill> SkillProficiencies { get; set; }
+        internal string _SkillProficiencies { get; set; }
+        [NotMapped]
+        public List<Skill> SkillProficiencies
+        {
+            get { return _SkillProficiencies == null ? null : JsonConvert.DeserializeObject<List<Skill>>(_SkillProficiencies); }
+            set { _SkillProficiencies = JsonConvert.SerializeObject(value); }
+        }
     }
 }
