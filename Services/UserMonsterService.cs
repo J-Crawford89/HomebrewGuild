@@ -61,12 +61,12 @@ namespace Services
                 entity.Senses = model.Senses;
                 entity.Languages = model.Languages;
                 entity.ChallengeRating = model.ChallengeRating;
-                entity.Traits = model.Traits;
-                entity.Actions = model.Actions;
-                entity.Reactions = model.Reactions;
+                entity.Traits = CheckIfNull(model.Traits);
+                entity.Actions = CheckIfNull(model.Actions);
+                entity.Reactions = CheckIfNull(model.Reactions);
                 entity.NumberOfLegendaryActions = model.NumberOfLegendaryActions;
-                entity.LegendaryActions = model.LegendaryActions;
-                entity.LairActions = model.LairActions;
+                entity.LegendaryActions = CheckIfNull(model.LegendaryActions);
+                entity.LairActions = CheckIfNull(model.LairActions);
                 entity.LastUpdated = DateTime.Now;
             }
             return _ctx.SaveChanges() == 1;
@@ -177,29 +177,32 @@ namespace Services
         {
             if (query != null)
             {
-                foreach (var key in query.Keys.ToList())
+                if (query != null)
                 {
-                    if (string.IsNullOrWhiteSpace(key) || string.IsNullOrEmpty(key))
+                    foreach (var key in query.Keys.ToList())
                     {
-                        query.Remove(key);
+                        if (string.IsNullOrWhiteSpace(key) || string.IsNullOrEmpty(key))
+                        {
+                            query.Remove(key);
+                        }
                     }
                 }
-            }
-            if(query != null)
-            {
-                foreach(var value in query.Values.ToList())
+                if (query != null)
                 {
-                    if (string.IsNullOrWhiteSpace(value) || string.IsNullOrEmpty(value))
+                    foreach (var value in query.Values.ToList())
                     {
-                        query.Remove(value);
+                        if (string.IsNullOrWhiteSpace(value) || string.IsNullOrEmpty(value))
+                        {
+                            query.Remove(value);
+                        }
                     }
                 }
+                if (query.Count > 0)
+                {
+                    return query;
+                }
             }
-            if(query.Count == 0)
-            {
-                return null;
-            }    
-            return query;
+            return null;
         }
     }
 }

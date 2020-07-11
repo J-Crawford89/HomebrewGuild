@@ -31,8 +31,8 @@ namespace Models.MonsterModels
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
         [Display(Name ="Saving Throws")]
-        public Dictionary<Ability, int> SavingThrows { get; set; }
-        public Dictionary<Skill, int> Skills { get; set; }
+        public Dictionary<Ability, string> SavingThrows { get; set; }
+        public Dictionary<Skill, string> Skills { get; set; }
         public string Vulnerabilities { get; set; }
         public string Resistances { get; set; }
         public string Immunities { get; set; }
