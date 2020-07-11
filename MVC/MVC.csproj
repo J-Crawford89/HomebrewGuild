@@ -239,6 +239,7 @@
     <Content Include="Views\UserMonster\Create.cshtml" />
     <Content Include="Views\UserMonster\Index.cshtml" />
     <Content Include="Views\MyCreations\Index.cshtml" />
+    <Content Include="Views\UserMonster\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

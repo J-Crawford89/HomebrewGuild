@@ -9,8 +9,10 @@ using static Data.Enums;
 
 namespace Models.MonsterModels
 {
-    public class MonsterCreate
+    public class MonsterDetail
     {
+        public int Id { get; set; }
+        public string Creator { get; set; }
         public string Name { get; set; }
         public Size Size { get; set; }
         public MonsterType Type { get; set; }
@@ -21,7 +23,7 @@ namespace Models.MonsterModels
         public string ArmorType { get; set; }
         [Display(Name ="Hit Points")]
         public int HitPoints { get; set; }
-        [Display(Name ="Hit Point Equation")]
+        [Display(Name = "Hit Point Equation")]
         public string HitPointEquation { get; set; }
         public string Speed { get; set; }
         public int Strength { get; set; }
@@ -30,7 +32,7 @@ namespace Models.MonsterModels
         public int Intelligence { get; set; }
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
-        [Display(Name ="Saving Throws")]
+        [Display(Name="Saving Throws")]
         public Dictionary<Ability, int> SavingThrows { get; set; }
         public Dictionary<Skill, int> Skills { get; set; }
         public string Vulnerabilities { get; set; }
@@ -38,16 +40,20 @@ namespace Models.MonsterModels
         public string Immunities { get; set; }
         public string Senses { get; set; }
         public string Languages { get; set; }
-        [Display(Name="Challenge Rating")]
+        [Display(Name ="Challenge Rating")]
         public string ChallengeRating { get; set; }
-        public Dictionary<string, string> Traits { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string,string> Traits { get; set; }
         public Dictionary<string,string> Actions { get; set; }
         public Dictionary<string,string> Reactions { get; set; }
-        [Display(Name="Legendary Actions per Round")]
+        [Display(Name="Legendary Actions per Turn")]
         public int NumberOfLegendaryActions { get; set; }
         [Display(Name="Legendary Actions")]
         public Dictionary<string,string> LegendaryActions { get; set; }
         [Display(Name ="Lair Actions")]
         public Dictionary<string,string> LairActions { get; set; }
+        [Display(Name ="Date Created")]
+        public DateTime DateCreated { get; set; }
+        [Display(Name ="Last Updated")]
+        public DateTime? LastUpdated { get; set; }
     }
 }

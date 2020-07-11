@@ -135,9 +135,41 @@
         </div>
     </div>
 
-    <!--SAVING THROWS-->
+    <!--SAVING THROWS - Dictionary<Ability, string> -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                int abilityCount = Enum.GetNames(typeof(Data.Enums.Ability)).Length;
+                for (int i = 0; i < abilityCount; i++)
+                {
+                    Guid index = Guid.NewGuid();
+                    <input type="hidden" name="SavingThrows.Index" value="@index" />
+                    @Html.Label(Enum.GetName(typeof(Data.Enums.Ability), i))
+                    <input type="checkbox" name="SavingThrows[@index].Key" value="@Enum.GetName(typeof(Data.Enums.Ability), i)" />
+                    <input name="SavingThrows[@index].Value" value="" />
+                }
+            }
+        </div>
+    </div>
 
-    <!--SKILLS-->
+    <!--SKILLS - Dictionary<Skill, string> -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Skills, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                int skillCount = Enum.GetNames(typeof(Data.Enums.Skill)).Length;
+                for (int i = 0; i < skillCount; i++)
+                {
+                    Guid index = Guid.NewGuid();
+                    <input type="hidden" name="Skills.Index" value="@index" />
+                    @Html.Label(Enum.GetName(typeof(Data.Enums.Skill), i))
+                    <input type="checkbox" name="Skills[@index].Key" value="@Enum.GetName(typeof(Data.Enums.Skill), i)" />
+                    <input name="Skills[@index].Value" value="" />
+                }
+            }
+        </div>
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Vulnerabilities, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -188,10 +220,67 @@
     </div>
 
     <!--TRAITS-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Traits, htmlAttributes: new { @class = "control-label col-md-2" })
+        <table class="table" id="traitTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="traitRow">
+                    <td><input type="text" name="Traits.Key" class="form-control key01" value="" /></td>
+                    <td><input type="text" name="Traits.Value" class="form-control value01" value="" /></td>
+                    <td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="btnAdd" class="btn btn-xs btn-primary addTrait">Add Trait</button>
+    </div>
 
     <!--ACTIONS-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Actions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <table class="table" id="actionTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="actionRow">
+                    <td><input type="text" name="Actions.Key" class="form-control key01" value="" /></td>
+                    <td><input type="text" name="Actions.Value" class="form-control value01" value="" /></td>
+                    <td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="btnAdd" class="btn btn-xs btn-primary addAction">Add Action</button>
+    </div>
 
     <!--REACTIONS-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Reactions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <table class="table" id="reactionTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="reactionRow">
+                    <td><input type="text" name="Reactions.Key" class="form-control key01" value="" /></td>
+                    <td><input type="text" name="Reactions.Value" class="form-control value01" value="" /></td>
+                    <td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="btnAdd" class="btn btn-xs btn-primary addReaction">Add Reaction</button>
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.NumberOfLegendaryActions, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -202,8 +291,46 @@
     </div>
 
     <!--LEGENDARY-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.LegendaryActions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <table class="table" id="legendaryTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="legendaryRow">
+                    <td><input type="text" name="LegendaryActions.Key" class="form-control key01" value="" /></td>
+                    <td><input type="text" name="LegendaryActions.Value" class="form-control value01" value="" /></td>
+                    <td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="btnAdd" class="btn btn-xs btn-primary addLegendary">Add Legendary Action</button>
+    </div>
 
     <!--LAIR-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.LairActions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <table class="table" id="lairTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="lairRow">
+                    <td><input type="text" name="LairActions.Key" class="form-control key01" value="" /></td>
+                    <td><input type="text" name="LairActions.Value" class="form-control value01" value="" /></td>
+                    <td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" id="btnAdd" class="btn btn-xs btn-primary addLair">Add Lair Action</button>
+    </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -219,4 +346,58 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", ".addTrait", function () {
+            var rowCount = $('.traitRow').length + 1;
+            var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits.Key' + rowCount + '" class="form-control key01" /></td>' +
+                '<td><input type="text" name="Traits.Value' + rowCount + '" class="form-control value01" /></td>' +
+                '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+            $('#traitTable').append(traitTable);
+        });
+        $(document).on("click", ".deleteTrait", function () {
+            $(this).closest("tr").remove();
+        });
+        $(document).on("click", ".addAction", function () {
+            var rowCount = $('.actionRow').length + 1;
+            var actionTable = '<tr class="actionRow">' + '<td><input type="text" name="Actions.Key' + rowCount + '" class="form-control key01" /></td>' +
+                '<td><input type="text" name="Actions.Value' + rowCount + '" class="form-control value01" /></td>' +
+                '<td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+            $('#actionTable').append(actionTable);
+        });
+        $(document).on("click", ".deleteAction", function () {
+            $(this).closest("tr").remove();
+        });
+        $(document).on("click", ".addReaction", function () {
+            var rowCount = $('.reactionRow').length + 1;
+            var reactionTable = '<tr class="reactionRow">' + '<td><input type="text" name="Reactions.Key' + rowCount + '" class="form-control key01" /></td>' +
+                '<td><input type="text" name="Reactions.Value' + rowCount + '" class="form-control value01" /></td>' +
+                '<td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+            $('#reactionTable').append(reactionTable);
+        });
+        $(document).on("click", ".deleteReaction", function () {
+            $(this).closest("tr").remove();
+        });
+        $(document).on("click", ".addLegendary", function () {
+            var rowCount = $('.legendaryRow').length + 1;
+            var legendaryTable = '<tr class="legendaryRow">' + '<td><input type="text" name="LegendaryActions.Key' + rowCount + '" class="form-control key01" /></td>' +
+                '<td><input type="text" name="LegendaryActions.Value' + rowCount + '" class="form-control value01" /></td>' +
+                '<td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+            $('#legendaryTable').append(legendaryTable);
+        });
+        $(document).on("click", ".deleteLegendary", function () {
+            $(this).closest("tr").remove();
+        });
+        $(document).on("click", ".addLair", function () {
+            var rowCount = $('.lairRow').length + 1;
+            var lairTable = '<tr class="lairRow">' + '<td><input type="text" name="LairActions.Key' + rowCount + '" class="form-control key01" /></td>' +
+                '<td><input type="text" name="LairActions.Value' + rowCount + '" class="form-control value01" /></td>' +
+                '<td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+            $('#lairTable').append(lairTable);
+        });
+        $(document).on("click", ".deleteLair", function () {
+            $(this).closest("tr").remove();
+        });
+    });
+</script>
 }
