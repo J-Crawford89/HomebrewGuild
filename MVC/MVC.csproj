@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MonsterController.cs" />
@@ -249,6 +250,10 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Monster\Index.cshtml" />
     <Content Include="Views\Monster\Details.cshtml" />
+    <Content Include="Views\Background\Index.cshtml" />
+    <Content Include="Views\Background\Create.cshtml" />
+    <Content Include="Views\Background\Edit.cshtml" />
+    <Content Include="Views\Background\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
