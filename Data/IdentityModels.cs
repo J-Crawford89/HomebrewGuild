@@ -1,8 +1,9 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Data.Entities;
-using Data.Entities.ActionsFeaturesTraits;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -37,17 +38,74 @@ namespace Data
         public DbSet<Spell> Spells { get; set; }
         public DbSet<Subclass> Subclasses { get; set; }
         public DbSet<Subrace> Subraces { get; set; }
-        public DbSet<CharacterFeature> CharacterFeature { get; set; }
-        public DbSet<CharacterTrait> CharacterTraits { get; set; }
-        public DbSet<LairAction> LairActions { get; set; }
-        public DbSet<LegendaryAction> LegendaryActions { get; set; }
-        public DbSet<MonsterAction> MonsterActions { get; set; }
-        public DbSet<MonsterReaction> MonsterReactions { get; set; }
-        public DbSet<MonsterTrait> MonsterTraits { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._SavingThrows).HasColumnName("SavingThrows");
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._Skills).HasColumnName("Skills");
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._Traits).HasColumnName("Traits");
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._Actions).HasColumnName("Actions");
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._Reactions).HasColumnName("Reactions");
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._LegendaryActions).HasColumnName("LegendaryActions");
+            modelBuilder.Entity<Monster>()
+                .Property(b => b._LairActions).HasColumnName("LairActions");
+            modelBuilder.Entity<Subrace>()
+                .Property(b => b._AbilityScoreIncrease).HasColumnName("AbilityScoreIncrease");
+            modelBuilder.Entity<Subrace>()
+                .Property(b => b._Traits).HasColumnName("Traits");
+            modelBuilder.Entity<Background>()
+                .Property(b => b._SkillProficiencies).HasColumnName("SkillProficiencies");
+            modelBuilder.Entity<Character>()
+                .Property(b => b._SavingThrows).HasColumnName("SavingThrows");
+            modelBuilder.Entity<Character>()
+                .Property(b => b._Skills).HasColumnName("Skills");
+            modelBuilder.Entity<CharacterClass>()
+                .Property(b => b._Features).HasColumnName("Features");
+            modelBuilder.Entity<CharacterClass>()
+                .Property(b => b._SavingThrows).HasColumnName("SavingThrows");
+            modelBuilder.Entity<CharacterClass>()
+                .Property(b => b._SkillChoices).HasColumnName("SkillChoices");
+            modelBuilder.Entity<Race>()
+                .Property(b => b._AbilityScoreIncrease).HasColumnName("AbilityScoreIncrease");
+            modelBuilder.Entity<Race>()
+                .Property(b => b._Traits).HasColumnName("Traits");
+            modelBuilder.Entity<Spell>()
+                .Property(b => b._ClassIds).HasColumnName("ClassIds");
+            modelBuilder.Entity<Spell>()
+                .Property(b => b._Components).HasColumnName("Components");
+            modelBuilder.Entity<Subclass>()
+                .Property(b => b._Features).HasColumnName("Features");
+            modelBuilder
+                .Conventions
+                .Remove<PluralizingTableNameConvention>();
+            modelBuilder
+                .Configurations
+                .Add(new IdentityUserLoginConfiguration())
+                .Add(new IdentityUserRoleConfiguration());
+        }
+    }
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(iul => iul.UserId);
+        }
+    }
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        {
+            HasKey(iur => iur.UserId);
         }
     }
 }
