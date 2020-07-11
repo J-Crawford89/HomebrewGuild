@@ -9,9 +9,13 @@ namespace Contracts
 {
     public interface ICommentService
     {
-        IEnumerable<CommentListItem> GetAllCommentsByEntityId(int entityId);
-        bool Create(CommentCreate model, int entityId);
-        bool Edit(CommentEdit model, int id);
+        IEnumerable<CommentListItem> GetAllCommentsByMonsterId(int monsterId);
+        IEnumerable<CommentListItem> GetAllCommentsByCharacterId(int characterId);
+        IEnumerable<CommentListItem> GetAllCommentsBySpellId(int spellId);
+        bool CreateMonsterComment(CommentCreate model, int monsterId);
+        bool CreateCharacterComment(CommentCreate model, int characterId);
+        bool CreateSpellComment(CommentCreate model, int spellId);
+        bool Edit(CommentEdit model);
         bool Delete(int id);
     }
 }
