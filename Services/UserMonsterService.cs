@@ -4,7 +4,9 @@ using Data.Entities;
 using Models.MonsterModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +20,56 @@ namespace Services
         {
             _userId = userId;
             _ctx = new ApplicationDbContext();
+        }
+        // DELETE
+        public bool Delete(int id)
+        {
+            var entity = _ctx.Monsters.Where(e => e.OwnerId == _userId)
+                .Single(e => e.Id == id);
+            if (entity != null)
+            {
+                entity.IsDeleted = true;
+            }
+            return _ctx.SaveChanges() == 1;
+        }
+        // EDIT
+        public bool Edit(MonsterEdit model)
+        {
+            var entity = _ctx.Monsters.Single(e => e.OwnerId == _userId && e.Id == model.Id);
+            if (entity != null)
+            {
+                entity.Name = model.Name;
+                entity.Size = model.Size;
+                entity.Type = model.Type;
+                entity.Alignment = model.Alignment;
+                entity.ArmorClass = model.ArmorClass;
+                entity.ArmorType = model.ArmorType;
+                entity.HitPoints = model.HitPoints;
+                entity.HitPointEquation = model.HitPointEquation;
+                entity.Speed = model.Speed;
+                entity.Strength = model.Strength;
+                entity.Dexterity = model.Dexterity;
+                entity.Constitution = model.Constitution;
+                entity.Intelligence = model.Intelligence;
+                entity.Wisdom = model.Wisdom;
+                entity.Charisma = model.Charisma;
+                entity.SavingThrows = model.SavingThrows;
+                entity.Skills = model.Skills;
+                entity.Vulnerabilities = model.Vulnerabilities;
+                entity.Resistances = model.Resistances;
+                entity.Immunities = model.Immunities;
+                entity.Senses = model.Senses;
+                entity.Languages = model.Languages;
+                entity.ChallengeRating = model.ChallengeRating;
+                entity.Traits = CheckIfNull(model.Traits);
+                entity.Actions = CheckIfNull(model.Actions);
+                entity.Reactions = CheckIfNull(model.Reactions);
+                entity.NumberOfLegendaryActions = model.NumberOfLegendaryActions;
+                entity.LegendaryActions = CheckIfNull(model.LegendaryActions);
+                entity.LairActions = CheckIfNull(model.LairActions);
+                entity.LastUpdated = DateTime.Now;
+            }
+            return _ctx.SaveChanges() == 1;
         }
         // LIST
         public IEnumerable<MonsterListItem> GetAllUserMonsters()
@@ -68,17 +120,18 @@ namespace Services
                 Senses = monsterEntity.Senses,
                 Languages = monsterEntity.Languages,
                 ChallengeRating = monsterEntity.ChallengeRating,
-                Traits = monsterEntity.Traits,
-                Actions = monsterEntity.Actions,
-                Reactions = monsterEntity.Reactions,
+                Traits = CheckIfNull(monsterEntity.Traits),
+                Actions = CheckIfNull(monsterEntity.Actions),
+                Reactions = CheckIfNull(monsterEntity.Reactions),
                 NumberOfLegendaryActions = monsterEntity.NumberOfLegendaryActions,
-                LegendaryActions = monsterEntity.LegendaryActions,
-                LairActions = monsterEntity.LairActions,
+                LegendaryActions = CheckIfNull(monsterEntity.LegendaryActions),
+                LairActions = CheckIfNull(monsterEntity.LairActions),
                 DateCreated = monsterEntity.DateCreated,
                 LastUpdated = monsterEntity.LastUpdated
             };
             return model;
         }
+        // CREATE
         public bool Create(MonsterCreate model)
         {
             var monster = new Monster()
@@ -107,18 +160,49 @@ namespace Services
                 Senses = model.Senses,
                 Languages = model.Languages,
                 ChallengeRating = model.ChallengeRating,
-                Traits = model.Traits,
-                Actions = model.Actions,
-                Reactions = model.Reactions,
+                Traits = CheckIfNull(model.Traits),
+                Actions = CheckIfNull(model.Actions),
+                Reactions = CheckIfNull(model.Reactions),
                 NumberOfLegendaryActions = model.NumberOfLegendaryActions,
-                LegendaryActions = model.LegendaryActions,
-                LairActions = model.LairActions,
+                LegendaryActions = CheckIfNull(model.LegendaryActions),
+                LairActions = CheckIfNull(model.LairActions),
                 DateCreated = DateTime.Now,
                 LastUpdated = DateTime.Now,
                 IsDeleted = false
             };
             _ctx.Monsters.Add(monster);
             return _ctx.SaveChanges() == 1;
+        }
+        private Dictionary<string, string> CheckIfNull(Dictionary<string, string> query)
+        {
+            if (query != null)
+            {
+                if (query != null)
+                {
+                    foreach (var key in query.Keys.ToList())
+                    {
+                        if (string.IsNullOrWhiteSpace(key) || string.IsNullOrEmpty(key))
+                        {
+                            query.Remove(key);
+                        }
+                    }
+                }
+                if (query != null)
+                {
+                    foreach (var value in query.Values.ToList())
+                    {
+                        if (string.IsNullOrWhiteSpace(value) || string.IsNullOrEmpty(value))
+                        {
+                            query.Remove(value);
+                        }
+                    }
+                }
+                if (query.Count > 0)
+                {
+                    return query;
+                }
+            }
+            return null;
         }
     }
 }

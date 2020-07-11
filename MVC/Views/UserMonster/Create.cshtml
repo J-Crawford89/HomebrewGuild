@@ -231,9 +231,8 @@
             </thead>
             <tbody>
                 <tr class="traitRow">
-                    <td><input type="text" name="Traits.Key" class="form-control key01" value="" /></td>
-                    <td><input type="text" name="Traits.Value" class="form-control value01" value="" /></td>
-                    <td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>
+                    <td><input type="text" name="Traits[0].Key" class="form-control key01"/></td>
+                    <td><input type="text" name="Traits[0].Value" class="form-control value01"/></td>
                 </tr>
             </tbody>
         </table>
@@ -252,9 +251,8 @@
             </thead>
             <tbody>
                 <tr class="actionRow">
-                    <td><input type="text" name="Actions.Key" class="form-control key01" value="" /></td>
-                    <td><input type="text" name="Actions.Value" class="form-control value01" value="" /></td>
-                    <td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>
+                    <td><input type="text" name="Actions[0].Key" class="form-control key01" /></td>
+                    <td><input type="text" name="Actions[0].Value" class="form-control value01" /></td>
                 </tr>
             </tbody>
         </table>
@@ -273,9 +271,8 @@
             </thead>
             <tbody>
                 <tr class="reactionRow">
-                    <td><input type="text" name="Reactions.Key" class="form-control key01" value="" /></td>
-                    <td><input type="text" name="Reactions.Value" class="form-control value01" value="" /></td>
-                    <td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>
+                    <td><input type="text" name="Reactions[0].Key" class="form-control key01"/></td>
+                    <td><input type="text" name="Reactions[0].Value" class="form-control value01"  /></td>
                 </tr>
             </tbody>
         </table>
@@ -302,9 +299,8 @@
             </thead>
             <tbody>
                 <tr class="legendaryRow">
-                    <td><input type="text" name="LegendaryActions.Key" class="form-control key01" value="" /></td>
-                    <td><input type="text" name="LegendaryActions.Value" class="form-control value01" value="" /></td>
-                    <td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>
+                    <td><input type="text" name="LegendaryActions[0].Key" class="form-control key01"/></td>
+                    <td><input type="text" name="LegendaryActions[0].Value" class="form-control value01"/></td>
                 </tr>
             </tbody>
         </table>
@@ -323,9 +319,8 @@
             </thead>
             <tbody>
                 <tr class="lairRow">
-                    <td><input type="text" name="LairActions.Key" class="form-control key01" value="" /></td>
-                    <td><input type="text" name="LairActions.Value" class="form-control value01" value="" /></td>
-                    <td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>
+                    <td><input type="text" name="LairActions[0].Key" class="form-control key01"/></td>
+                    <td><input type="text" name="LairActions[0].Value" class="form-control value01"/></td>
                 </tr>
             </tbody>
         </table>
@@ -349,9 +344,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).on("click", ".addTrait", function () {
-            var rowCount = $('.traitRow').length + 1;
-            var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits.Key' + rowCount + '" class="form-control key01" /></td>' +
-                '<td><input type="text" name="Traits.Value' + rowCount + '" class="form-control value01" /></td>' +
+            var rowCount = $('.traitRow').length;
+            var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits[' + rowCount + '].Key" class="form-control key01" /></td>' +
+                '<td><input type="text" name="Traits[' + rowCount + '].Value" class="form-control value01" /></td>' +
                 '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
             $('#traitTable').append(traitTable);
         });
@@ -359,9 +354,9 @@
             $(this).closest("tr").remove();
         });
         $(document).on("click", ".addAction", function () {
-            var rowCount = $('.actionRow').length + 1;
-            var actionTable = '<tr class="actionRow">' + '<td><input type="text" name="Actions.Key' + rowCount + '" class="form-control key01" /></td>' +
-                '<td><input type="text" name="Actions.Value' + rowCount + '" class="form-control value01" /></td>' +
+            var rowCount = $('.actionRow').length;
+            var actionTable = '<tr class="actionRow">' + '<td><input type="text" name="Actions[' + rowCount + '].Key" class="form-control key01" /></td>' +
+                '<td><input type="text" name="Actions[' + rowCount +'].Value" class="form-control value01" /></td>' +
                 '<td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
             $('#actionTable').append(actionTable);
         });
@@ -369,9 +364,9 @@
             $(this).closest("tr").remove();
         });
         $(document).on("click", ".addReaction", function () {
-            var rowCount = $('.reactionRow').length + 1;
-            var reactionTable = '<tr class="reactionRow">' + '<td><input type="text" name="Reactions.Key' + rowCount + '" class="form-control key01" /></td>' +
-                '<td><input type="text" name="Reactions.Value' + rowCount + '" class="form-control value01" /></td>' +
+            var rowCount = $('.reactionRow').length;
+            var reactionTable = '<tr class="reactionRow">' + '<td><input type="text" name="Reactions[' + rowCount + '].Key" class="form-control key01" /></td>' +
+                '<td><input type="text" name="Reactions[' + rowCount + '].Value" class="form-control value01" /></td>' +
                 '<td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
             $('#reactionTable').append(reactionTable);
         });
@@ -379,9 +374,9 @@
             $(this).closest("tr").remove();
         });
         $(document).on("click", ".addLegendary", function () {
-            var rowCount = $('.legendaryRow').length + 1;
-            var legendaryTable = '<tr class="legendaryRow">' + '<td><input type="text" name="LegendaryActions.Key' + rowCount + '" class="form-control key01" /></td>' +
-                '<td><input type="text" name="LegendaryActions.Value' + rowCount + '" class="form-control value01" /></td>' +
+            var rowCount = $('.legendaryRow').length;
+            var legendaryTable = '<tr class="legendaryRow">' + '<td><input type="text" name="LegendaryActions[' + rowCount + '].Key" class="form-control key01" /></td>' +
+                '<td><input type="text" name="LegendaryActions[' + rowCount + '].Value" class="form-control value01" /></td>' +
                 '<td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
             $('#legendaryTable').append(legendaryTable);
         });
@@ -389,9 +384,9 @@
             $(this).closest("tr").remove();
         });
         $(document).on("click", ".addLair", function () {
-            var rowCount = $('.lairRow').length + 1;
-            var lairTable = '<tr class="lairRow">' + '<td><input type="text" name="LairActions.Key' + rowCount + '" class="form-control key01" /></td>' +
-                '<td><input type="text" name="LairActions.Value' + rowCount + '" class="form-control value01" /></td>' +
+            var rowCount = $('.lairRow').length;
+            var lairTable = '<tr class="lairRow">' + '<td><input type="text" name="LairActions[' + rowCount + '].Key" class="form-control key01" /></td>' +
+                '<td><input type="text" name="LairActions[' + rowCount + '].Value" class="form-control value01" /></td>' +
                 '<td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
             $('#lairTable').append(lairTable);
         });

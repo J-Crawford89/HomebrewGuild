@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    public interface IUserMonsterService
+    public interface IMonsterService
     {
-        bool Create(MonsterCreate model);
-        IEnumerable<MonsterListItem> GetAllUserMonsters();
+        IEnumerable<MonsterListItem> GetAllMonsters();
         MonsterDetail GetMonsterDetailById(int id);
-        bool Edit(MonsterEdit model);
-        bool Delete(int id);
     }
 }

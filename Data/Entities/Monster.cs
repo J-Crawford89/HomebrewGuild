@@ -47,16 +47,16 @@ namespace Data.Entities
         public int Charisma { get; set; }
         internal string _SavingThrows { get; set; }
         [NotMapped]
-        public Dictionary<Ability, int> SavingThrows
+        public Dictionary<Ability, string> SavingThrows
         {
-            get { return _SavingThrows == null ? null : JsonConvert.DeserializeObject<Dictionary<Ability, int>>(_SavingThrows); }
+            get { return _SavingThrows == null ? null : JsonConvert.DeserializeObject<Dictionary<Ability, string>>(_SavingThrows); }
             set { _SavingThrows = JsonConvert.SerializeObject(value); }
         }
         internal string _Skills { get; set; }
         [NotMapped]
-        public Dictionary<Skill, int> Skills
+        public Dictionary<Skill, string> Skills
         {
-            get { return _Skills == null ? null : JsonConvert.DeserializeObject<Dictionary<Skill, int> > (_Skills); }
+            get { return _Skills == null ? null : JsonConvert.DeserializeObject<Dictionary<Skill, string> > (_Skills); }
             set { _Skills = JsonConvert.SerializeObject(value); }
         }
         public string Vulnerabilities { get; set; }
@@ -105,6 +105,7 @@ namespace Data.Entities
         }
         public DateTime DateCreated { get; set; }
         public DateTime? LastUpdated { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

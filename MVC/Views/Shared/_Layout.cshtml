@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>Monsters</li>
+                    <li>@Html.ActionLink("Monsters", "Index", "Monster")</li>
                     <li>Spells</li>
                     @if(User.Identity.IsAuthenticated)
                     {
