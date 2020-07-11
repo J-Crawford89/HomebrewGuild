@@ -12,5 +12,7 @@ namespace Contracts
         bool Create(MonsterCreate model);
         IEnumerable<MonsterListItem> GetAllUserMonsters();
         MonsterDetail GetMonsterDetailById(int id);
+        bool Edit(MonsterEdit model);
+        bool Delete(int id);
     }
 }

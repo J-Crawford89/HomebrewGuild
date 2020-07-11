@@ -142,17 +142,25 @@
             </dt>
 
             <dd>
-                ------
+                <table class="table">
+                    <thead>
+                        <tr>
+                            @foreach (var ability in Model.SavingThrows.Keys)
+                            {
+                                <th>@ability.ToString()</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (var bonus in Model.SavingThrows.Values)
+                            {
+                                <td>@bonus.ToString()</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
             </dd>
-            foreach (var kvp in Model.SavingThrows)
-            {
-                <dt>
-                    @Html.Label(kvp.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(kvp.Value.ToString())
-                </dd>
-            }
         }
 
         @if (Model.Skills != null)
@@ -162,17 +170,25 @@
             </dt>
 
             <dd>
-                ------
+                <table class="table">
+                    <thead>
+                        <tr>
+                            @foreach (var skill in Model.Skills.Keys)
+                            {
+                                <th>@skill.ToString()</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (var bonus in Model.Skills.Values)
+                            {
+                                <td>@bonus.ToString()</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
             </dd>
-            foreach (var kvp in Model.Skills)
-            {
-                <dt>
-                    @Html.Label(kvp.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(kvp.Value.ToString())
-                </dd>
-            }
         }
 
         <dt>
@@ -229,18 +245,24 @@
                 @Html.DisplayNameFor(model => model.Traits)
             </dt>
             <dd>
-                ------
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var trait in Model.Traits)
+                        {
+                            <tr>
+                                <td>@trait.Key</td>
+                                <td>@trait.Value</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </dd>
-
-            foreach (var trait in Model.Traits)
-            {
-                <dt>
-                    @Html.Label(trait.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(trait.Value.ToString())
-                </dd>
-            }
         }
 
         @if (Model.Actions != null)
@@ -249,18 +271,24 @@
                 @Html.DisplayNameFor(model => model.Actions)
             </dt>
             <dd>
-                ------
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var action in Model.Actions)
+                        {
+                            <tr>
+                                <td>@action.Key</td>
+                                <td>@action.Value</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </dd>
-
-            foreach (var action in Model.Actions)
-            {
-                <dt>
-                    @Html.Label(action.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(action.Value.ToString())
-                </dd>
-            }
         }
 
         @if (Model.Reactions != null)
@@ -269,18 +297,24 @@
                 @Html.DisplayNameFor(model => model.Reactions)
             </dt>
             <dd>
-                ------
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var reaction in Model.Reactions)
+                        {
+                            <tr>
+                                <td>@reaction.Key</td>
+                                <td>@reaction.Value</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </dd>
-
-            foreach (var reaction in Model.Reactions)
-            {
-                <dt>
-                    @Html.Label(reaction.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(reaction.Value.ToString())
-                </dd>
-            }
         }
 
         <dt>
@@ -297,18 +331,24 @@
                 @Html.DisplayNameFor(model => model.LegendaryActions)
             </dt>
             <dd>
-                ------
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var legendary in Model.LegendaryActions)
+                        {
+                            <tr>
+                                <td>@legendary.Key</td>
+                                <td>@legendary.Value</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </dd>
-
-            foreach (var legendaryAction in Model.LegendaryActions)
-            {
-                <dt>
-                    @Html.Label(legendaryAction.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(legendaryAction.Value.ToString())
-                </dd>
-            }
         }
 
         @if (Model.LairActions != null)
@@ -317,18 +357,24 @@
                 @Html.DisplayNameFor(model => model.LairActions)
             </dt>
             <dd>
-                ------
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var lair in Model.LairActions)
+                        {
+                            <tr>
+                                <td>lair.Key</td>
+                                <td>lair.Value</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </dd>
-
-            foreach (var lairAction in Model.LairActions)
-            {
-                <dt>
-                    @Html.Label(lairAction.Key.ToString())
-                </dt>
-                <dd>
-                    @Html.Label(lairAction.Value.ToString())
-                </dd>
-            }
         }
 
         <dt>
