@@ -105,6 +105,7 @@ namespace Data.Entities
         }
         public DateTime DateCreated { get; set; }
         public DateTime? LastUpdated { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

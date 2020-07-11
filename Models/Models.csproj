@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentModels\CommentCreate.cs" />
+    <Compile Include="CommentModels\CommentEdit.cs" />
+    <Compile Include="CommentModels\CommentListItem.cs" />
     <Compile Include="MonsterModels\MonsterCreate.cs" />
     <Compile Include="MonsterModels\MonsterDetail.cs" />
     <Compile Include="MonsterModels\MonsterEdit.cs" />
