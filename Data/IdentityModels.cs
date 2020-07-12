@@ -85,6 +85,8 @@ namespace Data
                 .Property(b => b._Components).HasColumnName("Components");
             modelBuilder.Entity<Subclass>()
                 .Property(b => b._Features).HasColumnName("Features");
+            modelBuilder.Entity<Character>()
+                .Property(b => b._NotableInventory).HasColumnName("Notable Inventory");
             modelBuilder
                 .Conventions
                 .Remove<PluralizingTableNameConvention>();

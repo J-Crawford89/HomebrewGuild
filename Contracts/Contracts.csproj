@@ -54,7 +54,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICharacterClassService.cs" />
     <Compile Include="IBackgroundService.cs" />
+    <Compile Include="ICharacterService.cs" />
+    <Compile Include="IRaceService.cs" />
+    <Compile Include="IReplyService.cs" />
+    <Compile Include="ISpellService.cs" />
+    <Compile Include="ISubclassService.cs" />
+    <Compile Include="ISubraceService.cs" />
+    <Compile Include="IUserSpellService.cs" />
+    <Compile Include="IUserCharacterService.cs" />
     <Compile Include="ICommentService.cs" />
     <Compile Include="IMonsterService.cs" />
     <Compile Include="IUserMonsterService.cs" />
