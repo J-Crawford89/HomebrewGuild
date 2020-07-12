@@ -15,6 +15,6 @@ namespace Models.ReplyModels
         [Display(Name ="Date Created")]
         public DateTime DateCreated { get; set; }
         [Display(Name ="Last Updated")]
-        public DateTime LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
     }
 }

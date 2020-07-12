@@ -9,5 +9,6 @@ namespace Models.ReplyModels
     public class ReplyCreate
     {
         public string Content { get; set; }
+        public int CommentId { get; set; }
     }
 }

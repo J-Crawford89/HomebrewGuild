@@ -11,8 +11,8 @@ namespace Models.CharacterModels
         public int Id { get; set; }
         public string Creator { get; set; }
         public string Name { get; set; }
-        public string Race { get; set; }
-        public string Class { get; set; }
+        public int RaceId { get; set; }
+        public int CharacterClassId { get; set; }
         public int Level { get; set; }
     }
 }

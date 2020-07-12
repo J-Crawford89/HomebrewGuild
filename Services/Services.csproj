@@ -56,10 +56,18 @@
   <ItemGroup>
     <Compile Include="BackgroundService.cs" />
     <Compile Include="CharacterClassService.cs" />
+    <Compile Include="CharacterService.cs" />
     <Compile Include="CommentService.cs" />
+    <Compile Include="UserCharacterService.cs" />
     <Compile Include="MonsterService.cs" />
+    <Compile Include="RaceService.cs" />
+    <Compile Include="ReplyService.cs" />
+    <Compile Include="SpellService.cs" />
+    <Compile Include="SubclassService.cs" />
+    <Compile Include="SubraceService.cs" />
     <Compile Include="UserMonsterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserSpellService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
