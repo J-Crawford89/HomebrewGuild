@@ -171,6 +171,7 @@
     <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\CharacterClassController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MonsterController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Controllers\SpellController.cs" />
     <Compile Include="Controllers\SubclassController.cs" />
     <Compile Include="Controllers\SubraceController.cs" />
+    <Compile Include="Controllers\UserCharacterController.cs" />
     <Compile Include="Controllers\UserMonsterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserSpellController.cs" />
@@ -290,6 +292,11 @@
     <Content Include="Views\Subclass\Delete.cshtml" />
     <Content Include="Views\Subclass\Create.cshtml" />
     <Content Include="Views\Subclass\Edit.cshtml" />
+    <Content Include="Views\UserCharacter\Index.cshtml" />
+    <Content Include="Views\UserCharacter\Details.cshtml" />
+    <Content Include="Views\UserCharacter\Delete.cshtml" />
+    <Content Include="Views\UserCharacter\Create.cshtml" />
+    <Content Include="Views\UserCharacter\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

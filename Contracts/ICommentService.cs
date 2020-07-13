@@ -15,6 +15,7 @@ namespace Contracts
         bool CreateMonsterComment(CommentCreate model, int monsterId);
         bool CreateCharacterComment(CommentCreate model, int characterId);
         bool CreateSpellComment(CommentCreate model, int spellId);
+        CommentListItem GetCommentById(int id);
         bool Edit(CommentEdit model);
         bool Delete(int id);
     }

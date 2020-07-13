@@ -123,5 +123,19 @@ namespace Services
                 }).ToList();
             return commentList;
         }
+
+        public CommentListItem GetCommentById(int id)
+        {
+            var entity = _ctx.Comments.Single(e => e.Id == id);
+            var model = new CommentListItem
+            {
+                Author = _ctx.Users.FirstOrDefault(u => u.Id == entity.OwnerId.ToString()).UserName,
+                Content = entity.Content,
+                DateCreated = entity.DateCreated,
+                LastUpdated = entity.LastUpdated,
+                Id = entity.Id
+            };
+            return model;
+        }
     }
 }

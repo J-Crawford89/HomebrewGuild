@@ -1,0 +1,226 @@
+﻿@model Models.CharacterModels.CharacterDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CharacterDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RaceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RaceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubraceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubraceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharacterClassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharacterClassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubclassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubclassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MulticlassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MulticlassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MulticlassSubclassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MulticlassSubclassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondMulticlassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondMulticlassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondMulticlassSubclassId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondMulticlassSubclassId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BackgroundId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BackgroundId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmorClass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmorClass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HitPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HitPoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dexterity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dexterity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Constitution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Constitution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intelligence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intelligence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wisdom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wisdom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Charisma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Charisma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Appearance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appearance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Backstory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Backstory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdated)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
