@@ -13,7 +13,6 @@ namespace MVC.Controllers
     [Authorize]
     public class UserMonsterController : Controller
     {
-        private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
         private UserMonsterService CreateUserMonsterService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

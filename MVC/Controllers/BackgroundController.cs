@@ -13,11 +13,9 @@ namespace MVC.Controllers
     [Authorize(Roles ="Admin")]
     public class BackgroundController : Controller
     {
-        private readonly ApplicationDbContext _ctx;
         private readonly BackgroundService _backgroundService;
         public BackgroundController()
         {
-            _ctx = new ApplicationDbContext();
             _backgroundService = new BackgroundService();
         }
         [AllowAnonymous]
