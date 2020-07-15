@@ -22,3 +22,32 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*NAV*/
+.topNav {
+    position: fixed;
+    right: 30px;
+}
+
+.topNav li {
+    display: block;
+    padding-top: 15px;
+}
+.topNav li a {
+    padding-top: 0;
+}
+
+.userNav li {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/*BODY*/
+
+/*UNIQUE*/
+
+/*FOOTER*/
+footer {
+    width: 200px;
+    margin: 0 auto;
+}

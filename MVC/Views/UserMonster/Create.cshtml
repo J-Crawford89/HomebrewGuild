@@ -139,35 +139,73 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @{
-                int abilityCount = Enum.GetNames(typeof(Data.Enums.Ability)).Length;
-                for (int i = 0; i < abilityCount; i++)
-                {
-                    Guid index = Guid.NewGuid();
-                    <input type="hidden" name="SavingThrows.Index" value="@index" />
-                    @Html.Label(Enum.GetName(typeof(Data.Enums.Ability), i))
-                    <input type="checkbox" name="SavingThrows[@index].Key" value="@Enum.GetName(typeof(Data.Enums.Ability), i)" />
-                    <input name="SavingThrows[@index].Value" value="" />
-                }
-            }
+            <table class="checkbox table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Ability</th>
+                        <th>Bonus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var ability in Enum.GetNames(typeof(Data.Enums.Ability)))
+                        {
+                            var kvp = new KeyValuePair<Data.Enums.Ability, string>();
+                            Guid index = Guid.NewGuid();
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="SavingThrows[@index].Key" value="@ability"
+                                           @if (Model.SavingThrows.ContainsKey((Data.Enums.Ability)Enum.Parse(typeof(Data.Enums.Ability), ability))) { <text> checked </text> } />
+                                </td>
+                                <td>@ability</td>
+                                <td>
+                                    <input type="text" name="SavingThrows[@index].Value"
+                                           @if (Model.SavingThrows.ContainsKey((Data.Enums.Ability)Enum.Parse(typeof(Data.Enums.Ability), ability))) { kvp = Model.SavingThrows.Single(e => e.Key == (Data.Enums.Ability)Enum.Parse(typeof(Data.Enums.Ability), ability)); } value="@kvp.Value" />
+                                </td>
+                                <td><input type="hidden" name="SavingThrows.Index" value="@index" /></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 
     <!--SKILLS - Dictionary<Skill, string> -->
     <div class="form-group">
-        @Html.LabelFor(model => model.Skills, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @{
-                int skillCount = Enum.GetNames(typeof(Data.Enums.Skill)).Length;
-                for (int i = 0; i < skillCount; i++)
-                {
-                    Guid index = Guid.NewGuid();
-                    <input type="hidden" name="Skills.Index" value="@index" />
-                    @Html.Label(Enum.GetName(typeof(Data.Enums.Skill), i))
-                    <input type="checkbox" name="Skills[@index].Key" value="@Enum.GetName(typeof(Data.Enums.Skill), i)" />
-                    <input name="Skills[@index].Value" value="" />
-                }
-            }
+            <table class="checkbox table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Skill</th>
+                        <th>Bonus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
+                        {
+                            var kvp = new KeyValuePair<Data.Enums.Skill, string>();
+                            Guid index = Guid.NewGuid();
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="Skills[@index].Key" value="@skill"
+                                           @if (Model.Skills.ContainsKey((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill))) { <text> checked </text> } />
+                                </td>
+                                <td>@skill</td>
+                                <td>
+                                    <input type="text" name="Skills[@index].Value"
+                                           @if (Model.Skills.ContainsKey((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill))) { kvp = Model.Skills.Single(e => e.Key == (Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill)); } value="@kvp.Value" />
+                                </td>
+                                <td><input type="hidden" name="Skills.Index" value="@index" /></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -231,8 +269,8 @@
             </thead>
             <tbody>
                 <tr class="traitRow">
-                    <td><input type="text" name="Traits[0].Key" class="form-control key01"/></td>
-                    <td><input type="text" name="Traits[0].Value" class="form-control value01"/></td>
+                    <td><input type="text" name="Traits[0].Key" class="form-control key01" /></td>
+                    <td><input type="text" name="Traits[0].Value" class="form-control value01" /></td>
                 </tr>
             </tbody>
         </table>
@@ -271,8 +309,8 @@
             </thead>
             <tbody>
                 <tr class="reactionRow">
-                    <td><input type="text" name="Reactions[0].Key" class="form-control key01"/></td>
-                    <td><input type="text" name="Reactions[0].Value" class="form-control value01"  /></td>
+                    <td><input type="text" name="Reactions[0].Key" class="form-control key01" /></td>
+                    <td><input type="text" name="Reactions[0].Value" class="form-control value01" /></td>
                 </tr>
             </tbody>
         </table>
@@ -299,8 +337,8 @@
             </thead>
             <tbody>
                 <tr class="legendaryRow">
-                    <td><input type="text" name="LegendaryActions[0].Key" class="form-control key01"/></td>
-                    <td><input type="text" name="LegendaryActions[0].Value" class="form-control value01"/></td>
+                    <td><input type="text" name="LegendaryActions[0].Key" class="form-control key01" /></td>
+                    <td><input type="text" name="LegendaryActions[0].Value" class="form-control value01" /></td>
                 </tr>
             </tbody>
         </table>
@@ -319,8 +357,8 @@
             </thead>
             <tbody>
                 <tr class="lairRow">
-                    <td><input type="text" name="LairActions[0].Key" class="form-control key01"/></td>
-                    <td><input type="text" name="LairActions[0].Value" class="form-control value01"/></td>
+                    <td><input type="text" name="LairActions[0].Key" class="form-control key01" /></td>
+                    <td><input type="text" name="LairActions[0].Value" class="form-control value01" /></td>
                 </tr>
             </tbody>
         </table>
