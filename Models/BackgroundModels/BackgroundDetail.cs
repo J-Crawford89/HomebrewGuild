@@ -8,9 +8,11 @@ using static Data.Enums;
 
 namespace Models.BackgroundModels
 {
-    public class BackgroundListItem
+    public class BackgroundDetail
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [Display(Name = "Skill Proficiencies")]
+        public List<Skill> SkillProficiencies { get; set; }
     }
 }

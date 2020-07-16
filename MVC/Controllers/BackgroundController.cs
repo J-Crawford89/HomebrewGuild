@@ -98,5 +98,11 @@ namespace MVC.Controllers
             TempData["SaveResult"] = "Background Deleted";
             return RedirectToAction("Index");
         }
+        // GET: Background/Details/{id}
+        public ActionResult Details(int id)
+        {
+            var model = _backgroundService.GetBackgroundById(id);
+            return View(model);
+        }
     }
 }

@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fondamento">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -16,19 +18,19 @@
                 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Monsters", "Index", "Monster", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Spells", "Index", "Spell", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Monsters", "Index", "Monster", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Spells", "Index", "Spell", null, new { @class = "nav-link" })</li>
                     @if(User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">@Html.ActionLink("My Creations", "Index", "MyCreations", new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("My Creations", "Index", "MyCreations", null, new { @class = "nav-link" })</li>
                     }
                     @Html.Partial("_LoginPartial")
                 </ul>
             </div>
     </nav>
-    <div class="container body-content">
+    <div class="">
         @RenderBody()
         <hr />
         <footer>

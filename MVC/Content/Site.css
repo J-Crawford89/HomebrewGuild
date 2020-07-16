@@ -1,4 +1,17 @@
-﻿body {
+﻿/*COLORS
+    Primary-Red: #BB1711
+    Secondary-DarkGray: #313638
+    PrimaryAccent-Yellow: #FFBC0A
+    SecondaryAccent-MediumGray: #A5ABAF
+    ThirdAccent-LightGray: #EBEBEB
+*/
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -30,19 +43,188 @@ textarea {
         padding-top: 0.415rem;
     }
 }
+
 #topNav {
-    background-color: black;
-    border-bottom: 2px solid red;
+    background-color: #313638;
+    border-bottom: 2px solid #BB1711;
+    width: 100vw;
+    color: #FFBC0A;
+}
+.nav-link {
+    color: #EBEBEB !important;
+}
+
+.navbar-brand {
+    font-family: 'Fondamento', serif;
+    color: #FFBC0A !important;
+}
+.navbar-brand a {
 }
 
 /*BODY*/
 .body-content {
     padding-top: 0.5rem;
 }
-/*UNIQUE*/
 
+.pageTitle {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #BB1711;
+}
+p, li, a {
+    font-family: 'Lato', sans-serif;
+}
+/*H*/
+h1 {
+    text-align: center;
+    font-family: 'Fondamento', serif;
+}
+
+h2 {
+    text-align: center;
+}
+/*BUTTON*/
+.btn-primary {
+    background-color: #313638;
+    border-color: #BB1711;
+}
+    .btn-primary a {
+        color: #FFBC0A;
+    }
+    .btn-primary:hover, .btn-primary:active, btn-primary:focus {
+        background-color: #FFBC0A !important;
+        border-color: #BB1711 !important;
+    }
+    .btn-primary:hover a, .btn-primary:active a, btn-primary:focus a {
+        color: #BB1711 !important;
+        text-decoration: none;
+    }
+.indexCreateLink {
+    padding: 1rem;
+}
+/*UNIQUE*/
+/*HOME*/
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+.home {
+    background-image: url(/Content/Images/HomeBackground.jpg);
+    background-size: 768px;
+    background-position: center;
+    border-bottom: 2px solid #BB1711;
+    border-radius: 0;
+}
+#homeTitle {
+    margin-top: 2em;
+    margin-bottom:2em;
+    margin-left: -1rem;
+    background-color: rgba(235,235,235,0.4);
+    width: 100vw;
+}
+#tagline {
+    text-align: right;
+    font-style: italic;
+    font-family: 'Lato', sans-serif;
+    background-image: linear-gradient(to right, rgba(235,235,235,0) 55%, rgba(235,235,235,0.4) 90%);
+    padding-right: 15px;
+    color: #313638;
+    margin-right: -1rem;
+}
+@media(min-width:576px){
+    #homeTitle {
+        margin-left: -2rem;
+        font-size: 3.3em;
+    }
+    #tagline {
+        margin-right: -2rem;
+    }
+}
+.monsters {
+    background-image: url(/Content/Images/monsters.jpg);
+    background-size: 100vw;
+}
+.spells {
+    background-image: url(/Content/Images/spells.jpg);
+    background-size: 150vw;
+}
+.category {
+    border: 2px solid #BB1711;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s ease-in;
+    max-width: 100vw;
+    height: 100vw;
+}
+.category a {
+    color: #EBEBEB;
+}
+.category:hover {
+    filter:grayscale(100%);
+    transition: .5s ease-in;
+}
+.category a:hover {
+    text-decoration: none;
+}
+@media(min-width: 426px) {
+    .monsters {
+        background-size: 426px;
+    }
+    .spells {
+        background-size: 640px;
+    }
+    .category {
+        max-width: 426px;
+        height: 426px;
+        margin: 1em auto;
+    }
+    .monsters:hover {
+        background-size: 451px;
+    }
+    .spells:hover {
+        background-size: 665px;
+    }
+    .category:hover {
+        max-width: 451px;
+        height: 451px;
+        margin: 0.25em auto;
+    }
+}
+@media(min-width: 768px) {
+    #homeTitle {
+        font-size: 4.5em;
+    }
+    .home {
+        background-size: 100vw;
+    }
+    .monsters {
+        background-size: 350px;
+    }
+    .spells {
+        background-size: 550px;
+    }
+    .category {
+        max-width: 350px;
+        height: 350px;
+    }
+    .monsters:hover {
+        background-size: 375px;
+    }
+    .spells:hover {
+        background-size: 575px;
+    }
+    .category:hover {
+        max-width: 375px;
+        height: 375px;
+    }
+}
+/*MY CREATIONS*/
+.myCreationsCategories {
+    margin-top: 1rem;
+}
 /*FOOTER*/
 footer {
-    width: 200px;
+    max-width: 600px;
+    text-align: center;
     margin: 0 auto;
 }

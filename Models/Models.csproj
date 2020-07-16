@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackgroundModels\BackgroundCreate.cs" />
+    <Compile Include="BackgroundModels\BackgroundDetail.cs" />
     <Compile Include="BackgroundModels\BackgroundEdit.cs" />
     <Compile Include="BackgroundModels\BackgroundListItem.cs" />
     <Compile Include="CharacterClassModels\CharacterClassCreate.cs" />

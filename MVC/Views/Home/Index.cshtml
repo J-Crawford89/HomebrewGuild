@@ -2,25 +2,20 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>The Homebrew Guild</h1>
-    <p>A home for D&D 5E Homebrew Content</p>
+<div class="jumbotron home">
+    <h1 id="homeTitle">The Homebrew Guild</h1>
+    <h5 id="tagline">A home for D&D 5E Homebrew Content</h5>
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-md-4">
-        <h2>Monsters</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-6">
+        <div class="category monsters">
+            <h2>@Html.ActionLink("Monsters", "Index", "Monster")</h2>
+        </div>
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <h2>Spells</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-md-6">
+        <div class="category spells">
+            <h2>@Html.ActionLink("Spells", "Index", "Spell")</h2>
+        </div>
     </div>
 </div>
