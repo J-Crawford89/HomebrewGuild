@@ -107,6 +107,7 @@ h2 {
 /*HOME*/
 .jumbotron {
     margin-bottom: 0 !important;
+    position: relative;
 }
 .home {
     background-image: url(/Content/Images/HomeBackground.jpg);
@@ -123,21 +124,21 @@ h2 {
     width: 100vw;
 }
 #tagline {
-    text-align: right;
     font-style: italic;
     font-family: 'Lato', sans-serif;
-    background-image: linear-gradient(to right, rgba(235,235,235,0) 55%, rgba(235,235,235,0.4) 90%);
-    padding-right: 15px;
-    color: #313638;
-    margin-right: -1rem;
+    color: #FFBC0A;
+    margin-bottom: 0;
+    padding: 2px 0 0 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #BB1711;
+    width: 380px;
 }
 @media(min-width:576px){
     #homeTitle {
         margin-left: -2rem;
         font-size: 3.3em;
-    }
-    #tagline {
-        margin-right: -2rem;
     }
 }
 .monsters {

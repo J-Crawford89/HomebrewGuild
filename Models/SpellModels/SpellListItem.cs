@@ -21,8 +21,5 @@ namespace Models.SpellModels
         public bool IsRitual { get; set; }
         [Display(Name ="Concentration")]
         public bool RequiresConcentration { get; set; }
-        public List<SpellComponent> Components { get; set; }
-        [Display(Name ="Class Spell Lists")]
-        public ICollection<int> ClassIds { get; set; }
     }
 }
