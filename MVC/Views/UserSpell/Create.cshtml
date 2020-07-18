@@ -4,13 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="pageTitle">
+    <h1>Create a Spell</h1>
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>SpellCreate</h4>
         <hr />
@@ -28,6 +30,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SpellLevel, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SpellLevel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.School, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.School, "Select School", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -56,6 +66,17 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CastingTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CastingTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Components, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="checkbox">
+                @foreach(var component in Enum.GetNames(typeof(Data.Enums.SpellComponent)))
+                {
+                    <input type="checkbox" name="Components" value="@component" />
+                    @component
+                }
             </div>
         </div>
 

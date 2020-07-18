@@ -4,27 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="pageTitle">
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <h5>@@@Html.DisplayFor(model => model.Creator)</h5>
+</div>
 
 <div>
-    <h4>SpellDetail</h4>
-    <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Creator)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.SpellLevel)
@@ -57,6 +43,23 @@
         <dd>
             @Html.DisplayFor(model => model.CastingTime)
         </dd>
+
+        @if (Model.Components != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Components)
+            </dt>
+
+            <dd>
+                @foreach (var component in Model.Components)
+                {
+                    string componentName = component.ToString();
+                    @componentName[0]
+                }
+            </dd>
+
+        }
+
 
         <dt>
             @Html.DisplayNameFor(model => model.MaterialComponent)

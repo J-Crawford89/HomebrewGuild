@@ -70,6 +70,16 @@ textarea {
     padding-top: 3rem;
     padding-bottom: 2rem;
     border-bottom: 2px solid #BB1711;
+    position: relative;
+}
+.pageTitle h5 {
+    padding: 0 15px 5px 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-style: italic;
+    font-family: 'Lato', sans-serif;
 }
 p, li, a {
     font-family: 'Lato', sans-serif;
@@ -87,6 +97,7 @@ h2 {
 .btn-primary {
     background-color: #313638;
     border-color: #FFBC0A;
+    color: #FFBC0A;
 }
     .btn-primary a {
         color: #FFBC0A;
@@ -94,6 +105,8 @@ h2 {
     .btn-primary:hover, .btn-primary:active, btn-primary:focus {
         background-color: #FFBC0A !important;
         border-color: #BB1711 !important;
+        color: #BB1711 !important;
+        text-decoration: none;
     }
     .btn-primary:hover a, .btn-primary:active a, btn-primary:focus a {
         color: #BB1711 !important;
