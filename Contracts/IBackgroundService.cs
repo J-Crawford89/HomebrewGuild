@@ -13,6 +13,6 @@ namespace Contracts
         bool Edit(BackgroundEdit model);
         bool Delete(int id);
         IEnumerable<BackgroundListItem> GetAllBackgrounds();
-        BackgroundListItem GetBackgroundById(int id);
+        BackgroundDetail GetBackgroundById(int id);
     }
 }

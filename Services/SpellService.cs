@@ -25,8 +25,6 @@ namespace Services
                 Name = e.Name,
                 SpellLevel = e.SpellLevel,
                 IsRitual = e.IsRitual,
-                ClassIds = e.ClassIds,
-                Components = e.Components,
                 RequiresConcentration = e.RequiresConcentration
             }).ToList();
             return spellList;
