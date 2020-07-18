@@ -4,7 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="pageTitle">
+    <h1>Monsters</h1>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="indexCreateLink">
+        <button type="button" value="createMonster" class="btn btn-primary">@Html.ActionLink("Create a Monster", "Create", "UserMonster")</button>
+    </div>
+}
 
 <table class="table">
     <tr>
@@ -20,21 +29,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Creator)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChallengeRating)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChallengeRating)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -30,9 +30,9 @@ namespace Models.MonsterModels
         public int Intelligence { get; set; }
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
-        [Display(Name ="Saving Throws")]
-        public Dictionary<Ability, string> SavingThrows { get; set; }
-        public Dictionary<Skill, string> Skills { get; set; }
+        [Display(Name = "Saving Throws")]
+        public Dictionary<Ability, string> SavingThrows { get; set; } = new Dictionary<Ability, string>();
+        public Dictionary<Skill, string> Skills { get; set; } = new Dictionary<Skill, string>();
         public string Vulnerabilities { get; set; }
         public string Resistances { get; set; }
         public string Immunities { get; set; }

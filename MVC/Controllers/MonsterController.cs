@@ -10,11 +10,9 @@ namespace MVC.Controllers
 {
     public class MonsterController : Controller
     {
-        private readonly ApplicationDbContext _ctx;
         private readonly MonsterService _monsterService;
         public MonsterController()
         {
-            _ctx = new ApplicationDbContext();
             _monsterService = new MonsterService();
         }
         // GET: Monster

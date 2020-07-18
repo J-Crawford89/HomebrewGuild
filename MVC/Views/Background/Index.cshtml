@@ -4,11 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="pageTitle">
+    <h1>Backgrounds</h1>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="indexCreateLink">
+    <button type="button" value="createBackground" class="btn btn-primary">@Html.ActionLink("Create a Background", "Create", "Background")</button>
+</div>
+
 <table class="table">
     <tr>
         <th>

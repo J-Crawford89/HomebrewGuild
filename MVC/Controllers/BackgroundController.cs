@@ -13,11 +13,9 @@ namespace MVC.Controllers
     [Authorize(Roles ="Admin")]
     public class BackgroundController : Controller
     {
-        private readonly ApplicationDbContext _ctx;
         private readonly BackgroundService _backgroundService;
         public BackgroundController()
         {
-            _ctx = new ApplicationDbContext();
             _backgroundService = new BackgroundService();
         }
         [AllowAnonymous]
@@ -99,6 +97,12 @@ namespace MVC.Controllers
             _backgroundService.Delete(id);
             TempData["SaveResult"] = "Background Deleted";
             return RedirectToAction("Index");
+        }
+        // GET: Background/Details/{id}
+        public ActionResult Details(int id)
+        {
+            var model = _backgroundService.GetBackgroundById(id);
+            return View(model);
         }
     }
 }

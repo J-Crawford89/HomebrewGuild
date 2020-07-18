@@ -3,42 +3,38 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fondamento">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark" id="topNav">
+                @Html.ActionLink("The Homebrew Guild", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Monsters", "Index", "Monster")</li>
-                    <li>Spells</li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Monsters", "Index", "Monster", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Spells", "Index", "Spell", null, new { @class = "nav-link" })</li>
                     @if(User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("My Creations", "Index", "MyCreations")</li>
+                        <li class="nav-item">@Html.ActionLink("My Creations", "Index", "MyCreations", null, new { @class = "nav-link" })</li>
                     }
+                    @Html.Partial("_LoginPartial")
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    <div class="">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - The Homebrew Guild</p>
         </footer>
     </div>
 

@@ -54,15 +54,14 @@ namespace Services
             var backgroundList = _ctx.Backgrounds.Select(e => new BackgroundListItem
             {
                 Id = e.Id,
-                Name = e.Name,
-                SkillProficiencies = e.SkillProficiencies
+                Name = e.Name
             }).ToList();
             return backgroundList;
         }
-        public BackgroundListItem GetBackgroundById(int id)
+        public BackgroundDetail GetBackgroundById(int id)
         {
             var entity = _ctx.Backgrounds.Single(e => e.Id == id);
-            return new BackgroundListItem()
+            return new BackgroundDetail()
             {
                 Id = entity.Id,
                 Name = entity.Name,

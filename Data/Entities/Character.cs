@@ -83,7 +83,13 @@ namespace Data.Entities
             get { return _Skills == null ? null : JsonConvert.DeserializeObject<List<Skill>>(_Skills); }
             set { _Skills = JsonConvert.SerializeObject(value); }
         }
-        public string NotableInventory { get; set; }
+        internal string _NotableInventory { get; set; }
+        [NotMapped]
+        public Dictionary<string, string> NotableInventory 
+        { 
+            get { return _NotableInventory == null ? null : JsonConvert.DeserializeObject<Dictionary<string, string>>(_NotableInventory); }
+            set { _NotableInventory = JsonConvert.SerializeObject(value); } 
+        }
         public string Appearance { get; set; }
         public string Backstory { get; set; }
         public string Description { get; set; }

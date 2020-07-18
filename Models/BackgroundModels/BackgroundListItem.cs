@@ -12,7 +12,5 @@ namespace Models.BackgroundModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [Display(Name ="Skill Proficiencies")]
-        public List<Skill> SkillProficiencies { get; set; }
     }
 }
