@@ -25,6 +25,8 @@ namespace Data.Entities
         [Required]
         public bool IsRitual { get; set; }
         [Required]
+        public string Range { get; set; }
+        [Required]
         public bool RequiresConcentration { get; set; }
         [Required]
         public string CastingTime { get; set; }

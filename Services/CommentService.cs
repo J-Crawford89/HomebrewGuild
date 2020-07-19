@@ -82,7 +82,7 @@ namespace Services
         public IEnumerable<CommentListItem> GetAllCommentsByCharacterId(int characterId)
         {
             var commentList = _ctx.Comments
-                .Where(e => e.CharacterId == characterId)
+                .Where(e => e.CharacterId == characterId && e.IsDeleted == false)
                 .Select(e => new CommentListItem
                 {
                     Id = e.Id,
@@ -97,7 +97,7 @@ namespace Services
         public IEnumerable<CommentListItem> GetAllCommentsByMonsterId(int monsterId)
         {
             var commentList = _ctx.Comments
-                .Where(e => e.MonsterId == monsterId)
+                .Where(e => e.MonsterId == monsterId && e.IsDeleted == false)
                 .Select(e => new CommentListItem
                 {
                     Id = e.Id,
@@ -112,7 +112,7 @@ namespace Services
         public IEnumerable<CommentListItem> GetAllCommentsBySpellId(int spellId)
         {
             var commentList = _ctx.Comments
-                .Where(e => e.SpellId == spellId)
+                .Where(e => e.SpellId == spellId && e.IsDeleted == false)
                 .Select(e => new CommentListItem
                 {
                     Id = e.Id,

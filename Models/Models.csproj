@@ -98,6 +98,7 @@
     <Compile Include="ReplyModels\ReplyListItem.cs" />
     <Compile Include="SpellModels\SpellCreate.cs" />
     <Compile Include="SpellModels\SpellDetail.cs" />
+    <Compile Include="SpellModels\SpellDetailView.cs" />
     <Compile Include="SpellModels\SpellEdit.cs" />
     <Compile Include="SpellModels\SpellListItem.cs" />
     <Compile Include="SubclassModels\SubclassCreate.cs" />

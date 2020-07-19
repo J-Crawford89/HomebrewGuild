@@ -122,16 +122,6 @@ namespace MVC.Controllers
         public ActionResult Delete(int id)
         {
             var userMonsterService = CreateUserMonsterService();
-            var model = userMonsterService.GetMonsterDetailById(id);
-            return View(model);
-        }
-        // POST: UserMonster/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
-        {
-            var userMonsterService = CreateUserMonsterService();
             userMonsterService.Delete(id);
             TempData["SaveResult"] = "Monster Deleted!";
             return RedirectToAction("Index");

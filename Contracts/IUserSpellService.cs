@@ -14,5 +14,6 @@ namespace Contracts
         bool Delete(int id);
         IEnumerable<SpellListItem> GetAllUserSpells();
         SpellDetail GetSpellDetailById(int id);
+        SpellDetailView GetSpellDetailViewById(int id);
     }
 }

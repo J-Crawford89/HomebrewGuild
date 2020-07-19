@@ -18,15 +18,17 @@ namespace Services
         }
         public IEnumerable<CharacterListItem> GetAllCharacters()
         {
-            var characterList = _ctx.Characters.Select(e => new CharacterListItem
-            {
-                Id = e.Id,
-                Name = e.Name,
-                RaceId = e.RaceId,
-                CharacterClassId = e.CharacterClassId,
-                Level = e.Level,
-                Creator = _ctx.Users.FirstOrDefault(u => u.Id == e.OwnerId.ToString()).UserName
-            }).ToList();
+            var characterList = _ctx.Characters
+                .Where(e => e.IsDeleted == false)
+                .Select(e => new CharacterListItem
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    RaceId = e.RaceId,
+                    CharacterClassId = e.CharacterClassId,
+                    Level = e.Level,
+                    Creator = _ctx.Users.FirstOrDefault(u => u.Id == e.OwnerId.ToString()).UserName
+                }).ToList();
             return characterList;
         }
 

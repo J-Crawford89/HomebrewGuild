@@ -62,7 +62,7 @@ namespace Services
         public IEnumerable<ReplyListItem> GetAllRepliesByCommentId(int commentId)
         {
             var repliesList = _ctx.Replies
-                .Where(e => e.CommentId == commentId)
+                .Where(e => e.CommentId == commentId && e.IsDeleted == false)
                 .Select(e => new ReplyListItem
                 {
                     Id = e.Id,

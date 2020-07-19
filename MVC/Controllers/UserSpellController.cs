@@ -28,21 +28,12 @@ namespace MVC.Controllers
         public ActionResult Details(int id)
         {
             var userSpellService = CreateUserSpellService();
-            var model = userSpellService.GetSpellDetailById(id);
+            var model = userSpellService.GetSpellDetailViewById(id);
             return View(model);
         }
+
         // GET: UserSpell/Delete/{id}
         public ActionResult Delete(int id)
-        {
-            var userSpellService = CreateUserSpellService();
-            var model = userSpellService.GetSpellDetailById(id);
-            return View(model);
-        }
-        // POST: UserSpell/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
         {
             var userSpellService = CreateUserSpellService();
             userSpellService.Delete(id);
@@ -87,6 +78,7 @@ namespace MVC.Controllers
                 Description = detail.Description,
                 Duration = detail.Duration,
                 IsRitual = detail.IsRitual,
+                Range = detail.Range,
                 MaterialComponent = detail.MaterialComponent,
                 Name = detail.Name,
                 RequiresConcentration = detail.RequiresConcentration,
