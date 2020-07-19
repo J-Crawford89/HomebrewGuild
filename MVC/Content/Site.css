@@ -176,9 +176,55 @@ h2 {
 .listButtons ul{
     margin-bottom: 0;
 }
+/*TABLE*/
+.tableForm {
+    margin-top: 1rem;
+}
+.tableHeader {
+    margin-bottom: 0;
+}
+.tableTextArea {
+    width: 100% !important;
+}
+@media(min-width:992px) {
+    .tableTextArea {
+        min-width:590px !important;
+    }
+}
+@media(min-width: 444px) {
+    .tableTextArea {
+        width: 100vw !important;
+    }
+}
 /*FORM*/
 .inputStandard {
     margin: 1rem 1rem 0 1rem;
+}
+
+.inputLarge {
+    height: 4rem;
+    min-width: 95vw;
+    max-width: 95vw;
+    font-size: 3rem;
+    margin-top: 1rem;
+}
+@media(min-width:1280px) {
+    .inputLarge {
+        min-width: 50vw;
+        max-width: 50vw;
+    }
+}
+@media(min-width:768px) {
+    .inputLarge {
+        min-width: 620px;
+        max-width: 620px;
+        margin-right: 2rem;
+    }
+}
+
+.inputSmall {
+    margin: 1rem 1rem 0 0.5rem;
+    max-width: 120px;
 }
 
 .form-group {
@@ -227,6 +273,10 @@ h2 {
     margin-top: 1em;
 }
 /*UNIQUE*/
+#legendaryActions {
+    max-width: 120px;
+    margin-bottom: 1rem;
+}
 /*HOME*/
 .jumbotron {
     margin-bottom: 0 !important;

@@ -28,8 +28,7 @@ namespace MVC.Controllers
         // GET: UserMonster/Create
         public ActionResult Create()
         {
-            var model = new MonsterCreate();
-            return View(model);
+            return View();
         }
         // POST: UserMonster/Create
         [HttpPost]
