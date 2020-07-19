@@ -198,7 +198,12 @@ h2 {
 }
 /*FORM*/
 .inputStandard {
-    margin: 1rem 1rem 0 1rem;
+    margin: 0.5rem 1rem 0 1rem;
+    min-width: 100%;
+    max-width: 100%;
+}
+.labelStandard {
+    margin: 0.5rem 1rem 0 1rem;
 }
 
 .inputLarge {
@@ -218,12 +223,11 @@ h2 {
     .inputLarge {
         min-width: 620px;
         max-width: 620px;
-        margin-right: 2rem;
     }
 }
 
 .inputSmall {
-    margin: 1rem 1rem 0 0.5rem;
+    margin: 0;
     max-width: 120px;
 }
 

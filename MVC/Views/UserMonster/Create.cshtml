@@ -4,7 +4,7 @@
     ViewBag.Title = "Create a Monster";
 }
 
-<div class="pageTitle">
+<div class="pageTitle monsterTitle">
     <h1>Create a Monster</h1>
 </div>
 
@@ -15,108 +15,107 @@
 
     <div class="container">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row justify-content-center">
+        <div class="form-row justify-content-center">
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control float-md-right inputLarge", placeholder = "Monster Name" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger float-md-right inputStandard" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputLarge", placeholder = "Monster Name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger inputStandard" })
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "sr-only" })
-                @Html.EnumDropDownListFor(model => model.Size, "Select Size", new { @class = "form-control float-md-right inputStandard" })
-                @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger float-md-right inputStandard" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.Size, "Select Size", new { @class = "form-control inputStandard" })
+                @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "sr-only" })
-                @Html.EnumDropDownListFor(model => model.Type, "Select Type", new { @class = "form-control float-md-left inputStandard" })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger float-md-left inputStandard" })
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Speed, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control float-md-right inputStandard", @placeholder = "Speed" } })
-                @Html.ValidationMessageFor(model => model.Speed, "", new { @class = "text-danger float-md-right inputStandard" })
-            </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Alignment, htmlAttributes: new { @class = "sr-only" })
-                @Html.EnumDropDownListFor(model => model.Alignment, "Select Alignment", new { @class = "form-control float-md-left inputStandard" })
-                @Html.ValidationMessageFor(model => model.Alignment, "", new { @class = "text-danger float-md-left inputStandard" })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.Type, "Select Type", new { @class = "form-control inputStandard" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.ArmorClass, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.ArmorClass, new { htmlAttributes = new { @class = "form-control float-md-right inputStandard", @placeholder = "Armor Class", @value = "null !important" } })
-                @Html.ValidationMessageFor(model => model.ArmorClass, "", new { @class = "text-danger float-md-right inputStandard" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Speed, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Speed" } })
+                @Html.ValidationMessageFor(model => model.Speed, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.ArmorType, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.ArmorType, new { htmlAttributes = new { @class = "form-control float-md-left inputStandard", @placeholder = "Armor Type" } })
-                @Html.ValidationMessageFor(model => model.ArmorType, "", new { @class = "text-danger float-md-left inputStandard" })
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.HitPoints, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.HitPoints, new { htmlAttributes = new { @class = "form-control float-md-right inputStandard", @placeholder = "Hit Points" } })
-                @Html.ValidationMessageFor(model => model.HitPoints, "", new { @class = "text-danger float-md-right inputStandard" })
-            </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.HitPointEquation, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.HitPointEquation, new { htmlAttributes = new { @class = "form-control float-md-left inputStandard", @placeholder = "Hit Point Equation" } })
-                @Html.ValidationMessageFor(model => model.HitPointEquation, "", new { @class = "text-danger float-md-left inputStandard" })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Alignment, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.Alignment, "Select Alignment", new { @class = "form-control inputStandard" })
+                @Html.ValidationMessageFor(model => model.Alignment, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.ArmorClass, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.ArmorClass, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Armor Class", @value = "null !important" } })
+                @Html.ValidationMessageFor(model => model.ArmorClass, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.ArmorType, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.ArmorType, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Armor Type" } })
+                @Html.ValidationMessageFor(model => model.ArmorType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.HitPoints, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.HitPoints, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Hit Points" } })
+                @Html.ValidationMessageFor(model => model.HitPoints, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.HitPointEquation, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.HitPointEquation, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Hit Point Equation" } })
+                @Html.ValidationMessageFor(model => model.HitPointEquation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center">
             <div class="form-group col-sm-2">
-                @Html.LabelFor(model => model.Strength, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Strength, new { htmlAttributes = new { @class = "form-control float-md-right inputSmall", @placeholder = "STR" } })
-                @Html.ValidationMessageFor(model => model.Strength, "", new { @class = "text-danger float-md-right" })
+                @Html.LabelFor(model => model.Strength, "STR", htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Strength, new { htmlAttributes = new { @class = "form-control inputSmall", @placeholder = "STR" } })
+                @Html.ValidationMessageFor(model => model.Strength, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-2" align="center">
-                @Html.LabelFor(model => model.Dexterity, htmlAttributes: new { @class = "sr-only" })
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Dexterity, "DEX", htmlAttributes: new { @class = "labelStandard" })
                 @Html.EditorFor(model => model.Dexterity, new { htmlAttributes = new { @class = "form-control inputSmall", @placeholder = "DEX" } })
                 @Html.ValidationMessageFor(model => model.Dexterity, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-sm-2">
-                @Html.LabelFor(model => model.Constitution, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Constitution, new { htmlAttributes = new { @class = "form-control float-md-left inputSmall", @placeholder = "CON" } })
-                @Html.ValidationMessageFor(model => model.Constitution, "", new { @class = "text-danger float-md-left" })
+                @Html.LabelFor(model => model.Constitution, "CON", htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Constitution, new { htmlAttributes = new { @class = "form-control inputSmall", @placeholder = "CON" } })
+                @Html.ValidationMessageFor(model => model.Constitution, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="form-row justify-content-center">
             <div class="form-group col-sm-2">
-                @Html.LabelFor(model => model.Intelligence, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Intelligence, new { htmlAttributes = new { @class = "form-control float-md-right inputSmall", @placeholder = "INT" } })
-                @Html.ValidationMessageFor(model => model.Intelligence, "", new { @class = "text-danger float-md-right" })
+                @Html.LabelFor(model => model.Intelligence, "INT", htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Intelligence, new { htmlAttributes = new { @class = "form-control inputSmall", @placeholder = "INT" } })
+                @Html.ValidationMessageFor(model => model.Intelligence, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-2" align="center">
-                @Html.LabelFor(model => model.Wisdom, htmlAttributes: new { @class = "sr-only" })
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Wisdom, "WIS", htmlAttributes: new { @class = "labelStandard" })
                 @Html.EditorFor(model => model.Wisdom, new { htmlAttributes = new { @class = "form-control inputSmall", @placeholder = "WIS" } })
                 @Html.ValidationMessageFor(model => model.Wisdom, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-sm-2">
-                @Html.LabelFor(model => model.Charisma, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Charisma, new { htmlAttributes = new { @class = "form-control inputSmall float-md-left", @placeholder = "CHA" } })
-                @Html.ValidationMessageFor(model => model.Charisma, "", new { @class = "text-danger float-md-left" })
+                @Html.LabelFor(model => model.Charisma, "CHA", htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Charisma, new { htmlAttributes = new { @class = "form-control inputSmall", @placeholder = "CHA" } })
+                @Html.ValidationMessageFor(model => model.Charisma, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <!--SAVING THROWS - Dictionary<Ability, string> -->
-        <div class="row justify-content-center">
+        <div class="form-row justify-content-center tableForm">
             <div class="form-group">
-                <table class="checkbox table-sm">
+                <h5>@Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "tableHeader" })</h5>
+                <table class="checkbox table">
                     <thead>
                         <tr>
-                            <th>@Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "tableHeader" }) | </th>
                             <th>Ability</th>
                             <th>Bonus</th>
                         </tr>
@@ -145,79 +144,81 @@
         </div>
 
         <!--SKILLS - Dictionary<Skill, string> -->
-        <div class="row justify-content-center">
-            <table class="checkbox table-sm">
-                <thead>
-                    <tr>
-                        <th>@Html.LabelFor(model => model.Skills, htmlAttributes: new { @class = "tableHeader" }) | </th>
-                        <th>Skill</th>
-                        <th>Bonus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
-                        {
-                            var kvp = new KeyValuePair<Data.Enums.Skill, string>();
-                            Guid index = Guid.NewGuid();
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="Skills[@index].Key" value="@skill" />
-                                </td>
-                                <td>@skill</td>
-                                <td>
-                                    <input type="text" class="form-control" name="Skills[@index].Value" value="@kvp.Value" />
-                                </td>
-                                <td><input type="hidden" name="Skills.Index" value="@index" /></td>
-                            </tr>
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                <h5>@Html.LabelFor(model => model.Skills, htmlAttributes: new { @class = "tableHeader" })</h5>
+                <table class="checkbox table">
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Bonus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
+                            {
+                                var kvp = new KeyValuePair<Data.Enums.Skill, string>();
+                                Guid index = Guid.NewGuid();
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="Skills[@index].Key" value="@skill" />
+                                    </td>
+                                    <td>@skill</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="Skills[@index].Value" value="@kvp.Value" />
+                                    </td>
+                                    <td><input type="hidden" name="Skills.Index" value="@index" /></td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Vulnerabilities, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Vulnerabilities, new { htmlAttributes = new { @class = "form-control float-md-right inputStandard", @placeholder = "Vulnerabilities" } })
-                @Html.ValidationMessageFor(model => model.Vulnerabilities, "", new { @class = "text-danger float-md-right inputStandard" })
-            </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Resistances, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Resistances, new { htmlAttributes = new { @class = "form-control float-md-left inputStandard", @placeholder = "Resistances" } })
-                @Html.ValidationMessageFor(model => model.Resistances, "", new { @class = "text-danger float-md-left inputStandard" })
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Immunities, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Immunities, new { htmlAttributes = new { @class = "form-control float-md-right inputStandard", @placeholder = "Immunities" } })
-                @Html.ValidationMessageFor(model => model.Immunities, "", new { @class = "text-danger float-md-right inputStandard" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Vulnerabilities, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Vulnerabilities, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Vulnerabilities" } })
+                @Html.ValidationMessageFor(model => model.Vulnerabilities, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Senses, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Senses, new { htmlAttributes = new { @class = "form-control float-md-left inputStandard", @placeholder = "Senses" } })
-                @Html.ValidationMessageFor(model => model.Senses, "", new { @class = "text-danger float-md-left inputStandard" })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Resistances, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Resistances, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Resistances" } })
+                @Html.ValidationMessageFor(model => model.Resistances, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.Languages, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.Languages, new { htmlAttributes = new { @class = "form-control float-md-right inputStandard", @placeholder = "Languages" } })
-                @Html.ValidationMessageFor(model => model.Languages, "", new { @class = "text-danger float-md-right inputStandard" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Immunities, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Immunities, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Immunities" } })
+                @Html.ValidationMessageFor(model => model.Immunities, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.ChallengeRating, htmlAttributes: new { @class = "sr-only" })
-                @Html.EditorFor(model => model.ChallengeRating, new { htmlAttributes = new { @class = "form-control float-md-left inputStandard", @placeholder = "Challenge Rating" } })
-                @Html.ValidationMessageFor(model => model.ChallengeRating, "", new { @class = "text-danger float-md-left inputStandard" })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Senses, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Senses, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Senses" } })
+                @Html.ValidationMessageFor(model => model.Senses, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Languages, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Languages, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Languages" } })
+                @Html.ValidationMessageFor(model => model.Languages, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.ChallengeRating, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.ChallengeRating, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Challenge Rating" } })
+                @Html.ValidationMessageFor(model => model.ChallengeRating, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         <!--TRAITS-->
-        <div class="row justify-content-center tableForm">
+        <div class="form-row justify-content-center tableForm">
             <div class="form-group">
                 <h5>Traits</h5>
                 <table class="table" id="traitTable">
@@ -236,12 +237,12 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="form-row">
             <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addTrait">Add Trait</button>
         </div>
 
         <!--ACTIONS-->
-        <div class="row justify-content-center tableForm">
+        <div class="form-row justify-content-center tableForm">
             <div class="form-group">
                 <h5>Actions</h5>
                 <table class="table" id="actionTable">
@@ -260,12 +261,12 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="form-row">
             <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addAction">Add Action</button>
         </div>
 
         <!--REACTIONS-->
-        <div class="row justify-content-center tableForm">
+        <div class="form-row justify-content-center tableForm">
             <div class="form-group">
                 <h5>Reactions</h5>
                 <table class="table" id="reactionTable">
@@ -284,12 +285,12 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="form-row">
             <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addReaction">Add Reaction</button>
         </div>
 
         <!--LEGENDARY-->
-        <div class="row justify-content-center tableForm">
+        <div class="form-row justify-content-center tableForm">
             <div class="form-group">
                 @Html.EditorFor(model => model.NumberOfLegendaryActions, new { htmlAttributes = new { @class = "form-control float-right", @id = "legendaryActions", @placeholder = "#/Round" } })
                 @Html.ValidationMessageFor(model => model.NumberOfLegendaryActions, "", new { @class = "text-danger" })
@@ -312,12 +313,12 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="form-row">
             <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addLegendary">Add Legendary Action</button>
         </div>
 
         <!--LAIR-->
-        <div class="row justify-content-center tableForm">
+        <div class="form-row justify-content-center tableForm">
             <div class="form-group">
                 <h5>Lair Actions</h5>
                 <table class="table" id="lairTable">
@@ -336,7 +337,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="form-row">
             <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addLair">Add Lair Action</button>
         </div>
 
