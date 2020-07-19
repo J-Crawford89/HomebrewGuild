@@ -22,7 +22,7 @@ namespace Models.SpellModels
         [Display(Name="Casting Time")]
         public string CastingTime { get; set; }
         public string Range { get; set; }
-        [Display(Name="Components:")]
+        [Display(Name="Components")]
         public List<SpellComponent> Components { get; set; } = new List<SpellComponent>();
         [Display(Name="Material Component")]
         public string MaterialComponent { get; set; }

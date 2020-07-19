@@ -86,6 +86,7 @@
     <Compile Include="CommentModels\CommentListItem.cs" />
     <Compile Include="MonsterModels\MonsterCreate.cs" />
     <Compile Include="MonsterModels\MonsterDetail.cs" />
+    <Compile Include="MonsterModels\MonsterDetailView.cs" />
     <Compile Include="MonsterModels\MonsterEdit.cs" />
     <Compile Include="MonsterModels\MonsterListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

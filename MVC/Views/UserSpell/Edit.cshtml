@@ -13,97 +13,97 @@
 {
     @Html.AntiForgeryToken()
 
-<div>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-row justify-content-center">
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Spell Name" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.SpellLevel, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.SpellLevel, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Spell Level" } })
-            @Html.ValidationMessageFor(model => model.SpellLevel, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-row justify-content-center">
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.School, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EnumDropDownListFor(model => model.School, "Select School", new { @class = "form-control inputStandard" })
-            @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.CastingTime, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.CastingTime, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Casting Time" } })
-            @Html.ValidationMessageFor(model => model.CastingTime, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-row justify-content-center">
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Duration" } })
-            @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.Range, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.Range, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Range" } })
-            @Html.ValidationMessageFor(model => model.Range, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-row justify-content-center">
-        <div class="form-group offset-sm-2 col-sm-2">
-            @Html.LabelFor(model => model.Components, htmlAttributes: new { @class = "labelStandard" })
-            <div class="checkbox inputStandard">
-                @foreach (var component in Enum.GetNames(typeof(Data.Enums.SpellComponent)))
-                {
-                    <input type="checkbox" name="Components" value="@component" @if (Model.Components.Contains((Data.Enums.SpellComponent)Enum.Parse(typeof(Data.Enums.SpellComponent), component))) { <text> checked </text> } />
-                    @component[0]
-                }
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Spell Name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.SpellLevel, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.SpellLevel, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Spell Level" } })
+                @Html.ValidationMessageFor(model => model.SpellLevel, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group col-sm-4">
-            @Html.LabelFor(model => model.MaterialComponent, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.MaterialComponent, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Material Component" } })
-            @Html.ValidationMessageFor(model => model.MaterialComponent, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-row justify-content-center">
-        <div class="form-group offset-sm-2 col-sm-2">
-            @Html.LabelFor(model => model.IsRitual, htmlAttributes: new { @class = "labelStandard" })
-            <div class="checkbox inputStandard">
-                @Html.EditorFor(model => model.IsRitual)
-                @Html.ValidationMessageFor(model => model.IsRitual, "", new { @class = "text-danger" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.School, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.School, "Select School", new { @class = "form-control inputStandard" })
+                @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.CastingTime, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.CastingTime, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Casting Time" } })
+                @Html.ValidationMessageFor(model => model.CastingTime, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group col-sm-2">
-            @Html.LabelFor(model => model.RequiresConcentration, htmlAttributes: new { @class = "labelStandard" })
-            <div class="checkbox inputStandard">
-                @Html.EditorFor(model => model.RequiresConcentration)
-                @Html.ValidationMessageFor(model => model.RequiresConcentration, "", new { @class = "text-danger" })
+
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Duration" } })
+                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.Range, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Range, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Range" } })
+                @Html.ValidationMessageFor(model => model.Range, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
 
-    <div class="form-row justify-content-center">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "sr-only" })
-            <textarea name="Description" class="form-control inputTextArea">@Model.Description</textarea>
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        <div class="form-row justify-content-center">
+            <div class="formStandard row col-sm-4 col-lg-3">
+                <div class="form-group col-6 col-xl-2 spellCheckboxList">
+                    @Html.LabelFor(model => model.IsRitual, htmlAttributes: new { @class = "labelStandard" })
+                    <div class="checkbox inputStandard">
+                        @Html.EditorFor(model => model.IsRitual)
+                        @Html.ValidationMessageFor(model => model.IsRitual, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-6 col-xl-4 spellCheckboxList">
+                    @Html.LabelFor(model => model.RequiresConcentration, htmlAttributes: new { @class = "labelStandard" })
+                    <div class="checkbox inputStandard">
+                        @Html.EditorFor(model => model.RequiresConcentration)
+                        @Html.ValidationMessageFor(model => model.RequiresConcentration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-auto">
+                    @Html.LabelFor(model => model.Components, htmlAttributes: new { @class = "labelStandard" })
+                    <div class="checkbox inputStandard">
+                        @foreach (var component in Enum.GetNames(typeof(Data.Enums.SpellComponent)))
+                        {
+                            <input type="checkbox" name="Components" value="@component" @if (Model.Components.Contains((Data.Enums.SpellComponent)Enum.Parse(typeof(Data.Enums.SpellComponent), component))) { <text> checked </text> } />
+                            @component[0]
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-4 col-lg-3 formStandard">
+                @Html.LabelFor(model => model.MaterialComponent, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.MaterialComponent, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Material Component" } })
+                @Html.ValidationMessageFor(model => model.MaterialComponent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "sr-only" })
+                <textarea name="Description" class="form-control inputTextArea">@Model.Description</textarea>
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="formButtons" align="center">
+            <ul class="horizontalList">
+                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "UserSpell", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                <li><input type="submit" value="Update" class="btn btn-primary" /></li>
+            </ul>
         </div>
     </div>
-
-    <div class="formButtons" align="center">
-        <ul class="horizontalList">
-            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", new { id = Model.Id }, new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-            <li><input type="submit" value="Update" class="btn btn-primary" /></li>
-        </ul>
-    </div>
-</div>
 }
 
 @section Scripts {

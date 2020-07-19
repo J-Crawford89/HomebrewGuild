@@ -16,132 +16,113 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="row justify-content-center">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "sr-only" })
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputLarge" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EnumDropDownListFor(model => model.Size, "Select Size", new { @class = "form-control" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.Size, "Select Size", new { @class = "form-control inputStandard" })
                 @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Type, "Select Type", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.Type, "Select Type", new { @class = "form-control inputStandard" })
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Alignment, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Alignment, "Select Alignment", new { @class = "form-control" })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Alignment, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EnumDropDownListFor(model => model.Alignment, "Select Alignment", new { @class = "form-control inputStandard" })
                 @Html.ValidationMessageFor(model => model.Alignment, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ArmorClass, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ArmorClass, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.ArmorClass, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.ArmorClass, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.ArmorClass, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ArmorType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ArmorType, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.ArmorType, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.ArmorType, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.ArmorType, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HitPoints, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HitPoints, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.HitPoints, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.HitPoints, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.HitPoints, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HitPointEquation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HitPointEquation, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.HitPointEquation, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.HitPointEquation, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.HitPointEquation, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Speed, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-4">
+                @Html.LabelFor(model => model.Speed, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Speed, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.Speed, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Strength, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Strength, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Strength, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Strength, new { htmlAttributes = new { @class = "form-control inputSmall" } })
                 @Html.ValidationMessageFor(model => model.Strength, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dexterity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Dexterity, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Dexterity, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Dexterity, new { htmlAttributes = new { @class = "form-control inputSmall" } })
                 @Html.ValidationMessageFor(model => model.Dexterity, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Constitution, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Constitution, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Constitution, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Constitution, new { htmlAttributes = new { @class = "form-control inputSmall" } })
                 @Html.ValidationMessageFor(model => model.Constitution, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Intelligence, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Intelligence, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Intelligence, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Intelligence, new { htmlAttributes = new { @class = "form-control inputSmall" } })
                 @Html.ValidationMessageFor(model => model.Intelligence, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Wisdom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Wisdom, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Wisdom, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Wisdom, new { htmlAttributes = new { @class = "form-control inputSmall" } })
                 @Html.ValidationMessageFor(model => model.Wisdom, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Charisma, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Charisma, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-2">
+                @Html.LabelFor(model => model.Charisma, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Charisma, new { htmlAttributes = new { @class = "form-control inputSmall" } })
                 @Html.ValidationMessageFor(model => model.Charisma, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <!--SAVING THROWS - Dictionary<Ability, string> -->
-        <div class="form-group">
-            @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                <h5>@Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "tableHeader" })</h5>
                 <table class="checkbox table">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Ability</th>
                             <th>Bonus</th>
                         </tr>
@@ -172,9 +153,9 @@
         </div>
 
         <!--SKILLS - Dictionary<Skill, string> -->
-        <div class="form-group">
-            @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                <h5>@Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "tableHeader" })</h5>
                 <table class="checkbox table">
                     <thead>
                         <tr>
@@ -208,245 +189,254 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Vulnerabilities, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Vulnerabilities, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Vulnerabilities, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Vulnerabilities, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.Vulnerabilities, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Resistances, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Resistances, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Resistances, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Resistances, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.Resistances, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Immunities, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Immunities, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Immunities, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Immunities, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.Immunities, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Senses, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Senses, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Senses, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Senses, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.Senses, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Languages, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Languages, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Languages, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Languages, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.Languages, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChallengeRating, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChallengeRating, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.ChallengeRating, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.ChallengeRating, new { htmlAttributes = new { @class = "form-control inputStandard" } })
                 @Html.ValidationMessageFor(model => model.ChallengeRating, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <!--TRAITS-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.Traits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <table class="table" id="traitTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Traits != null)
-                    {
-                        int i = -1;
-                        foreach (var kvp in Model.Traits)
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                <h5>Traits</h5>
+                <table class="table" id="traitTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Traits != null)
                         {
-                            i++;
+                            int i = -1;
+                            foreach (var kvp in Model.Traits)
+                            {
+                                i++;
+                                <tr class="traitRow">
+                                    <td><input type="text" name="Traits[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
+                                    <td><textarea name="Traits[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
+                                    <td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Delete Row</button></td>
+                                    <td><input type="hidden" name="Traits.Index" value="@i" /></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
                             <tr class="traitRow">
-                                <td><input type="text" name="Traits[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
-                                <td><input type="text" name="Traits[@i].Value" class="form-control key01" value="@kvp.Value" /></td>
-                                <td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Delete Row</button></td>
-                                <td><input type="hidden" name="Traits.Index" value="@i" /></td>
+                                <td><input type="text" name="Traits[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="Traits[0].Value" class="form-control tableTextArea value01"></textarea></td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr class="traitRow">
-                            <td><input type="text" name="Traits[0].Key" class="form-control key01" /></td>
-                            <td><input type="text" name="Traits[0].Value" class="form-control value01" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <button type="button" id="btnAdd" class="btn btn-xs btn-primary addTrait">Add Trait</button>
-        </div>
-
-        <!--ACTIONS-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.Actions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <table class="table" id="actionTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Actions != null)
-                    {
-                        int i = -1;
-                        foreach (var kvp in Model.Actions)
-                        {
-                            i++;
-                            <tr class="actionRow">
-                                <td><input type="text" name="Actions[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
-                                <td><input type="text" name="Actions[@i].Value" class="form-control value01" value="@kvp.Value" /></td>
-                                <td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Delete Row</button></td>
-                                <td><input type="hidden" name="Actions.Index" value="@i" /></td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr class="actionRow">
-                            <td><input type="text" name="Actions[0].Key" class="form-control key01" /></td>
-                            <td><input type="text" name="Actions[0].Value" class="form-control value01" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <button type="button" id="btnAdd" class="btn btn-xs btn-primary addAction">Add Action</button>
-        </div>
-
-        <!--REACTIONS-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.Reactions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <table class="table" id="reactionTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Reactions != null)
-                    {
-                        int i = -1;
-                        foreach (var kvp in Model.Reactions)
-                        {
-                            i++;
-                            <tr class="reactionRow">
-                                <td><input type="text" name="Reactions[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
-                                <td><input type="text" name="Reactions[@i].Value" class="form-control value01" value="@kvp.Value" /></td>
-                                <td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Delete Row</button></td>
-                                <td><input type="hidden" name="Reactions.Index" value="@i" /></td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr class="reactionRow">
-                            <td><input type="text" name="Reactions[0].Key" class="form-control key01" /></td>
-                            <td><input type="text" name="Reactions[0].Value" class="form-control value01" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <button type="button" id="btnAdd" class="btn btn-xs btn-primary addReaction">Add Reaction</button>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfLegendaryActions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumberOfLegendaryActions, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumberOfLegendaryActions, "", new { @class = "text-danger" })
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!--LEGENDARY-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.LegendaryActions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <table class="table" id="legendaryTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.LegendaryActions != null)
-                    {
-                        int i = -1;
-                        foreach (var kvp in Model.LegendaryActions)
+        <div class="form-row">
+            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addTrait">Add Trait</button>
+        </div>
+
+        <!--ACTIONS-->
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                <h5>Actions</h5>
+                <table class="table" id="actionTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Actions != null)
                         {
-                            i++;
-                            <tr class="legendaryRow">
-                                <td><input type="text" name="LegendaryActions[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
-                                <td><input type="text" name="LegendaryActions[@i].Value" class="form-control value01" value="@kvp.Value" /></td>
-                                <td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Delete Row</button></td>
-                                <td><input type="hidden" name="LegendaryActions.Index" value="@i" /></td>
+                            int i = -1;
+                            foreach (var kvp in Model.Actions)
+                            {
+                                i++;
+                                <tr class="actionRow">
+                                    <td><input type="text" name="Actions[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
+                                    <td><textarea name="Actions[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
+                                    <td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Delete Row</button></td>
+                                    <td><input type="hidden" name="Actions.Index" value="@i" /></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr class="actionRow">
+                                <td><input type="text" name="Actions[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="Actions[0].Value" class="form-control tableTextArea value01"></textarea></td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr class="legendaryRow">
-                            <td><input type="text" name="LegendaryActions[0].Key" class="form-control key01" /></td>
-                            <td><input type="text" name="LegendaryActions[0].Value" class="form-control value01" /></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addAction">Add Action</button>
+        </div>
+
+        <!--REACTIONS-->
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                <h5>Reactions</h5>
+                <table class="table" id="reactionTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-            <button type="button" id="btnAdd" class="btn btn-xs btn-primary addLegendary">Add Legendary Action</button>
+                    </thead>
+                    <tbody>
+                        @if (Model.Reactions != null)
+                        {
+                            int i = -1;
+                            foreach (var kvp in Model.Reactions)
+                            {
+                                i++;
+                                <tr class="reactionRow">
+                                    <td><input type="text" name="Reactions[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
+                                    <td><textarea name="Reactions[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
+                                    <td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Delete Row</button></td>
+                                    <td><input type="hidden" name="Reactions.Index" value="@i" /></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr class="reactionRow">
+                                <td><input type="text" name="Reactions[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="Reactions[0].Value" class="form-control tableTextArea value01"></textarea></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addReaction">Add Reaction</button>
+        </div>
+
+        <!--LEGENDARY-->
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                @Html.EditorFor(model => model.NumberOfLegendaryActions, new { htmlAttributes = new { @class = "form-control float-right", @id = "legendaryActions", @placeholder = "#/Round" } })
+                @Html.ValidationMessageFor(model => model.NumberOfLegendaryActions, "", new { @class = "text-danger" })
+                <h5>Legendary Actions</h5>
+                <table class="table" id="legendaryTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.LegendaryActions != null)
+                        {
+                            int i = -1;
+                            foreach (var kvp in Model.LegendaryActions)
+                            {
+                                i++;
+                                <tr class="legendaryRow">
+                                    <td><input type="text" name="LegendaryActions[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
+                                    <td><textarea name="LegendaryActions[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
+                                    <td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Delete Row</button></td>
+                                    <td><input type="hidden" name="LegendaryActions.Index" value="@i" /></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr class="legendaryRow">
+                                <td><input type="text" name="LegendaryActions[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="LegendaryActions[0].Value" class="form-control tableTextArea value01"></textarea></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addLegendary">Add Legendary Action</button>
         </div>
 
         <!--LAIR-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.LairActions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <table class="table" id="lairTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.LairActions != null)
-                    {
-                        int i = -1;
-                        foreach (var kvp in Model.LairActions)
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                @Html.LabelFor(model => model.LairActions, htmlAttributes: new { @class = "control-label col-md-2" })
+                <table class="table" id="lairTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.LairActions != null)
                         {
-                            i++;
+                            int i = -1;
+                            foreach (var kvp in Model.LairActions)
+                            {
+                                i++;
+                                <tr class="lairRow">
+                                    <td><input type="text" name="LairActions[0].Key" class="form-control key01" value="@kvp.Key" /></td>
+                                    <td><textarea name="LairActions[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
+                                    <td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Delete Row</button></td>
+                                    <td><input type="hidden" name="LairActons.Index" value="@i" /></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
                             <tr class="lairRow">
-                                <td><input type="text" name="LairActions[0].Key" class="form-control key01" value="@kvp.Key" /></td>
-                                <td><input type="text" name="LairActions[0].Value" class="form-control value01" value="@kvp.Value" /></td>
-                                <td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Delete Row</button></td>
-                                <td><input type="hidden" name="LairActons.Index" value="@i" /></td>
+                                <td><input type="text" name="LairActions[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="LairActions[0].Value" class="form-control tableTextArea value01"></textarea></td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr class="lairRow">
-                            <td><input type="text" name="LairActions[0].Key" class="form-control key01" /></td>
-                            <td><input type="text" name="LairActions[0].Value" class="form-control value01" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <button type="button" id="btnAdd" class="btn btn-xs btn-primary addLair">Add Lair Action</button>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addLair">Add Lair Action</button>
         </div>
 
         <div class="form-group">
@@ -454,12 +444,15 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+        <div class="formButtons" align="center">
+            <ul class="horizontalList">
+                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "UserMonster", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                <li><input type="submit" value="Update" class="btn btn-primary" /></li>
+            </ul>
+        </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -468,7 +461,7 @@
             $(document).on("click", ".addTrait", function () {
                 var rowCount = $('.traitRow').length;
                 var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits[' + rowCount + '].Key" class="form-control key01" /></td>' +
-                    '<td><input type="text" name="Traits[' + rowCount + '].Value" class="form-control value01" /></td>' +
+                    '<td><textarea name="Traits[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
                     '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
                 $('#traitTable').append(traitTable);
             });
@@ -478,7 +471,7 @@
             $(document).on("click", ".addAction", function () {
                 var rowCount = $('.actionRow').length;
                 var actionTable = '<tr class="actionRow">' + '<td><input type="text" name="Actions[' + rowCount + '].Key" class="form-control key01" /></td>' +
-                    '<td><input type="text" name="Actions[' + rowCount + '].Value" class="form-control value01" /></td>' +
+                    '<td><textarea name="Actions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
                     '<td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
                 $('#actionTable').append(actionTable);
             });
@@ -488,7 +481,7 @@
             $(document).on("click", ".addReaction", function () {
                 var rowCount = $('.reactionRow').length;
                 var reactionTable = '<tr class="reactionRow">' + '<td><input type="text" name="Reactions[' + rowCount + '].Key" class="form-control key01" /></td>' +
-                    '<td><input type="text" name="Reactions[' + rowCount + '].Value" class="form-control value01" /></td>' +
+                    '<td><textarea name="Reactions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
                     '<td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
                 $('#reactionTable').append(reactionTable);
             });
@@ -498,7 +491,7 @@
             $(document).on("click", ".addLegendary", function () {
                 var rowCount = $('.legendaryRow').length;
                 var legendaryTable = '<tr class="legendaryRow">' + '<td><input type="text" name="LegendaryActions[' + rowCount + '].Key" class="form-control key01" /></td>' +
-                    '<td><input type="text" name="LegendaryActions[' + rowCount + '].Value" class="form-control value01" /></td>' +
+                    '<td><textarea name="LegendaryActions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
                     '<td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
                 $('#legendaryTable').append(legendaryTable);
             });
@@ -508,7 +501,7 @@
             $(document).on("click", ".addLair", function () {
                 var rowCount = $('.lairRow').length;
                 var lairTable = '<tr class="lairRow">' + '<td><input type="text" name="LairActions[' + rowCount + '].Key" class="form-control key01" /></td>' +
-                    '<td><input type="text" name="LairActions[' + rowCount + '].Value" class="form-control value01" /></td>' +
+                    '<td><textarea name="LairActions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
                     '<td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
                 $('#lairTable').append(lairTable);
             });

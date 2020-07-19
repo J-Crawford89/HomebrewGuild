@@ -14,5 +14,6 @@ namespace Contracts
         MonsterDetail GetMonsterDetailById(int id);
         bool Edit(MonsterEdit model);
         bool Delete(int id);
+        MonsterDetailView GetMonsterDetailViewById(int id);
     }
 }

@@ -52,7 +52,7 @@ namespace MVC.Controllers
         public ActionResult Details(int id)
         {
             var userMonsterService = CreateUserMonsterService();
-            var model = userMonsterService.GetMonsterDetailById(id);
+            var model = userMonsterService.GetMonsterDetailViewById(id);
 
             return View(model);
         }
