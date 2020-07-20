@@ -198,7 +198,7 @@
     <Compile Include="Controllers\UserCharacterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserMonsterController.cs" />
-    <Compile Include="Controllers\UserAndRoleController.cs" />
+    <Compile Include="Controllers\AdminContentController.cs" />
     <Compile Include="Controllers\UserSpellController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -362,7 +362,7 @@
     <Content Include="Views\MyCreations\Index.cshtml" />
     <Content Include="Views\UserMonster\Details.cshtml" />
     <Content Include="Views\UserMonster\Edit.cshtml" />
-    <Content Include="Views\UserAndRole\Index.cshtml" />
+    <Content Include="Views\AdminContent\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Monster\Index.cshtml" />
     <Content Include="Views\Monster\Details.cshtml" />

@@ -13,7 +13,7 @@ namespace Models.SubraceModels
         public int Id { get; set; }
         public string Name { get; set; }
         [Display(Name="Ability Score Increase")]
-        public Dictionary<Ability, int> AbilityScoreIncrease { get; set; }
+        public Dictionary<Ability, string> AbilityScoreIncrease { get; set; }
         public Dictionary<string, string> Traits { get; set; }
     }
 }

@@ -32,15 +32,6 @@ namespace MVC.Controllers
         // GET: Subrace/Delete/{id}
         public ActionResult Delete(int id)
         {
-            var model = _subraceService.GetSubraceDetailById(id);
-            return View(model);
-        }
-        // POST: Subrace/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
-        {
             _subraceService.Delete(id);
             TempData["SaveResult"] = "Subrace deleted";
             return RedirectToAction("Index");

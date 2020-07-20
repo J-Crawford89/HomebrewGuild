@@ -19,9 +19,9 @@ namespace Data.Entities
         [Required]
         internal string _AbilityScoreIncrease { get; set; }
         [NotMapped]
-        public Dictionary<Ability, int> AbilityScoreIncrease
+        public Dictionary<Ability, string> AbilityScoreIncrease
         {
-            get { return _AbilityScoreIncrease == null ? null : JsonConvert.DeserializeObject<Dictionary<Ability, int>>(_AbilityScoreIncrease); }
+            get { return _AbilityScoreIncrease == null ? null : JsonConvert.DeserializeObject<Dictionary<Ability, string>>(_AbilityScoreIncrease); }
             set { _AbilityScoreIncrease = JsonConvert.SerializeObject(value); }
         }
         internal string _Traits { get; set; }

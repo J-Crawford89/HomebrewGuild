@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace MVC.Controllers
 {
     [Authorize]
-    public class UserAndRoleController : Controller
+    public class AdminContentController : Controller
     {
         // GET: Users
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace MVC.Controllers
 
                 ViewBag.displayMenu = "No";
 
-                if (isAdminUser())
+                if (IsAdminUser())
                 {
                     ViewBag.displayMenu = "Yes";
                 }
@@ -34,7 +34,7 @@ namespace MVC.Controllers
             }
             return View();
         }
-        public bool isAdminUser()
+        public bool IsAdminUser()
         {
             if (User.Identity.IsAuthenticated)
             {
