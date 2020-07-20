@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.displayMenu == "Yes")
+{
+    <div class="pageTitle">
+        <h1>Users and Roles</h1>
+    </div>
+    <div class="formButtons" align="center">
+        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Roles", "Index", "Role")
+        </button>
+        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Users", "Index", "User")
+        </button>
+    </div>
+}
+

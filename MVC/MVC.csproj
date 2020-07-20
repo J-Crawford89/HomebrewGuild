@@ -196,8 +196,9 @@
     <Compile Include="Controllers\SubclassController.cs" />
     <Compile Include="Controllers\SubraceController.cs" />
     <Compile Include="Controllers\UserCharacterController.cs" />
-    <Compile Include="Controllers\UserMonsterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserMonsterController.cs" />
+    <Compile Include="Controllers\UserAndRoleController.cs" />
     <Compile Include="Controllers\UserSpellController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -360,19 +361,16 @@
     <Content Include="Views\UserMonster\Index.cshtml" />
     <Content Include="Views\MyCreations\Index.cshtml" />
     <Content Include="Views\UserMonster\Details.cshtml" />
-    <Content Include="Views\UserMonster\Delete.cshtml" />
     <Content Include="Views\UserMonster\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\UserAndRole\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Monster\Index.cshtml" />
     <Content Include="Views\Monster\Details.cshtml" />
     <Content Include="Views\Background\Index.cshtml" />
     <Content Include="Views\Background\Create.cshtml" />
     <Content Include="Views\Background\Edit.cshtml" />
-    <Content Include="Views\Background\Delete.cshtml" />
     <Content Include="Views\CharacterClass\Index.cshtml" />
     <Content Include="Views\CharacterClass\Create.cshtml" />
-    <Content Include="Views\CharacterClass\Delete.cshtml" />
     <Content Include="Views\CharacterClass\Details.cshtml" />
     <Content Include="Views\CharacterClass\Edit.cshtml" />
     <Content Include="Views\Character\Index.cshtml" />
@@ -380,28 +378,23 @@
     <Content Include="Views\Race\Index.cshtml" />
     <Content Include="Views\Race\Create.cshtml" />
     <Content Include="Views\Race\Details.cshtml" />
-    <Content Include="Views\Race\Delete.cshtml" />
     <Content Include="Views\Race\Edit.cshtml" />
     <Content Include="Views\Spell\Index.cshtml" />
     <Content Include="Views\Spell\Details.cshtml" />
     <Content Include="Views\UserSpell\Index.cshtml" />
-    <Content Include="Views\UserSpell\Delete.cshtml" />
     <Content Include="Views\UserSpell\Create.cshtml" />
     <Content Include="Views\UserSpell\Edit.cshtml" />
     <Content Include="Views\UserSpell\Details.cshtml" />
     <Content Include="Views\Subrace\Index.cshtml" />
     <Content Include="Views\Subrace\Details.cshtml" />
-    <Content Include="Views\Subrace\Delete.cshtml" />
     <Content Include="Views\Subrace\Create.cshtml" />
     <Content Include="Views\Subrace\Edit.cshtml" />
     <Content Include="Views\Subclass\Index.cshtml" />
     <Content Include="Views\Subclass\Details.cshtml" />
-    <Content Include="Views\Subclass\Delete.cshtml" />
     <Content Include="Views\Subclass\Create.cshtml" />
     <Content Include="Views\Subclass\Edit.cshtml" />
     <Content Include="Views\UserCharacter\Index.cshtml" />
     <Content Include="Views\UserCharacter\Details.cshtml" />
-    <Content Include="Views\UserCharacter\Delete.cshtml" />
     <Content Include="Views\UserCharacter\Create.cshtml" />
     <Content Include="Views\UserCharacter\Edit.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -420,6 +413,7 @@
     <Folder Include="Content\Images\" />
     <Folder Include="Controllers\WebAPI\" />
     <Folder Include="Views\Comment\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

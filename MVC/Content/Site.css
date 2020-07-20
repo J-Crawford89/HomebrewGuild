@@ -202,6 +202,9 @@ h2 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
+.formStandardStart {
+    margin-top: 1rem;
+}
 @media(min-width: 1200px) {
     .formStandard {
         margin-left: 1rem;
@@ -212,12 +215,12 @@ h2 {
 }
 
 .inputStandard {
-    margin: 0.5rem 1rem 0 1rem;
+    margin: 0.5rem 1rem 0 0;
     min-width: 100%;
     max-width: 100%;
 }
 .labelStandard {
-    margin: 0.5rem 1rem 0 1rem;
+    margin: 0.5rem 1rem 0 0;
 }
 
 .inputLarge {
@@ -288,7 +291,7 @@ h2 {
     font-size: 0.905em;
 }
 .displayCard {
-    margin-top: 1em;
+    margin-top: 1rem;
 }
 /*SPELL*/
 .spellCheckboxList {
