@@ -4,39 +4,58 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>CharacterClassDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HitDie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HitDie)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfSkillProficiencies)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfSkillProficiencies)
-        </dd>
-
-    </dl>
+<div class="pageTitle">
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="row justify-content-center">
+    <div class="col-10 col-md-5">
+        <div class="card displayCard">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+                <h6><strong>@Html.DisplayNameFor(model => model.HitDie): </strong>@Html.DisplayFor(model => model.HitDie)</h6>
+                <p>
+                <strong>@Html.DisplayNameFor(model=>model.SavingThrows): </strong>
+                    @foreach(var ability in Model.SavingThrows)
+                    {
+                        string text = ability + " ";
+                        @text;
+                    }
+                </p>
+                <p>
+                <strong>@Html.DisplayNameFor(model=>model.SkillChoices): </strong>
+                Choose @Model.NumberOfSkillProficiencies from 
+                @foreach(var skill in Model.SkillChoices)
+                {
+                    string text = skill + " ";
+                    @text;
+                }.
+                </p>
+                @if (Model.Features != null)
+                {
+                    <hr />
+                    foreach (var kvp in Model.Features)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="formButtons" align="center">
+    <ul class="horizontalList">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { onclick = "return confirm('Are you sure you want to delete this race?')" })</button></li>
+            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
+            <li><button type="button" class="btn btn-primary" style="width:108px;">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button></li>
+        }
+        else
+        {
+            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
+        }
+    </ul>
+</div>

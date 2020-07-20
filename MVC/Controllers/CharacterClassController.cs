@@ -29,6 +29,8 @@ namespace MVC.Controllers
             return View();
         }
         // POST: CharacterClass/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CharacterClassCreate model)
         {
             if(!ModelState.IsValid)

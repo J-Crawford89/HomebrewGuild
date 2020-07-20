@@ -20,11 +20,6 @@
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Subrace Name" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.RaceId, htmlAttributes: new { @class = "labelStandard" })
-                @Html.EditorFor(model => model.RaceId, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Race" } })
-                @Html.ValidationMessageFor(model => model.RaceId, "", new { @class = "text-danger" })
-            </div>
         </div>
 
         <!--ABILITY SCORE INCREASE - Dictionary<Ability, int> -->
@@ -108,7 +103,7 @@
         <div class="formButtons" align="center">
             <ul class="horizontalList">
                 <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Subrace", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-                <li><input type="submit" value="Create" class="btn btn-primary" /></li>
+                <li><input type="submit" value="Update" class="btn btn-primary" /></li>
             </ul>
         </div>
     </div>
@@ -122,7 +117,8 @@
                 var rowCount = $('.traitRow').length;
                 var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Traits[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><input type="hidden" name="Traits.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#traitTable').append(traitTable);
             });
             $(document).on("click", ".deleteTrait", function () {

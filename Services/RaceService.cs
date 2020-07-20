@@ -82,5 +82,40 @@ namespace Services
             };
             return model;
         }
+        public RaceDetailView GetRaceDetailViewById(int id)
+        {
+            var entity = _ctx.Races.Single(e => e.Id == id);
+            var model = new RaceDetailView
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AbilityScoreIncrease = FormatAbilityScoreIncrease(entity),
+                Size = entity.Size,
+                Speed = entity.Speed,
+                HasDarkvision = entity.HasDarkvision,
+                Traits = entity.Traits
+            };
+            return model;
+        }
+        public string FormatAbilityScoreIncrease(Race entity)
+        {
+            string formattedAbilityScoreIncrease = "";
+            string ability = "";
+            string bonus = "";
+            foreach (var kvp in entity.AbilityScoreIncrease)
+            {
+                ability = kvp.Key.ToString() + " ";
+                if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
+                {
+                    bonus = kvp.Value + " ";
+                }
+                else
+                {
+                    bonus = $"+{kvp.Value} ";
+                }
+                formattedAbilityScoreIncrease += ability + bonus;
+            }
+            return formattedAbilityScoreIncrease;
+        }
     }
 }

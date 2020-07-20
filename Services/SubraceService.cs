@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Data;
 using Data.Entities;
+using Microsoft.SqlServer.Server;
 using Models.SubraceModels;
 using System;
 using System.Collections.Generic;
@@ -75,5 +76,40 @@ namespace Services
             };
             return model;
         }
+        
+        public SubraceDetailView GetSubraceDetailViewById(int id)
+        {
+            var entity = _ctx.Subraces.Single(e => e.Id == id);
+            var model = new SubraceDetailView
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                AbilityScoreIncrease = FormatAbilityScoreIncrease(entity),
+                Traits = entity.Traits
+            };
+            return model;
+        }
+
+        public string FormatAbilityScoreIncrease(Subrace entity)
+        {
+            string formattedAbilityScoreIncrease = "";
+            string ability = "";
+            string bonus = "";
+            foreach (var kvp in entity.AbilityScoreIncrease)
+            {
+                ability = kvp.Key.ToString() + " ";
+                if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
+                {
+                    bonus = kvp.Value + " ";
+                }
+                else
+                {
+                    bonus = $"+{kvp.Value} ";
+                }
+                formattedAbilityScoreIncrease += ability + bonus;
+            }
+            return formattedAbilityScoreIncrease;
+        }
+
     }
 }

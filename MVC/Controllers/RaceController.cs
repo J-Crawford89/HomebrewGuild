@@ -47,7 +47,7 @@ namespace MVC.Controllers
         // GET: Race/Details/{id}
         public ActionResult Details(int id)
         {
-            var model = _raceService.GetRaceDetailById(id);
+            var model = _raceService.GetRaceDetailViewById(id);
 
             return View(model);
         }

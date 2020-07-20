@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Data;
+using Data.Entities;
 using Models.SubraceModels;
 using Services;
 using System;
@@ -13,9 +14,11 @@ namespace MVC.Controllers
     public class SubraceController : Controller
     {
         private readonly SubraceService _subraceService;
+        private readonly ApplicationDbContext _ctx;
         public SubraceController()
         {
             _subraceService = new SubraceService();
+            _ctx = new ApplicationDbContext();
         }
         // GET: Subrace
         public ActionResult Index()
@@ -26,7 +29,7 @@ namespace MVC.Controllers
         // GET: Subrace/Details/{id}
         public ActionResult Details(int id)
         {
-            var model = _subraceService.GetSubraceDetailById(id);
+            var model = _subraceService.GetSubraceDetailViewById(id);
             return View(model);
         }
         // GET: Subrace/Delete/{id}
@@ -39,7 +42,17 @@ namespace MVC.Controllers
         // GET: Subrace/Create
         public ActionResult Create()
         {
-            return View();
+            var races = _ctx.Races.ToList();
+            var dropdownList = new SelectList(races.Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = e.Name
+            }).ToList(), "Value", "Text");
+            var model = new SubraceCreate
+            {
+                Races = dropdownList
+            };
+            return View(model);
         }
         // POST: Subrace/Create
         [HttpPost]
@@ -61,6 +74,12 @@ namespace MVC.Controllers
         // GET: Subrace/Edit/{id}
         public ActionResult Edit(int id)
         {
+            var races = _ctx.Races.ToList();
+            var dropdownList = new SelectList(races.Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = e.Name
+            }).ToList(), "Value", "Text");
             var detail = _subraceService.GetSubraceDetailById(id);
             var model = new SubraceEdit
             {
