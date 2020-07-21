@@ -4,30 +4,47 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="pageTitle">
+    <h1>Subclasses</h1>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <div class="indexCreateLink">
+        <button type="button" value="createSubclass" class="btn btn-primary">@Html.ActionLink("Create a Subclass", "Create", "Subclass")</button>
+    </div>
 }
 
-</table>
+<div class="row justify-content-center">
+    <table class="table col-md-10">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="listButtons">
+                    <ul class="horizontalList">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li><button type="button" class="btn btn-cancel btn-sm">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this subclass?')" })</button></li>
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details", new { id = item.Id })</button></li>
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width:108px;">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button></li>
+                        }
+                        else
+                        {
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details")</button></li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

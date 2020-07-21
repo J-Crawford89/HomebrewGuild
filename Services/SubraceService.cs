@@ -72,7 +72,8 @@ namespace Services
                 Id = entity.Id,
                 Name = entity.Name,
                 AbilityScoreIncrease = entity.AbilityScoreIncrease,
-                Traits = entity.Traits
+                Traits = entity.Traits,
+                RaceName = _ctx.Races.Single(e => e.Id == entity.RaceId).Name
             };
             return model;
         }
@@ -85,7 +86,8 @@ namespace Services
                 Id = entity.Id,
                 Name = entity.Name,
                 AbilityScoreIncrease = FormatAbilityScoreIncrease(entity),
-                Traits = entity.Traits
+                Traits = entity.Traits,
+                RaceName = _ctx.Races.Single(e => e.Id == entity.RaceId).Name
             };
             return model;
         }

@@ -74,19 +74,15 @@ namespace MVC.Controllers
         // GET: Subrace/Edit/{id}
         public ActionResult Edit(int id)
         {
-            var races = _ctx.Races.ToList();
-            var dropdownList = new SelectList(races.Select(e => new SelectListItem
-            {
-                Value = e.Id.ToString(),
-                Text = e.Name
-            }).ToList(), "Value", "Text");
             var detail = _subraceService.GetSubraceDetailById(id);
             var model = new SubraceEdit
             {
                 Id = detail.Id,
                 AbilityScoreIncrease = detail.AbilityScoreIncrease,
                 Name = detail.Name,
-                Traits = detail.Traits
+                Traits = detail.Traits,
+                RaceId = _ctx.Races.Single(e=>e.Name == detail.RaceName).Id,
+                Races = new SelectList(_ctx.Races, "Id", "Name")
             };
             return View(model);
         }
@@ -95,6 +91,7 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SubraceEdit model, int id)
         {
+            model.Races = new SelectList(_ctx.Races, "Id", "Name");
             if(model.Id != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");

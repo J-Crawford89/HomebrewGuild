@@ -24,7 +24,7 @@ namespace MVC.Controllers
         // GET: Monster/Details/{id}
         public ActionResult Details(int id)
         {
-            var model = _monsterService.GetMonsterDetailById(id);
+            var model = _monsterService.GetMonsterDetailViewById(id);
             return View(model);
         }
     }

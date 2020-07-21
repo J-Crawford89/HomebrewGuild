@@ -37,7 +37,7 @@ textarea {
 }
 
 /*NAV*/
-@media (min-width: 768px) {
+@media (min-width: 829px) {
     .userNav::before {
         content: " |";
         padding-top: 0.415rem;
@@ -53,6 +53,27 @@ textarea {
 
 .nav-link {
     color: #EBEBEB !important;
+}
+
+    .nav-link:hover {
+        color: #FFBC0A !important;
+    }
+
+@media(max-width:829px) {
+    .nav-item:hover {
+        background-color: #1d2021;
+        margin-left: -1rem;
+        padding-left: 1rem;
+    }
+}
+
+@media(min-width:829px) {
+    .nav-item:hover {
+        background-color: #1d2021;
+        margin-top: -0.5rem;
+        margin-bottom: -0.5rem;
+        padding-top: 0.5rem;
+    }
 }
 
 .navbar-brand {
@@ -101,7 +122,9 @@ textarea {
 }
 
 .monsterTitle {
-
+    background-image: url(/Content/Images/monsters.jpg);
+    background-size: 100vw;
+    background-position: center 63%;
 }
 
 p, li, a, h2, h3, h4, h5, h6, label {
@@ -171,27 +194,33 @@ h2 {
 .horizontalList li {
     display: inline;
 }
-.listButtons{
+
+.listButtons {
     padding: 8px !important;
 }
-.listButtons ul{
-    margin-bottom: 0;
-}
+
+    .listButtons ul {
+        margin-bottom: 0;
+    }
 /*TABLE*/
 .tableForm {
     margin-top: 1rem;
 }
+
 .tableHeader {
     margin-bottom: 0;
 }
+
 .tableTextArea {
     width: 100% !important;
 }
+
 @media(min-width:992px) {
     .tableTextArea {
-        min-width:590px !important;
+        min-width: 590px !important;
     }
 }
+
 @media(min-width: 444px) {
     .tableTextArea {
         width: 100vw !important;
@@ -202,9 +231,11 @@ h2 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
+
 .formStandardStart {
     margin-top: 1rem;
 }
+
 @media(min-width: 1200px) {
     .formStandard {
         margin-left: 1rem;
@@ -219,6 +250,7 @@ h2 {
     min-width: 100%;
     max-width: 100%;
 }
+
 .labelStandard {
     margin: 0.5rem 1rem 0 0;
 }
@@ -230,12 +262,14 @@ h2 {
     font-size: 3rem;
     margin-top: 1rem;
 }
+
 @media(min-width:1280px) {
     .inputLarge {
         min-width: 50vw;
         max-width: 50vw;
     }
 }
+
 @media(min-width:768px) {
     .inputLarge {
         min-width: 620px;
@@ -290,6 +324,7 @@ h2 {
     margin-left: 3em;
     font-size: 0.905em;
 }
+
 .displayCard {
     margin-top: 1rem;
 }
@@ -302,6 +337,12 @@ h2 {
     max-width: 120px;
     margin-bottom: 1rem;
 }
+.startCreatingContainer {
+    height: 7rem;
+
+    background-color: #A5ABAF;
+}
+
 /*HOME*/
 .jumbotron {
     margin-bottom: 0 !important;
@@ -358,17 +399,14 @@ h2 {
 
 .category {
     border: 2px solid #BB1711;
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: .5s ease-in;
     max-width: 100vw;
-    height: 100vw;
+    height: 89vw;
 }
-
-    .category a {
-        color: #EBEBEB;
-    }
 
     .category:hover {
         filter: grayscale(100%);
@@ -379,7 +417,15 @@ h2 {
         text-decoration: none;
     }
 
-@media(min-width: 426px) {
+    .category h2 {
+        color: #EBEBEB;
+    }
+
+        .category h2:hover {
+            color: white;
+        }
+
+@media(min-width: 475px) {
     .monsters {
         background-size: 426px;
     }

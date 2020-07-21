@@ -4,38 +4,45 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="pageTitle">
+    <h1>Edit: <i>@Html.DisplayFor(model=>model.Name)</i></h1>
+</div>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>BackgroundEdit</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+    <div class="formStandardStart">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-4, col-xl-3, formStandard">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Background Name" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4 col-xl-3 formStandard spellCheckboxList">
+                @Html.LabelFor(model => model.SkillProficiencies, htmlAttributes: new { @class = "labelStandard" })
+                <div class="checkbox inputStandard">
+                    <ul class="list-unstyled">
+                        @foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
+                        {
+                            <li><input type="checkbox" name="SkillProficiencies" value="@skill" @if (Model.SkillProficiencies.Contains((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill))) { <text> checked </text> } /> @skill</li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div class="formButtons" align="center">
+            <ul class="horizontalList">
+                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Background", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                <li><input type="submit" value="Update" class="btn btn-primary" /></li>
+            </ul>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

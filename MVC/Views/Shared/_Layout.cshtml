@@ -26,6 +26,10 @@
                     {
                         <li class="nav-item">@Html.ActionLink("My Creations", "Index", "MyCreations", null, new { @class = "nav-link" })</li>
                     }
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">@Html.ActionLink("Admin Tools", "Index", "AdminContent", null, new { @class = "nav-link" })</li>
+                    }
                     @Html.Partial("_LoginPartial")
                 </ul>
             </div>

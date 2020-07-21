@@ -6,7 +6,7 @@
 @if (ViewBag.displayMenu == "Yes")
 {
     <div class="pageTitle">
-        <h1>Users and Roles</h1>
+        <h1>Admin Tools</h1>
     </div>
     <div class="formButtons" align="center">
         <button type="button" class="btn btn-primary">
@@ -14,6 +14,17 @@
         </button>
         <button type="button" class="btn btn-primary">
             @Html.ActionLink("Manage Users", "Index", "User")
+        </button>
+        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Backgrounds", "Index", "Background")
+        </button>        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Classes", "Index", "CharacterClass")
+        </button>        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Subclasses", "Index", "Subclass")
+        </button>        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Races", "Index", "Race")
+        </button>        <button type="button" class="btn btn-primary">
+            @Html.ActionLink("Manage Subraces", "Index", "Subrace")
         </button>
     </div>
 }

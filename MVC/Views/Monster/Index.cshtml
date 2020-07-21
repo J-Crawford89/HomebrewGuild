@@ -3,9 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<div class="pageTitle">
-    <h1>Monsters</h1>
+<div class="pageTitle monsterTitle">
+    <h1>@@@User.Identity.Name's Monsters</h1>
 </div>
 
 @if (User.Identity.IsAuthenticated)
@@ -15,36 +14,55 @@
     </div>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Creator)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChallengeRating)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="row justify-content-center">
+    <table class="table col-md-10">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Creator)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChallengeRating)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Creator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChallengeRating)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Creator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChallengeRating)
+                </td>
+                <td class="listButtons">
+                    <ul class="horizontalList">
+                        @if (User.Identity.IsAuthenticated && User.Identity.Name == item.Creator || User.IsInRole("Admin"))
+                        {
+                            <li><button type="button" class="btn btn-cancel btn-sm">@Html.ActionLink("Delete", "Delete", "UserMonster", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this monster?')" })</button></li>
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details", new { id = item.Id })</button></li>
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width:108px;">@Html.ActionLink("Edit", "Edit", "UserMonster", new { id = item.Id }, "")</button></li>
+                        }
+                        else
+                        {
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details")</button></li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

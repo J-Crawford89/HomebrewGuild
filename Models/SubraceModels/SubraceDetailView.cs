@@ -15,5 +15,7 @@ namespace Models.SubraceModels
         [Display(Name = "Ability Score Increase")]
         public string AbilityScoreIncrease { get; set; }
         public Dictionary<string, string> Traits { get; set; }
+        [Display(Name="Race")]
+        public string RaceName { get; set; }
     }
 }

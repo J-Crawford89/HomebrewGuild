@@ -54,15 +54,6 @@ namespace MVC.Controllers
         // GET: Race/Delete/{id}
         public ActionResult Delete(int id)
         {
-            var model = _raceService.GetRaceDetailById(id);
-            return View(model);
-        }
-        // POST: Race/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
-        {
             _raceService.Delete(id);
             TempData["SaveResult"] = "Race deleted";
             return RedirectToAction("Index");

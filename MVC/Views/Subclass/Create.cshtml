@@ -4,44 +4,79 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="pageTitle">
+    <h1>Create a Subclass</h1>
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <h4>SubclassCreate</h4>
-        <hr />
+
+    <div class="formStandardStart">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Subclass Name" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CharacterClassId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterClassId, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group col-sm-4 col-xl-3 formStandard">
+                @Html.LabelFor(model => model.CharacterClassId, htmlAttributes: new { @class = "labelStandard" })
+                @Html.DropDownListFor(model => model.CharacterClassId, Model.CharacterClasses, "", new { @class = "form-control inputStandard", @placeholder = "Class" })
                 @Html.ValidationMessageFor(model => model.CharacterClassId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <!--FEATURES-->
+        <div class="form-row justify-content-center tableForm">
+            <div class="form-group">
+                <h5>Features</h5>
+                <table class="table" id="featureTable">
+                    <thead>
+                        <tr>
+                            <th>Feature Name</th>
+                            <th>Feature Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="featureRow">
+                            <td><input type="text" name="Features[0].Key" class="form-control key01" /></td>
+                            <td><textarea name="Features[0].Value" class="form-control tableTextArea value01"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+        <div class="form-row">
+            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addFeature">Add Feature</button>
+        </div>
+
+
+        <div class="formButtons" align="center">
+            <ul class="horizontalList">
+                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Subclass", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                <li><input type="submit" value="Create" class="btn btn-primary" /></li>
+            </ul>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on("click", ".addFeature", function () {
+                var rowCount = $('.featureRow').length;
+                var featureTable = '<tr class="featureRow">' + '<td><input type="text" name="Features[' + rowCount + '].Key" class="form-control key01" /></td>' +
+                    '<td><textarea name="Features[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
+                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+                $('#featureTable').append(featureTable);
+            });
+            $(document).on("click", ".deleteFeature", function () {
+                $(this).closest("tr").remove();
+            });
+        });
+    </script>
 }
+

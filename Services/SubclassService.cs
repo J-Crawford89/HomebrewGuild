@@ -69,7 +69,8 @@ namespace Services
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Features = entity.Features
+                Features = entity.Features,
+                CharacterClassName = _ctx.CharacterClasses.Single(e=>e.Id == entity.CharacterClassId).Name
             };
             return model;
         }

@@ -138,13 +138,9 @@
     </div>
 </div>
 
-<div>
-    <!--RENDER COMMENTS PARTIAL VIEW HERE-->
-</div>
-
 <div class="formButtons" align="center">
     <ul class="horizontalList">
-        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Creator)
+        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Creator || User.IsInRole("Admin"))
         {
             <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { onclick = "return confirm('Are you sure you want to delete this monster?')" })</button></li>
             <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
