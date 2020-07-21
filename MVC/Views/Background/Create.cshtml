@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<div class="pageTitle">
+<div class="pageTitle adminTitle">
     <h1>Create a Background</h1>
 </div>
 
@@ -13,35 +13,35 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="formStandardStart">
+    <div class="formStandardStart">
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="row justify-content-center">
-        <div class="form-group col-sm-4, col-xl-3, formStandard">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Background Name" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-sm-4 col-xl-3 formStandard spellCheckboxList">
-            @Html.LabelFor(model => model.SkillProficiencies, htmlAttributes: new { @class = "labelStandard" })
-            <div class="checkbox inputStandard">
-                <ul class="list-unstyled">
-                    @foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
-                    {
-                        <li><input type="checkbox" name="SkillProficiencies" value="@skill" /> @skill</li>
-                    }
-                </ul>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-4, col-xl-3, formStandard">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Background Name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-4 col-xl-3 formStandard spellCheckboxList">
+                @Html.LabelFor(model => model.SkillProficiencies, htmlAttributes: new { @class = "labelStandard" })
+                <div class="checkbox inputStandard">
+                    <ul class="list-unstyled">
+                        @foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
+                        {
+                            <li><input type="checkbox" name="SkillProficiencies" value="@skill" /> @skill</li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="formButtons" align="center">
-        <ul class="horizontalList">
-            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Background", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-            <li><input type="submit" value="Create" class="btn btn-primary" /></li>
-        </ul>
+        <div class="formButtons" align="center">
+            <ul class="horizontalList">
+                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Background", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                <li><input type="submit" value="Create" class="btn btn-primary" /></li>
+            </ul>
+        </div>
     </div>
-</div>
 }
 
 @section Scripts {

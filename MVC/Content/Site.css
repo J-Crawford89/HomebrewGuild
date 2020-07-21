@@ -54,6 +54,13 @@ textarea {
 .nav-link {
     color: #EBEBEB !important;
 }
+    .nav-link a {
+        color: #BB1711;
+    }
+.nav-link a:hover {
+    color: #FFBC0A;
+    text-decoration: none;
+}
 
     .nav-link:hover {
         color: #FFBC0A !important;
@@ -125,6 +132,30 @@ textarea {
     background-image: url(/Content/Images/monsters.jpg);
     background-size: 100vw;
     background-position: center 63%;
+}
+
+.myCreationsTitle {
+    background-image: url(/Content/Images/myCreationsBackground.jpg);
+    background-size: 100vw;
+    background-position: center 59%;
+}
+
+.adminTitle {
+    background-image: url(/Content/Images/admin.jpg);
+    background-size: 100vw;
+    background-position: center 66%;
+}
+
+.manageTitle {
+    background-image: url(/Content/Images/manage.jpg);
+    background-size: 100vw;
+    background-position: center 35%;
+}
+
+.aboutTitle {
+    background-image: url(/Content/Images/about.jpg);
+    background-size: 100vw;
+    background-position: center 60%;
 }
 
 p, li, a, h2, h3, h4, h5, h6, label {
@@ -263,6 +294,26 @@ h2 {
     margin-top: 1rem;
 }
 
+.loginCardContainer {
+    position: relative;
+    height: 100vh;
+    margin: auto;
+}
+
+.loginCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 60vh;
+}
+
+.loginInput {
+    margin-bottom: 1rem !important;
+}
+
 @media(min-width:1280px) {
     .inputLarge {
         min-width: 50vw;
@@ -339,10 +390,11 @@ h2 {
 }
 .startCreatingContainer {
     height: 7rem;
-
-    background-color: #A5ABAF;
 }
-
+#startCreating {
+    background-color: #BB1711;
+    border: none;
+}
 /*HOME*/
 .jumbotron {
     margin-bottom: 0 !important;
@@ -359,7 +411,6 @@ h2 {
 
 #homeTitle {
     margin-top: 2em;
-    margin-bottom: 2em;
     margin-left: -1rem;
     width: 100vw;
     background-color: rgba(235,235,235,0.4);

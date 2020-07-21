@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<div class="pageTitle">
+<div class="pageTitle adminTitle">
     <h1>Edit: <i>@Html.DisplayFor(model => model.Name)</i></h1>
 </div>
 
@@ -121,7 +121,7 @@
                 var rowCount = $('.featureRow').length;
                 var featureTable = '<tr class="featureRow">' + '<td><input type="text" name="Features[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Features[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="Features.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#featureTable').append(featureTable);
             });
@@ -130,4 +130,4 @@
             });
         });
     </script>
-    }
+}

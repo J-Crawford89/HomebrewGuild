@@ -4,8 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
-<div class="pageTitle">
-    <h1>Edit: <i>@Html.DisplayFor(model=>model.Name)</i></h1>
+<div class="pageTitle adminTitle">
+    <h1>Edit: <i>@Html.DisplayFor(model => model.Name)</i></h1>
 </div>
 
 @using (Html.BeginForm())
@@ -122,7 +122,7 @@
                 var rowCount = $('.traitRow').length;
                 var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Traits[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="Traits.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#traitTable').append(traitTable);
             });
