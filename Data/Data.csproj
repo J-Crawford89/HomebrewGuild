@@ -81,11 +81,28 @@
     <Compile Include="Entities\Subrace.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202007232248043_InitialCreate.cs" />
+    <Compile Include="Migrations\202007232248043_InitialCreate.designer.cs">
+      <DependentUpon>202007232248043_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007232258439_initial migration.cs" />
+    <Compile Include="Migrations\202007232258439_initial migration.designer.cs">
+      <DependentUpon>202007232258439_initial migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007232248043_InitialCreate.resx">
+      <DependentUpon>202007232248043_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007232258439_initial migration.resx">
+      <DependentUpon>202007232258439_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
