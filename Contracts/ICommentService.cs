@@ -12,9 +12,9 @@ namespace Contracts
         IEnumerable<CommentListItem> GetAllCommentsByMonsterId(int monsterId);
         IEnumerable<CommentListItem> GetAllCommentsByCharacterId(int characterId);
         IEnumerable<CommentListItem> GetAllCommentsBySpellId(int spellId);
-        bool CreateMonsterComment(CommentCreate model, int monsterId);
-        bool CreateCharacterComment(CommentCreate model, int characterId);
-        bool CreateSpellComment(CommentCreate model, int spellId);
+        bool CreateMonsterComment(CommentCreate model);
+        bool CreateCharacterComment(CommentCreate model);
+        bool CreateSpellComment(CommentCreate model);
         CommentListItem GetCommentById(int id);
         bool Edit(CommentEdit model);
         bool Delete(int id);

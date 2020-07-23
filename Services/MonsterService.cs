@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Data;
 using Data.Entities;
+using Models.CommentModels;
 using Models.MonsterModels;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,14 @@ namespace Services
 
         public MonsterDetailView GetMonsterDetailViewById(int id)
         {
+            var comments = _ctx.Comments.Where(e => e.MonsterId == id).Select(e => new CommentListItem
+            {
+                Id = e.Id,
+                Author = _ctx.Users.FirstOrDefault(u => u.Id == e.OwnerId.ToString()).UserName,
+                Content = e.Content,
+                DateCreated = e.DateCreated,
+                LastUpdated = e.LastUpdated
+            }).ToList();
             var monsterEntity = _ctx.Monsters.Single(e => e.Id == id);
             var model = new MonsterDetailView
             {
@@ -69,7 +78,8 @@ namespace Services
                 LegendaryActions = CheckIfNull(monsterEntity.LegendaryActions),
                 LairActions = CheckIfNull(monsterEntity.LairActions),
                 DateCreated = monsterEntity.DateCreated,
-                LastUpdated = monsterEntity.LastUpdated
+                LastUpdated = monsterEntity.LastUpdated,
+                Comments = comments
             };
             return model;
         }
