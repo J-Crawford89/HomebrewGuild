@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Models.CommentModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -55,5 +56,6 @@ namespace Models.MonsterModels
         public DateTime DateCreated { get; set; }
         [Display(Name = "Last Updated")]
         public DateTime? LastUpdated { get; set; }
+        public IEnumerable<CommentListItem> Comments { get; set; }
     }
 }

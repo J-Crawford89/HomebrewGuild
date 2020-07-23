@@ -19,40 +19,40 @@ namespace Services
             _userId = userId;
             _ctx = new ApplicationDbContext();
         }
-        public bool CreateCharacterComment(CommentCreate model, int characterId)
+        public bool CreateCharacterComment(CommentCreate model)
         {
             var entity = new Comment()
             {
                 OwnerId = _userId,
                 Content = model.Content,
                 DateCreated = DateTime.Now,
-                CharacterId = characterId
+                CharacterId = model.ParentId
             };
             _ctx.Comments.Add(entity);
             return _ctx.SaveChanges() == 1;
         }
 
-        public bool CreateMonsterComment(CommentCreate model, int monsterId)
+        public bool CreateMonsterComment(CommentCreate model)
         {
             var entity = new Comment()
             {
                 OwnerId = _userId,
                 Content = model.Content,
                 DateCreated = DateTime.Now,
-                MonsterId = monsterId
+                MonsterId = model.ParentId
             };
             _ctx.Comments.Add(entity);
             return _ctx.SaveChanges() == 1;
         }
 
-        public bool CreateSpellComment(CommentCreate model, int spellId)
+        public bool CreateSpellComment(CommentCreate model)
         {
             var entity = new Comment()
             {
                 OwnerId = _userId,
                 Content = model.Content,
                 DateCreated = DateTime.Now,
-                SpellId = spellId
+                SpellId = model.ParentId
             };
             _ctx.Comments.Add(entity);
             return _ctx.SaveChanges() == 1;
