@@ -22,6 +22,7 @@ namespace Models.SpellModels
         public bool RequiresConcentration { get; set; }
         [Display(Name ="Casting Time")]
         public string CastingTime { get; set; }
+        public string Range { get; set; }
         public List<SpellComponent> Components { get; set; }
         [Display(Name ="Material Component")]
         public string MaterialComponent { get; set; }

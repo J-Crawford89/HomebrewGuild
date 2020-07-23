@@ -29,6 +29,8 @@ namespace MVC.Controllers
             return View();
         }
         // POST: CharacterClass/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CharacterClassCreate model)
         {
             if(!ModelState.IsValid)
@@ -45,15 +47,6 @@ namespace MVC.Controllers
         }
         // GET: CharacterClass/Delete/{id}
         public ActionResult Delete(int id)
-        {
-            var model = _characterClassService.GetCharacterClassDetailById(id);
-            return View(model);
-        }
-        // POST: CharacterClass/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
         {
             _characterClassService.Delete(id);
             TempData["SaveResult"] = "Class Deleted";

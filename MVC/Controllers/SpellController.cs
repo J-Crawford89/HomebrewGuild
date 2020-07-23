@@ -23,7 +23,7 @@ namespace MVC.Controllers
         // GET: Spell/Details/{id}
         public ActionResult Details(int id)
         {
-            var model = _spellService.GetSpellDetailById(id);
+            var model = _spellService.GetSpellDetailViewById(id);
             return View(model);
         }
     }

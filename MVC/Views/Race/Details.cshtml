@@ -1,42 +1,47 @@
-﻿@model Models.RaceModels.RaceDetail
+﻿@model Models.RaceModels.RaceDetailView
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>RaceDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Speed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Speed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HasDarkvision)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasDarkvision)
-        </dd>
-
-    </dl>
+<div class="pageTitle adminTitle">
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="row justify-content-center">
+    <div class="col-10 col-md-5">
+        <div class="card displayCard">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+                <h6><strong>@Html.DisplayNameFor(model => model.Size): </strong>@Html.DisplayFor(model => model.Size)</h6>
+                <h6><strong>@Html.DisplayNameFor(model => model.Speed): </strong>@Html.DisplayFor(model => model.Speed)</h6>
+                <h6><strong>@Html.DisplayNameFor(model => model.HasDarkvision): </strong>@Html.DisplayFor(model => model.HasDarkvision)</h6>
+                <h6><strong>@Html.DisplayNameFor(model => model.AbilityScoreIncrease): </strong>@Html.DisplayFor(model => model.AbilityScoreIncrease)</h6>
+                @if (Model.Traits != null)
+                {
+                    <hr />
+                    foreach (var kvp in Model.Traits)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="formButtons" align="center">
+    <ul class="horizontalList">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { onclick = "return confirm('Are you sure you want to delete this race?')" })</button></li>
+            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
+            <li><button type="button" class="btn btn-primary" style="width:108px;">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button></li>
+        }
+        else
+        {
+            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
+        }
+    </ul>
+</div>

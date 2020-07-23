@@ -19,6 +19,18 @@ namespace Services
             _ctx = new ApplicationDbContext();
             _userId = userId;
         }
+        private string CheckMaterialComponent(SpellCreate model)
+        {
+            if(model.Components.Contains(Enums.SpellComponent.Material))
+            {
+                if(string.IsNullOrWhiteSpace(model.MaterialComponent) || string.IsNullOrEmpty(model.MaterialComponent))
+                {
+                    return "Unknown Material Component";
+                }
+                return model.MaterialComponent;
+            }
+            return null;
+        }
         public bool Create(SpellCreate model)
         {
             var entity = new Spell()
@@ -31,7 +43,8 @@ namespace Services
                 RequiresConcentration = model.RequiresConcentration,
                 CastingTime = model.CastingTime,
                 Components = model.Components,
-                MaterialComponent = model.MaterialComponent,
+                Range = model.Range,
+                MaterialComponent = CheckMaterialComponent(model),
                 Duration = model.Duration,
                 Description = model.Description,
                 ClassIds = model.ClassIds,
@@ -69,6 +82,7 @@ namespace Services
                 entity.RequiresConcentration = model.RequiresConcentration;
                 entity.CastingTime = model.CastingTime;
                 entity.Components = model.Components;
+                entity.Range = model.Range;
                 entity.MaterialComponent = model.MaterialComponent;
                 entity.Duration = model.Duration;
                 entity.Description = model.Description;
@@ -82,7 +96,9 @@ namespace Services
         {
             string userId = _userId.ToString();
             var userName = _ctx.Users.Single(u => u.Id == userId).UserName;
-            var spellList = _ctx.Spells.Select(e => new SpellListItem
+            var spellList = _ctx.Spells
+                .Where(e => e.OwnerId == _userId && e.IsDeleted == false)
+                .Select(e => new SpellListItem
             {
                 Id = e.Id,
                 Creator = userName,
@@ -93,7 +109,6 @@ namespace Services
             }).ToList();
             return spellList;
         }
-
         public SpellDetail GetSpellDetailById(int id)
         {
             var entity = _ctx.Spells.Single(e => e.Id == id);
@@ -107,6 +122,7 @@ namespace Services
                 RequiresConcentration = entity.RequiresConcentration,
                 CastingTime = entity.CastingTime,
                 Components = entity.Components,
+                Range = entity.Range,
                 MaterialComponent = entity.MaterialComponent,
                 Duration = entity.Duration,
                 Description = entity.Description,
@@ -116,6 +132,67 @@ namespace Services
                 School = entity.School
             };
             return model;
+        }
+
+        public SpellDetailView GetSpellDetailViewById(int id)
+        {
+            var entity = _ctx.Spells.Single(e => e.Id == id);
+            var model = new SpellDetailView
+            {
+                Id = entity.Id,
+                Creator = _ctx.Users.FirstOrDefault(u => u.Id == entity.OwnerId.ToString()).UserName,
+                Name = entity.Name,
+                SpellLevel = GetSpellLevelForDetail(entity.SpellLevel),
+                IsRitual = entity.IsRitual,
+                RequiresConcentration = entity.RequiresConcentration,
+                CastingTime = entity.CastingTime,
+                Components = entity.Components,
+                Range = entity.Range,
+                MaterialComponent = entity.MaterialComponent,
+                Duration = entity.Duration,
+                Description = entity.Description,
+                ClassIds = entity.ClassIds,
+                DateCreated = entity.DateCreated,
+                LastUpdated = entity.LastUpdated,
+                School = entity.School
+            };
+            return model;
+        }
+        private string GetSpellLevelForDetail(int level)
+        {
+            switch(level)
+            {
+                case 0:
+                    return "Cantrip";
+                case 1:
+                    return "1st-level";
+                case 2:
+                    return "2nd-level";
+                case 3:
+                    return "3rd-level";
+                case 4:
+                    return "4th-level";
+                case 5:
+                    return "5th-level";
+                case 6:
+                    return "6th-level";
+                case 7:
+                    return "7th-level";
+                case 8:
+                    return "8th-level";
+                case 9:
+                    return "9th-level";
+                case 10:
+                    return "10th-level";
+                case 11:
+                    return "11th-level";
+                case 12:
+                    return "12th-level";
+                case 13:
+                    return "13th-level";
+                default:
+                    return "unknown level";
+            }
         }
     }
 }

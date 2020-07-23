@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Data;
+using Data.Entities;
 using Models.SubraceModels;
 using Services;
 using System;
@@ -13,9 +14,11 @@ namespace MVC.Controllers
     public class SubraceController : Controller
     {
         private readonly SubraceService _subraceService;
+        private readonly ApplicationDbContext _ctx;
         public SubraceController()
         {
             _subraceService = new SubraceService();
+            _ctx = new ApplicationDbContext();
         }
         // GET: Subrace
         public ActionResult Index()
@@ -26,20 +29,11 @@ namespace MVC.Controllers
         // GET: Subrace/Details/{id}
         public ActionResult Details(int id)
         {
-            var model = _subraceService.GetSubraceDetailById(id);
+            var model = _subraceService.GetSubraceDetailViewById(id);
             return View(model);
         }
         // GET: Subrace/Delete/{id}
         public ActionResult Delete(int id)
-        {
-            var model = _subraceService.GetSubraceDetailById(id);
-            return View(model);
-        }
-        // POST: Subrace/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
         {
             _subraceService.Delete(id);
             TempData["SaveResult"] = "Subrace deleted";
@@ -48,7 +42,17 @@ namespace MVC.Controllers
         // GET: Subrace/Create
         public ActionResult Create()
         {
-            return View();
+            var races = _ctx.Races.ToList();
+            var dropdownList = new SelectList(races.Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = e.Name
+            }).ToList(), "Value", "Text");
+            var model = new SubraceCreate
+            {
+                Races = dropdownList
+            };
+            return View(model);
         }
         // POST: Subrace/Create
         [HttpPost]
@@ -76,7 +80,9 @@ namespace MVC.Controllers
                 Id = detail.Id,
                 AbilityScoreIncrease = detail.AbilityScoreIncrease,
                 Name = detail.Name,
-                Traits = detail.Traits
+                Traits = detail.Traits,
+                RaceId = _ctx.Races.Single(e=>e.Name == detail.RaceName).Id,
+                Races = new SelectList(_ctx.Races, "Id", "Name")
             };
             return View(model);
         }
@@ -85,6 +91,7 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SubraceEdit model, int id)
         {
+            model.Races = new SelectList(_ctx.Races, "Id", "Name");
             if(model.Id != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");

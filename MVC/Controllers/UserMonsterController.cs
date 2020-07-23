@@ -28,8 +28,7 @@ namespace MVC.Controllers
         // GET: UserMonster/Create
         public ActionResult Create()
         {
-            var model = new MonsterCreate();
-            return View(model);
+            return View();
         }
         // POST: UserMonster/Create
         [HttpPost]
@@ -53,7 +52,7 @@ namespace MVC.Controllers
         public ActionResult Details(int id)
         {
             var userMonsterService = CreateUserMonsterService();
-            var model = userMonsterService.GetMonsterDetailById(id);
+            var model = userMonsterService.GetMonsterDetailViewById(id);
 
             return View(model);
         }
@@ -120,16 +119,6 @@ namespace MVC.Controllers
         }
         // GET: UserMonster/Delete/{id}
         public ActionResult Delete(int id)
-        {
-            var userMonsterService = CreateUserMonsterService();
-            var model = userMonsterService.GetMonsterDetailById(id);
-            return View(model);
-        }
-        // POST: UserMonster/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
         {
             var userMonsterService = CreateUserMonsterService();
             userMonsterService.Delete(id);

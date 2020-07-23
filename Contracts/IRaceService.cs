@@ -14,5 +14,6 @@ namespace Contracts
         bool Delete(int id);
         IEnumerable<RaceListItem> GetAllRaces();
         RaceDetail GetRaceDetailById(int id);
+        RaceDetailView GetRaceDetailViewById(int id);
     }
 }

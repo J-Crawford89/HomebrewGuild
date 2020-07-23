@@ -10,6 +10,6 @@ namespace Contracts
     public interface ISpellService
     {
         IEnumerable<SpellListItem> GetAllSpells();
-        SpellDetail GetSpellDetailById(int id);
+        SpellDetailView GetSpellDetailViewById(int id);
     }
 }

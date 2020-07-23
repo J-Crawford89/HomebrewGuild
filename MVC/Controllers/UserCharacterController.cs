@@ -35,16 +35,6 @@ namespace MVC.Controllers
         public ActionResult Delete(int id)
         {
             var userCharacterService = CreateUserCharacterService();
-            var model = userCharacterService.GetCharacterDetailById(id);
-            return View(model);
-        }
-        // POST: UserCharacter/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
-        {
-            var userCharacterService = CreateUserCharacterService();
             userCharacterService.Delete(id);
             TempData["SaveResult"] = "Character Deleted!";
             return RedirectToAction("Index");

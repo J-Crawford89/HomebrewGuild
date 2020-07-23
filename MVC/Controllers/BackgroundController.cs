@@ -84,20 +84,11 @@ namespace MVC.Controllers
         // GET: Background/Delete/{id}
         public ActionResult Delete(int id)
         {
-            var model = _backgroundService.GetBackgroundById(id);
-
-            return View(model);
-        }
-        // POST: Background/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
-        {
             _backgroundService.Delete(id);
             TempData["SaveResult"] = "Background Deleted";
             return RedirectToAction("Index");
         }
+
         // GET: Background/Details/{id}
         public ActionResult Details(int id)
         {

@@ -10,6 +10,6 @@ namespace Contracts
     public interface IMonsterService
     {
         IEnumerable<MonsterListItem> GetAllMonsters();
-        MonsterDetail GetMonsterDetailById(int id);
+        MonsterDetailView GetMonsterDetailViewById(int id);
     }
 }

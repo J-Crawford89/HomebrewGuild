@@ -112,7 +112,9 @@ namespace Services
         {
             string userId = _userId.ToString();
             var userName = _ctx.Users.Single(u => u.Id == userId).UserName;
-            var characterList = _ctx.Characters.Select(e => new CharacterListItem
+            var characterList = _ctx.Characters
+                .Where(e => e.OwnerId == _userId && e.IsDeleted == false)
+                .Select(e => new CharacterListItem
             {
                 Id = e.Id,
                 Name = e.Name,

@@ -32,10 +32,10 @@ namespace Services
             return monsterList;
         }
 
-        public MonsterDetail GetMonsterDetailById(int id)
+        public MonsterDetailView GetMonsterDetailViewById(int id)
         {
             var monsterEntity = _ctx.Monsters.Single(e => e.Id == id);
-            var model = new MonsterDetail
+            var model = new MonsterDetailView
             {
                 Id = monsterEntity.Id,
                 Creator = _ctx.Users.Single(u => u.Id == monsterEntity.OwnerId.ToString()).UserName,
@@ -54,8 +54,8 @@ namespace Services
                 Intelligence = monsterEntity.Intelligence,
                 Wisdom = monsterEntity.Wisdom,
                 Charisma = monsterEntity.Charisma,
-                SavingThrows = monsterEntity.SavingThrows,
-                Skills = monsterEntity.Skills,
+                SavingThrows = FormatSavingThrows(monsterEntity),
+                Skills = FormatSkills(monsterEntity),
                 Vulnerabilities = monsterEntity.Vulnerabilities,
                 Resistances = monsterEntity.Resistances,
                 Immunities = monsterEntity.Immunities,
@@ -73,6 +73,70 @@ namespace Services
             };
             return model;
         }
+        public string FormatSkills(Monster entity)
+        {
+            string formattedSkills = "";
+            string skill = "";
+            string bonus = "";
+            foreach (var kvp in entity.Skills)
+            {
+                skill = kvp.Key.ToString() + " ";
+                if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
+                {
+                    bonus = kvp.Value + " ";
+                }
+                else
+                {
+                    bonus = $"+{kvp.Value} ";
+                }
+                formattedSkills += skill + bonus;
+            }
+            return formattedSkills;
+        }
+        public string FormatSavingThrows(Monster entity)
+        {
+            string formattedSavingThrows = "";
+            string ability = "";
+            string bonus = "";
+            foreach (var kvp in entity.SavingThrows)
+            {
+                switch (kvp.Key.ToString())
+                {
+                    case "Strength":
+                        ability = "Str ";
+                        break;
+                    case "Dexterity":
+                        ability = "Dex ";
+                        break;
+                    case "Constitution":
+                        ability = "Con ";
+                        break;
+                    case "Intelligence":
+                        ability = "Int ";
+                        break;
+                    case "Wisdom":
+                        ability = "Wis ";
+                        break;
+                    case "Charisma":
+                        ability = "Cha ";
+                        break;
+                    default:
+                        ability = kvp.Key.ToString();
+                        break;
+                }
+                if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
+                {
+                    bonus = kvp.Value + " ";
+                }
+                else
+                {
+                    bonus = $"+{kvp.Value} ";
+                }
+                formattedSavingThrows += ability + bonus;
+            }
+            return formattedSavingThrows;
+        }
+
         private Dictionary<string, string> CheckIfNull(Dictionary<string, string> query)
         {
             if (query != null)

@@ -1,400 +1,159 @@
-﻿@model Models.MonsterModels.MonsterDetail
+﻿@model Models.MonsterModels.MonsterDetailView
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="pageTitle monsterTitle">
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <h5>@@@Html.DisplayFor(model => model.Creator)</h5>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-10 col-md-5">
+        <div class="card displayCard">
+            <div class="card-body">
+                <h6>
+                    <i>
+                        @Html.DisplayFor(model => model.Size)
+                        @Html.DisplayFor(model => model.Type),
+                        @Html.DisplayFor(model => model.Alignment)
+                    </i>
+                </h6>
+                <hr />
+                <h6>
+                    <strong>
+                        @Html.DisplayNameFor(model => model.ArmorClass):
+                    </strong>
+                    @Html.DisplayFor(model => model.ArmorClass)
+                    (@Html.DisplayFor(model => model.ArmorType))
+                </h6>
+                <h6>
+                    <strong>
+                        @Html.DisplayNameFor(model => model.HitPoints):
+                    </strong>
+                    @Html.DisplayFor(model => model.HitPoints)
+                    (@Html.DisplayFor(model => model.HitPointEquation))
+                </h6>
+                <h6><strong>@Html.DisplayNameFor(model => model.Speed): </strong>@Html.DisplayFor(model => model.Speed)</h6>
+                <hr />
+                <h6>
+                    <strong>STR: </strong>@Html.DisplayFor(model => model.Strength) |
+                    <strong>DEX: </strong>@Html.DisplayFor(model => model.Dexterity) |
+                    <strong>CON: </strong>@Html.DisplayFor(model => model.Constitution) |
+                    <strong>INT: </strong>@Html.DisplayFor(model => model.Intelligence) |
+                    <strong>WIS: </strong>@Html.DisplayFor(model => model.Wisdom) |
+                    <strong>CHA: </strong>@Html.DisplayFor(model => model.Charisma)
+                </h6>
+                <hr />
+                @if (!string.IsNullOrWhiteSpace(Model.SavingThrows))
+                {
+                    <h6><strong>@Html.DisplayNameFor(model => model.SavingThrows): </strong>@Html.DisplayFor(model => model.SavingThrows)</h6>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Skills))
+                {
+                    <h6><strong>@Html.DisplayNameFor(mode => Model.Skills): </strong>@Html.DisplayFor(model => model.Skills)</h6>
+                }
+                @if (Model.Vulnerabilities != null)
+                {
+                    <h6><strong>@Html.DisplayNameFor(model => model.Vulnerabilities): </strong>@Html.DisplayFor(model => model.Vulnerabilities)</h6>
+                }
+                @if (Model.Resistances != null)
+                {
+                    <h6><strong>@Html.DisplayNameFor(model => model.Resistances): </strong>@Html.DisplayFor(model => model.Resistances)</h6>
+                }
+                @if (Model.Immunities != null)
+                {
+                    <h6><strong>@Html.DisplayNameFor(model => model.Immunities): </strong>@Html.DisplayFor(model => model.Immunities)</h6>
+                }
+                <h6><strong>@Html.DisplayNameFor(model => model.Senses): </strong>@Html.DisplayFor(model => model.Senses)</h6>
+                <h6><strong>@Html.DisplayNameFor(model => model.Languages): </strong>@Html.DisplayFor(model => model.Languages)</h6>
+                <h6><strong>@Html.DisplayNameFor(model => model.ChallengeRating): </strong>@Html.DisplayFor(model => model.ChallengeRating)</h6>
+                <hr />
+
+                @if (Model.Traits != null)
+                {
+                    foreach (var kvp in Model.Traits)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+
+                @if (Model.Actions != null)
+                {
+                    <h5 class="card-title">@Html.DisplayNameFor(model => model.Actions)</h5>
+                    <hr />
+                    foreach (var kvp in Model.Actions)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+
+                @if (Model.Reactions != null)
+                {
+                    <h5 class="card-title">@Html.DisplayNameFor(model => model.Reactions)</h5>
+                    <hr />
+                    foreach (var kvp in Model.Reactions)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+
+                @if (Model.LegendaryActions != null)
+                {
+                    <h5 class="card-title">@Html.DisplayNameFor(model => model.LegendaryActions)</h5>
+                    <hr />
+                    <p>
+                        The @Model.Name can take @Model.NumberOfLegendaryActions legendary actions, choosing from the options below.
+                        Only one legendary action option can be used at a time and only at the end of another creature's turn. The
+                        @Model.Name regains spent legendary actions at the start of its turn.
+                    </p>
+                    foreach (var kvp in Model.LegendaryActions)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+
+                @if (Model.LairActions != null)
+                {
+                    <h5 class="card-title">@Html.DisplayNameFor(model => model.LairActions)</h5>
+                    <hr />
+                    <p>
+                        On initiative count 20 (losing initiative ties), the @Model.Name takes a lair action to cause one of the
+                        following effects; the @Model.Name can't use the same effect two rounds in a row:
+                    </p>
+                    foreach (var kvp in Model.LairActions)
+                    {
+                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                    }
+                }
+            </div>
+            <div>
+                <div class="card-footer">
+                    <p class="displaySubtext"><strong>@Html.DisplayNameFor(model => model.DateCreated): </strong>@Html.DisplayFor(model => model.DateCreated)</p>
+                    <p class="displaySubtext"><strong>@Html.DisplayNameFor(model => model.LastUpdated): </strong>@Html.DisplayFor(model => model.LastUpdated)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div>
-    <h4>MonsterDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Creator)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Size)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Size)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Alignment)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Alignment)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ArmorClass)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArmorClass)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ArmorType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArmorType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HitPoints)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HitPoints)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HitPointEquation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HitPointEquation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Speed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Speed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Strength)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Strength)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dexterity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dexterity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Constitution)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Constitution)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Intelligence)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Intelligence)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Wisdom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Wisdom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Charisma)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Charisma)
-        </dd>
-
-        @if (Model.SavingThrows != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.SavingThrows)
-            </dt>
-
-            <dd>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            @foreach (var ability in Model.SavingThrows.Keys)
-                            {
-                                <th>@ability.ToString()</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @foreach (var bonus in Model.SavingThrows.Values)
-                            {
-                                <td>@bonus.ToString()</td>
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        @if (Model.Skills != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.Skills)
-            </dt>
-
-            <dd>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            @foreach (var skill in Model.Skills.Keys)
-                            {
-                                <th>@skill.ToString()</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @foreach (var bonus in Model.Skills.Values)
-                            {
-                                <td>@bonus.ToString()</td>
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Vulnerabilities)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Vulnerabilities)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Resistances)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Resistances)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Immunities)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Immunities)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Senses)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Senses)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Languages)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Languages)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ChallengeRating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChallengeRating)
-        </dd>
-
-        @if (Model.Traits != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.Traits)
-            </dt>
-            <dd>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var trait in Model.Traits)
-                        {
-                            <tr>
-                                <td>@trait.Key</td>
-                                <td>@trait.Value</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        @if (Model.Actions != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.Actions)
-            </dt>
-            <dd>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var action in Model.Actions)
-                        {
-                            <tr>
-                                <td>@action.Key</td>
-                                <td>@action.Value</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        @if (Model.Reactions != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.Reactions)
-            </dt>
-            <dd>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var reaction in Model.Reactions)
-                        {
-                            <tr>
-                                <td>@reaction.Key</td>
-                                <td>@reaction.Value</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfLegendaryActions)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfLegendaryActions)
-        </dd>
-
-        @if (Model.LegendaryActions != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.LegendaryActions)
-            </dt>
-            <dd>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var legendary in Model.LegendaryActions)
-                        {
-                            <tr>
-                                <td>@legendary.Key</td>
-                                <td>@legendary.Value</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        @if (Model.LairActions != null)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.LairActions)
-            </dt>
-            <dd>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var lair in Model.LairActions)
-                        {
-                            <tr>
-                                <td>lair.Key</td>
-                                <td>lair.Value</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdated)
-        </dd>
-
-    </dl>
+    <!--RENDER COMMENTS PARTIAL VIEW HERE-->
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="formButtons" align="center">
+    <ul class="horizontalList">
+        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Creator || User.IsInRole("Admin"))
+        {
+            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Delete", "Delete", "UserMonster", new { id = Model.Id }, new { onclick = "return confirm('Are you sure you want to delete this monster?')" })</button></li>
+            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
+            <li><button type="button" class="btn btn-primary" style="width:108px;">@Html.ActionLink("Edit", "Edit", "UserMonster", new { id = Model.Id }, "")</button></li>
+        }
+        else
+        {
+            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
+        }
+    </ul>
+</div>
+

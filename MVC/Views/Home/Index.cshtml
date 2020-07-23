@@ -2,20 +2,41 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron home">
-    <h1 id="homeTitle">The Homebrew Guild</h1>
-    <h5 id="tagline">A home for D&D 5E Homebrew Content</h5>
-</div>
-
-<div class="row justify-content-around">
-    <div class="col-lg-5 col-md-6 monstersContainer">
-        <div class="category monsters">
-            <h2>@Html.ActionLink("Monsters", "Index", "Monster")</h2>
+    <div class="jumbotron home">
+        <h1 id="homeTitle">The Homebrew Guild</h1>
+        <div class="row justify-content-center align-items-center startCreatingContainer">
+            <button type="button" class="btn btn-primary btn-lg" id="startCreating">
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Start Creating", "Index", "MyCreations")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Start Creating", "Register", "Account")
+                    }
+                }
+            </button>
         </div>
+
+        <h5 id="tagline">A home for D&D 5E Homebrew Content</h5>
     </div>
-    <div class="col-lg-5 col-md-6 spellsContainer">
-        <div class="category spells">
-            <h2>@Html.ActionLink("Spells", "Index", "Spell")</h2>
+
+<div class="container">
+    <div class="row justify-content-around">
+        <div class="col-lg-5 col-md-6 monstersContainer">
+            <a href="/Monster">
+                <div class="category monsters">
+                    <h2>Monsters</h2>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-5 col-md-6 spellsContainer">
+            <a href="/Spell">
+                <div class="category spells">
+                    <h2>Spell</h2>
+                </div>
+            </a>
         </div>
     </div>
 </div>

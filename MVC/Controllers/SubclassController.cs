@@ -1,4 +1,5 @@
-﻿using Models.SubclassModels;
+﻿using Data;
+using Models.SubclassModels;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace MVC.Controllers
     public class SubclassController : Controller
     {
         private readonly SubclassService _subclassService;
+        private readonly ApplicationDbContext _ctx;
         public SubclassController()
         {
             _subclassService = new SubclassService();
+            _ctx = new ApplicationDbContext();
         }
         // GET: Subclass
         public ActionResult Index()
@@ -31,15 +34,6 @@ namespace MVC.Controllers
         //GET: Subclass/Delete/{id}
         public ActionResult Delete(int id)
         {
-            var model = _subclassService.GetSubclassDetailById(id);
-            return View(model);
-        }
-        // POST: Subclass/Delete/{id}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
-        {
             _subclassService.Delete(id);
             TempData["SaveResult"] = "Subclass deleted";
             return RedirectToAction("Index");
@@ -47,7 +41,17 @@ namespace MVC.Controllers
         // GET: Subclass/Create
         public ActionResult Create()
         {
-            return View();
+            var classes = _ctx.CharacterClasses.ToList();
+            var dropdownList = new SelectList(classes.Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = e.Name
+            }).ToList(), "Value", "Text");
+            var model = new SubclassCreate
+            {
+                CharacterClasses = dropdownList
+            };
+            return View(model);
         }
         // POST: Subclass/Create
         [HttpPost]
@@ -74,7 +78,9 @@ namespace MVC.Controllers
             {
                 Features = detail.Features,
                 Id = detail.Id,
-                Name = detail.Name
+                Name = detail.Name,
+                CharacterClassId = _ctx.CharacterClasses.Single(e=>e.Name == detail.CharacterClassName).Id,
+                CharacterClasses = new SelectList(_ctx.CharacterClasses, "Id", "Name")
             };
             return View(model);
         }
@@ -83,6 +89,7 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SubclassEdit model, int id)
         {
+            model.CharacterClasses = new SelectList(_ctx.CharacterClasses, "Id", "Name");
             if(model.Id != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
