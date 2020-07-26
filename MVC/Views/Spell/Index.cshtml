@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 <div class="pageTitle spellTitle">
-    <h1>@@@User.Identity.Name's Spells</h1>
+    <h1>Spells</h1>
 </div>
 
 @if (User.Identity.IsAuthenticated)
@@ -63,7 +63,7 @@
                         }
                         else
                         {
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details")</button></li>
+                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details", new { id = item.Id })</button></li>
                         }
                     </ul>
                 </td>
