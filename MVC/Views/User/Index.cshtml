@@ -10,13 +10,21 @@
 
 <div class="row justify-content-center">
 <table class="table col-md-10">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>@item.UserName</td>
-            </tr>
-            <tr>
                 <td>@item.Email</td>
             </tr>
         }
