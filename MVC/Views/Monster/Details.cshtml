@@ -153,3 +153,94 @@
     </ul>
 </div>
 
+<hr />
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <h3 class="commentsTitle">Comments <i class="far fa-comment-dots"></i></h3>
+    </div>
+</div>
+<div id="@string.Format("commentBlock" + Model.Id)" class="commentBlock col-md-8 offset-md-2">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="addCommentArea">
+            <textarea id="@string.Format("comment" + Model.Id)" class="form-control commentTextArea" placeholder="Add a Comment ..."></textarea>
+            <button type="button" class="btn btn-primary addComment" data-id="@Model.Id"><i class="far fa-comment"></i>  Add Comment</button>
+
+        </div>
+    }
+    else
+    {
+        <div>
+            <p>You must log in to leave a comment.</p>
+        </div>
+    }
+</div>
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+
+            $(document).ready(function loadComments() {
+                var monsterId = @Model.Id;
+                var allCommentsArea = $('<div>').addClass('allComments' + monsterId);
+
+                //GET ALL COMMENTS
+                $.ajax({
+
+                    type: 'GET',
+                    url: '@Url.Action("GetCommentsByMonsterId", "Comment")',
+                    data: { monsterId },
+                    success: function (response) {
+
+                        if ($('div').hasClass('allComments' + monsterId + '')) {
+                            $('div[class=allComments' + monsterId + ']').remove();
+                        }
+
+                        allCommentsArea.html(response);
+                        allCommentsArea.prependTo('#commentBlock' + monsterId);
+                    },
+                    error: function (response) {
+                        alert('Sorry: Comments cannot be loaded.');
+                    }
+                });
+
+                //ADD NEW COMMENT
+                $('.addComment').on('click', function () {
+
+                    var monsterId = $(this).attr('data-id');
+                    var commentContent = $('#comment' + monsterId).val();
+
+                    var model = {
+                        Content: commentContent,
+                        ParentId: monsterId
+                    };
+
+                    $.ajax({
+
+                        type: 'POST',
+                        url: '@Url.Action("CreateMonsterComment", "Comment")',
+                        data: { model, monsterId },
+                        success: function (response) {
+
+                            $('div[class=allComments' + monsterId + ']').remove();
+
+                            var allCommentsArea = $('<div>').addClass('allComments' + monsterId);
+                            allCommentsArea.html(response);
+
+                            allCommentsArea.prependTo('#commentsBlock' + monsterId);
+
+                            $($('#comment' + monsterId)).val('');
+                            $(document).ready(loadComments);
+                        },
+                        error: function (response) {
+                            alert('Unable to add comment');
+                        }
+                    });
+                });
+            });
+    </script>
+}
+

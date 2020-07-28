@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Models.ReplyModels.ReplyListItem>
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var reply in Model)
+    {
+        <div class="replyGroup offset-md-1">
+
+            <!--TO BE ADDED WHEN AVATARS CAN BE UPLOADED
+            <div class="col-md-4">
+                <div class="commentUserArea">
+                    <img src="" class="rounded-circle userImage" />
+                    <a href="#" class="userName">@reply.Author</a>
+                </div>
+            </div>
+                -->
+
+            <div class="row">
+                <div class="col">
+                    <div class="commentDetails">
+                        <p>@reply.Content</p>
+                        <div class="replyBlock editReplyBlock" id="@string.Format("editReplyBlock" + reply.Id)">
+                            <div class="editCommentArea">
+                                <textarea id="@string.Format("reply" + reply.Id)" class="form-control commentTextArea" placeholder="Add a Reply ...">@reply.Content</textarea>
+                                <div class="updateButtonsContainer">
+                                    <div class="updateButtons">
+                                        <button type="button" class="btn btn-cancel btn-sm cancelUpdateReply" data-id="@reply.Id">Cancel</button>
+                                        <button type="button" class="btn btn-primary btn-sm updateReply" data-id="@reply.Id"><i class="far fa-comment"></i>  Update Reply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commentInfo row">
+                <div class="col-md-10">
+                    <ul class="horizontalList">
+                        <li class="commentAuthor">@reply.Author</li>
+                        <li>|</li>
+                        @if (reply.Author == User.Identity.Name)
+                        {
+                            <li><button type="button" class="commentLink editReply" data-id="@reply.Id"><i class="far fa-edit"></i> Edit</button></li>
+                        <li>|</li>
+                        }
+                        @if (reply.Author == User.Identity.Name)
+                        {
+                            <li><button type="button" class="commentLink deleteReply" data-id="@reply.Id"><i class="fas fa-trash-alt"></i> Delete</button></li>
+                        <li>|</li>
+                        }
+                        <li><i class="far fa-calendar-alt"></i> @reply.DateCreated.ToString("MMMM dd, yyyy")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // TOGGLE EDIT REPLY BOX
+        $('.editReply').on('click', function () {
+
+            var replyId = $(this).attr('data-id');
+            if ($('#editReplyBlock' + replyId).is(':visible')) {
+                $($('#editReplyBlock' + replyId)).hide();
+            } else {
+                $($('#editReplyBlock' + replyId)).show();
+            }
+        });
+
+        // HIDE EDIT COMMENT BOX
+        $('.cancelUpdateReply').on('click', function () {
+
+            var replyId = $(this).attr('data-id');
+            $($('#editReplyBlock' + replyId)).hide();
+        })
+
+        // EDIT REPLY
+        $('.updateReply').on('click', function () {
+
+            var replyId = $(this).attr('data-id');
+            var updatedReply = $('#reply' + replyId).val();
+
+            var model = {
+                Content: updatedReply,
+                Id: replyId
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit", "Reply")',
+                data: { model },
+                success: function (response) {
+                    setTimeout(function () { location.reload(); }, 1000);
+                },
+                error: function (response) {
+                    alert('Unable to update reply');
+                }
+            });
+        });
+
+        // DELETE COMMENT
+        $('.deleteReply').on('click', function () {
+
+            var replyId = $(this).attr('data-id');
+            var message = confirm('Are you sure you wish to delete this reply?');
+
+            if (message) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Delete", "Reply")',
+                    data: { replyId },
+                    success: function (response) {
+                        setTimeout(function () { location.reload(); }, 1000);
+                    },
+                    error: function (response) {
+                        alert('Unable to delete reply');
+                    }
+                });
+            };
+        });
+    });
+
+</script>
+
+

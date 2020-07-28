@@ -223,10 +223,11 @@ namespace Services
             string formattedSkills = "";
             string skill = "";
             string bonus = "";
-            foreach(var kvp in entity.Skills)
+            var enumService = new EnumService();
+            foreach (var kvp in entity.Skills)
             {
-                skill = kvp.Key.ToString() + " ";
-                if(kvp.Value.Contains('+') || kvp.Value.Contains('-'))
+                skill = enumService.ConvertSkill(kvp.Key) + " ";
+                if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
                 {
                     bonus = kvp.Value + " ";
                 }
@@ -243,9 +244,9 @@ namespace Services
             string formattedSavingThrows = "";
             string ability = "";
             string bonus = "";
-            foreach(var kvp in entity.SavingThrows)
+            foreach (var kvp in entity.SavingThrows)
             {
-                switch(kvp.Key.ToString())
+                switch (kvp.Key.ToString())
                 {
                     case "Strength":
                         ability = "Str ";
@@ -269,7 +270,7 @@ namespace Services
                         ability = kvp.Key.ToString();
                         break;
                 }
-                if(kvp.Value.Contains('+') || kvp.Value.Contains('-'))
+                if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
                 {
                     bonus = kvp.Value + " ";
                 }

@@ -133,6 +133,7 @@
     <Compile Include="SubraceModels\SubraceDetailView.cs" />
     <Compile Include="SubraceModels\SubraceEdit.cs" />
     <Compile Include="SubraceModels\SubraceListItem.cs" />
+    <Compile Include="UserModels\UserListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

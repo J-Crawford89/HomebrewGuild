@@ -43,10 +43,6 @@
     </div>
 </div>
 
-<div>
-    <!--RENDER COMMENTS PARTIAL VIEW HERE-->
-</div>
-
 <div class="formButtons" align="center">
     <ul class="horizontalList">
         @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Creator || User.IsInRole("Admin"))
@@ -61,3 +57,97 @@
         }
     </ul>
 </div>
+
+<hr />
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <h3 class="commentsTitle">Comments <i class="far fa-comment-dots"></i></h3>
+    </div>
+</div>
+<div id="@string.Format("commentBlock" + Model.Id)" class="commentBlock col-md-8 offset-md-2">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="addCommentArea">
+            <textarea id="@string.Format("comment" + Model.Id)" class="form-control commentTextArea" placeholder="Add a Comment ..."></textarea>
+
+            <button type="button" class="btn btn-primary addComment" data-id="@Model.Id"><i class="far fa-comment"></i>  Add Comment</button>
+
+        </div>
+    }
+    else
+    {
+        <div>
+            <p>You must log in to leave a comment.</p>
+        </div>
+    }
+</div>
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+
+            $(document).ready(function loadComments() {
+                var spellId = @Model.Id;
+                var allCommentsArea = $('<div>').addClass('allComments' + spellId);
+
+                //GET ALL COMMENTS
+                $.ajax({
+
+                    type: 'GET',
+                    url: '@Url.Action("GetCommentsBySpellId", "Comment")',
+                    data: { spellId },
+                    success: function (response) {
+
+                        if ($('div').hasClass('allComments' + spellId + '')) {
+                            $('div[class=allComments' + spellId + ']').remove();
+                        }
+
+                        allCommentsArea.html(response);
+                        allCommentsArea.prependTo('#commentBlock' + spellId);
+                    },
+                    error: function (response) {
+                        alert('Sorry: Comments cannot be loaded.');
+                    }
+                });
+
+                //ADD NEW COMMENT
+                $('.addComment').on('click', function () {
+
+                    var spellId = $(this).attr('data-id');
+                    var commentContent = $('#comment' + spellId).val();
+
+                    var model = {
+                        Content: commentContent,
+                        ParentId: spellId
+                    };
+
+                    $.ajax({
+
+                        type: 'POST',
+                        url: '@Url.Action("CreateSpellComment", "Comment")',
+                        data: { model, spellId },
+                        success: function (response) {
+
+                            $('div[class=allComments' + spellId + ']').remove();
+
+                            var allCommentsArea = $('<div>').addClass('allComments' + spellId);
+                            allCommentsArea.html(response);
+
+                            allCommentsArea.prependTo('#commentsBlock' + spellId);
+
+                            $($('#comment' + spellId)).val('');
+                            $(document).ready(loadComments);
+                        },
+                        error: function (response) {
+                            alert('Unable to add comment');
+                        }
+                    });
+                });
+            });
+    </script>
+}
+
+

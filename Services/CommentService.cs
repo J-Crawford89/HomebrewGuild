@@ -89,7 +89,8 @@ namespace Services
                     Author = _ctx.Users.FirstOrDefault(u => u.Id == e.OwnerId.ToString()).UserName,
                     Content = e.Content,
                     DateCreated = e.DateCreated,
-                    LastUpdated = e.LastUpdated
+                    LastUpdated = e.LastUpdated,
+                    RepliesCount = e.Replies.Where(reply => reply.IsDeleted == false).Count()
                 }).ToList();
             return commentList;
         }
@@ -104,7 +105,8 @@ namespace Services
                     Author = _ctx.Users.FirstOrDefault(u => u.Id == e.OwnerId.ToString()).UserName,
                     Content = e.Content,
                     DateCreated = e.DateCreated,
-                    LastUpdated = e.LastUpdated
+                    LastUpdated = e.LastUpdated,
+                    RepliesCount = e.Replies.Where(reply => reply.IsDeleted == false).Count()
                 }).ToList();
             return commentList;
         }
@@ -119,7 +121,8 @@ namespace Services
                     Author = _ctx.Users.FirstOrDefault(u => u.Id == e.OwnerId.ToString()).UserName,
                     Content = e.Content,
                     DateCreated = e.DateCreated,
-                    LastUpdated = e.LastUpdated
+                    LastUpdated = e.LastUpdated,
+                    RepliesCount = e.Replies.Where(reply => reply.IsDeleted == false).Count()
                 }).ToList();
             return commentList;
         }
@@ -133,7 +136,8 @@ namespace Services
                 Content = entity.Content,
                 DateCreated = entity.DateCreated,
                 LastUpdated = entity.LastUpdated,
-                Id = entity.Id
+                Id = entity.Id,
+                RepliesCount = entity.Replies.Where(reply => reply.IsDeleted == false).Count()
             };
             return model;
         }
