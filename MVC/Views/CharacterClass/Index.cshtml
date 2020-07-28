@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Models.CharacterClassModels.CharacterClassListItem>
+﻿@model PagedList.IPagedList<Models.CharacterClassModels.CharacterClassListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -9,6 +12,7 @@
 </div>
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+
 {
     <div class="indexCreateLink">
         <button type="button" value="createRace" class="btn btn-primary">@Html.ActionLink("Create a Class", "Create", "CharacterClass")</button>
@@ -19,9 +23,19 @@
     <table class="table col-md-10">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
             </th>
-            <th></th>
+            <th>
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                }
+            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -49,3 +63,9 @@
 
     </table>
 </div>
+@if (Model.PageCount > 1)
+{
+    <div class="pagerContainer">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}

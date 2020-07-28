@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Models.BackgroundModels.BackgroundListItem>
+﻿@model PagedList.IPagedList<Models.BackgroundModels.BackgroundListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -19,7 +22,18 @@
     <table class="table col-md-10">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+            </th>
+            <th>
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                }
             </th>
         </tr>
 
@@ -43,3 +57,9 @@
 
     </table>
 </div>
+@if (Model.PageCount > 1)
+{
+    <div class="pagerContainer">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}

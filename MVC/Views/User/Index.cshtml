@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Models.UserModels.UserListItem>
+﻿@model PagedList.IPagedList<Models.UserModels.UserListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Users";
@@ -9,27 +11,43 @@
 </div>
 
 <div class="row justify-content-center">
-<table class="table col-md-10">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model=>model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table col-md-10">
+        <thead>
             <tr>
-                <td>@item.UserName</td>
-                <td>@item.Email</td>
+                <th>
+                    @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UsernameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                </th>
+                <th>
+                    @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                </th>
+                <th>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    }
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-
+@if (Model.PageCount > 1)
+{
+    <div class="pagerContainer">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}
 
