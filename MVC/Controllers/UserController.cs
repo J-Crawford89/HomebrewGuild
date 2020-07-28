@@ -39,7 +39,7 @@ namespace MVC.Controllers
             var model = userService.GetAllUsers();
             if (!String.IsNullOrEmpty(searchString))
             {
-                model = model.Where(e => e.UserName.Contains(searchString) || e.Email.Contains(searchString));
+                model = model.Where(e => e.UserName.ToLower().Contains(searchString.ToLower()) || e.Email.ToLower().Contains(searchString.ToLower()));
             }
             switch (sortOrder)
             {

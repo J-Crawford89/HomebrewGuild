@@ -36,7 +36,7 @@ namespace MVC.Controllers
             var model = _raceService.GetAllRaces();
             if (!String.IsNullOrEmpty(searchString))
             {
-                model = model.Where(e => e.Name.Contains(searchString));
+                model = model.Where(e => e.Name.ToLower().Contains(searchString.ToLower()));
             }
             switch (sortOrder)
             {

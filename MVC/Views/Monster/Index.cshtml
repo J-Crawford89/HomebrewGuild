@@ -32,7 +32,7 @@
                 @Html.ActionLink("Challenge Rating", "Index", new { sortOrder = ViewBag.ChallengeRatingSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
             </th>
             <th>
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Index", "Monster", FormMethod.Get))
                 {
                     <div class="input-group">
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })

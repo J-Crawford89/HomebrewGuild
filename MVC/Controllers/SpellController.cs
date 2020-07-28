@@ -39,7 +39,7 @@ namespace MVC.Controllers
             var model = _spellService.GetAllSpells();
             if (!String.IsNullOrEmpty(searchString))
             {
-                model = model.Where(e => e.Name.Contains(searchString) || e.Creator.Contains(searchString));
+                model = model.Where(e => e.Name.ToLower().Contains(searchString.ToLower()) || e.Creator.ToLower().Contains(searchString.ToLower()));
             }
             switch (sortOrder)
             {
