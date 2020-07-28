@@ -1,6 +1,7 @@
 ﻿using Data;
 using Microsoft.Ajax.Utilities;
 using Models.BackgroundModels;
+using PagedList;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,40 @@ namespace MVC.Controllers
         }
         [AllowAnonymous]
         // GET: Background
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.Name = String.IsNullOrEmpty(sortOrder) ? "nameDescending" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
             var model = _backgroundService.GetAllBackgrounds();
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(e => e.Name.ToLower().Contains(searchString.ToLower()));
+            }
+            switch (sortOrder)
+            {
+                case "nameDescending":
+                    model = model.OrderByDescending(m => m.Name);
+                    break;
+                default: // Name ascending
+                    model = model.OrderBy(m => m.Name);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
         // GET: Background/Create
         public ActionResult Create()

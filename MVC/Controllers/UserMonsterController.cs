@@ -1,6 +1,7 @@
 ﻿using Data;
 using Microsoft.AspNet.Identity;
 using Models.MonsterModels;
+using PagedList;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,62 @@ namespace MVC.Controllers
             return new UserMonsterService(userId);
         }
         // GET: UserMonster
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.CreatorSortParam = sortOrder == "Creator" ? "creatorDescending" : "Creator";
+            ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "nameDescending" : "";
+            ViewBag.TypeSortParam = sortOrder == "Type" ? "typeDescending" : "Type";
+            ViewBag.ChallengeRatingSortParam = sortOrder == "ChallengeRating" ? "challengeRatingDescending" : "ChallengeRating";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
             var userMonsterService = CreateUserMonsterService();
             var model = userMonsterService.GetAllUserMonsters();
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(e => e.Name.ToLower().Contains(searchString.ToLower()) || e.Creator.ToLower().Contains(searchString.ToLower()));
+            }
+            switch (sortOrder)
+            {
+                case "Creator":
+                    model = model.OrderBy(m => m.Creator);
+                    break;
+                case "creatorDescending":
+                    model = model.OrderByDescending(m => m.Creator);
+                    break;
+                case "Type":
+                    model = model.OrderBy(m => m.Type);
+                    break;
+                case "typeDescending":
+                    model = model.OrderByDescending(m => m.Type);
+                    break;
+                case "ChallengeRating":
+                    model = model.OrderBy(m => m.ChallengeRating);
+                    break;
+                case "challengeRatingDescending":
+                    model = model.OrderByDescending(m => m.ChallengeRating);
+                    break;
+                case "nameDescending":
+                    model = model.OrderByDescending(m => m.Name);
+                    break;
+                default: // Name ascending
+                    model = model.OrderBy(m => m.Name);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
         // GET: UserMonster/Create
         public ActionResult Create()

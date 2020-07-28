@@ -233,6 +233,21 @@ h2 {
         color: #FFBC0A;
     }
 
+.linkStandard {
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: #8e130e;
+    padding: 0;
+}
+
+    .linkStandard:hover, .linkStandard:active, .linkStandard:focus {
+        border: none;
+        background: none;
+        text-decoration: none;
+        color: #FFBC0A;
+    }
+
 .indexCreateLink {
     padding: 1rem;
 }
@@ -387,6 +402,7 @@ h2 {
     .formButtons ul {
         padding-left: 0 !important;
     }
+
 
 /*DETAILS*/
 .displaySubtext {

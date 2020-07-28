@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,48 @@ namespace MVC.Controllers
             return new UserService(userId);
         }
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.Username = String.IsNullOrEmpty(sortOrder) ? "usernameDescending" : "";
+            ViewBag.Email = sortOrder == "Email" ? "emailDescending" : "Email";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
             var userService = CreateUserService();
             var model = userService.GetAllUsers();
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(e => e.UserName.ToLower().Contains(searchString.ToLower()) || e.Email.ToLower().Contains(searchString.ToLower()));
+            }
+            switch (sortOrder)
+            {
+                case "Email":
+                    model = model.OrderBy(m => m.Email);
+                    break;
+                case "emailDescending":
+                    model = model.OrderByDescending(m => m.Email);
+                    break;
+                case "usernameDescending":
+                    model = model.OrderByDescending(m => m.UserName);
+                    break;
+                default: // Name ascending
+                    model = model.OrderBy(m => m.UserName);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
     }
 }

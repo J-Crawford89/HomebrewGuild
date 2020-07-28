@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Models.MonsterModels.MonsterListItem>
+﻿@model PagedList.IPagedList<Models.MonsterModels.MonsterListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -18,28 +20,38 @@
     <table class="table col-md-10">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Creator", "Index", new { sortOrder = ViewBag.CreatorSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Creator)
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TypeSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ChallengeRating)
+                @Html.ActionLink("Challenge Rating", "Index", new { sortOrder = ViewBag.ChallengeRatingSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
             </th>
-            <th></th>
+            <th>
+                @using (Html.BeginForm("Index", "UserMonster", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                }
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Creator)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Creator)
+                    @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "linkStandard" })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
@@ -66,3 +78,10 @@
 
     </table>
 </div>
+@if (Model.PageCount > 1)
+{
+    <div class="pagerContainer">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}
+
