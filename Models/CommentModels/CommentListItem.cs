@@ -17,5 +17,6 @@ namespace Models.CommentModels
         public DateTime DateCreated { get; set; }
         [Display(Name = "Last Updated")]
         public DateTime? LastUpdated { get; set; }
+        public int RepliesCount { get; set; }
     }
 }

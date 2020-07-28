@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Data.Enums;
 
 namespace Data
 {
@@ -59,6 +60,7 @@ namespace Data
         public enum Skill
         {
             Acrobatics,
+            [System.ComponentModel.DataAnnotations.Display(Name ="Animal Handling")]
             AnimalHandling,
             Arcana,
             Athletics,
@@ -73,6 +75,7 @@ namespace Data
             Performance,
             Persuasion,
             Religion,
+            [System.ComponentModel.DataAnnotations.Display(Name = "Sleight of Hand")]
             SleightOfHand,
             Stealth,
             Survival,

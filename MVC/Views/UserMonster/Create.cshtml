@@ -156,15 +156,16 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
+                            foreach (Data.Enums.Skill skill in (Data.Enums.Skill[])Enum.GetValues(typeof(Data.Enums.Skill)))
                             {
                                 var kvp = new KeyValuePair<Data.Enums.Skill, string>();
+                                var enumService = new Services.EnumService();
                                 Guid index = Guid.NewGuid();
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="Skills[@index].Key" value="@skill" />
+                                        <input type="checkbox" name="Skills[@index].Key" value="@skill.ToString()" />
                                     </td>
-                                    <td>@skill</td>
+                                    <td>@enumService.ConvertSkill(skill)</td>
                                     <td>
                                         <input type="text" class="form-control" name="Skills[@index].Value" value="@kvp.Value" />
                                     </td>

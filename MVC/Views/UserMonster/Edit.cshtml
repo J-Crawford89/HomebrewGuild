@@ -162,19 +162,20 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
+                            foreach (Data.Enums.Skill skill in (Data.Enums.Skill[])Enum.GetValues(typeof(Data.Enums.Skill)))
                             {
                                 var kvp = new KeyValuePair<Data.Enums.Skill, string>();
+                                var enumService = new Services.EnumService();
                                 Guid index = Guid.NewGuid();
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="Skills[@index].Key" value="@skill"
-                                               @if (Model.Skills.ContainsKey((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill))) { <text> checked </text> } />
+                                        <input type="checkbox" name="Skills[@index].Key" value="@skill.ToString()"
+                                               @if (Model.Skills.ContainsKey((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill.ToString()))) { <text> checked </text> } />
                                     </td>
-                                    <td>@skill</td>
+                                    <td>@enumService.ConvertSkill(skill)</td>
                                     <td>
                                         <input type="text" name="Skills[@index].Value"
-                                               @if (Model.Skills.ContainsKey((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill))) { kvp = Model.Skills.Single(e => e.Key == (Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill)); } value="@kvp.Value" />
+                                               @if (Model.Skills.ContainsKey((Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill.ToString()))) { kvp = Model.Skills.Single(e => e.Key == (Data.Enums.Skill)Enum.Parse(typeof(Data.Enums.Skill), skill.ToString())); } value="@kvp.Value" />
                                     </td>
                                     <td><input type="hidden" name="Skills.Index" value="@index" /></td>
                                 </tr>
@@ -458,7 +459,7 @@
                 var rowCount = $('.traitRow').length;
                 var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Traits[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="Traits.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#traitTable').append(traitTable);
             });
@@ -469,7 +470,7 @@
                 var rowCount = $('.actionRow').length;
                 var actionTable = '<tr class="actionRow">' + '<td><input type="text" name="Actions[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Actions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteAction btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="Actions.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#actionTable').append(actionTable);
             });
@@ -480,7 +481,7 @@
                 var rowCount = $('.reactionRow').length;
                 var reactionTable = '<tr class="reactionRow">' + '<td><input type="text" name="Reactions[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Reactions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteReaction btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="Reactions.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#reactionTable').append(reactionTable);
             });
@@ -491,7 +492,7 @@
                 var rowCount = $('.legendaryRow').length;
                 var legendaryTable = '<tr class="legendaryRow">' + '<td><input type="text" name="LegendaryActions[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="LegendaryActions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteLegendary btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="LegendaryActions.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#legendaryTable').append(legendaryTable);
             });
@@ -502,7 +503,7 @@
                 var rowCount = $('.lairRow').length;
                 var lairTable = '<tr class="lairRow">' + '<td><input type="text" name="LairActions[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="LairActions[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>' + 
+                    '<td><button type="button" id="btnDelete" class="deleteLair btn btn btn-danger btn-xs">Remove</button></td>' +
                     '<td><input type="hidden" name="LairActions.Index" value="' + rowCount + '" /><td>' + '</tr>';
                 $('#lairTable').append(lairTable);
             });

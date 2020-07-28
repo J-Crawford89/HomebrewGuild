@@ -1,0 +1,258 @@
+﻿@model IEnumerable<Models.CommentModels.CommentListItem>
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var comment in Model)
+    {
+        <div class="commentGroup offset-md-1">
+            <div class="row commentContent">
+                <!-- TO BE ADDED WHEN AVATARS CAN BE UPLOADED
+
+                    <div class="col-md-4">
+                    <div class="commentUserArea">
+                        <img src="" class="rounded-circle userImage" />
+                        <a href="#" class="userName">@comment.Author</a>
+                    </div>
+                </div>
+
+                    -->
+
+                <div class="col">
+                    <div class="commentDetails">
+                        <p>@comment.Content</p>
+                        <div class="commentBlock editCommentBlock" id="@string.Format("editCommentBlock" + comment.Id)">
+                            <div class="editCommentArea">
+                                <textarea id="@string.Format("comment" + comment.Id)" class="form-control commentTextArea" placeholder="Add a Comment ...">@comment.Content</textarea>
+                                <div class="updateButtonsContainer">
+                                    <div class="updateButtons">
+                                        <button type="button" class="btn btn-cancel btn-sm cancelUpdateComment" data-id="@comment.Id">Cancel</button>
+                                        <button type="button" class="btn btn-primary btn-sm updateComment" data-id="@comment.Id"><i class="far fa-comment"></i>  Update Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commentInfo row">
+                <div class="col">
+                    <ul class="horizontalList">
+                        <li class="commentAuthor">@comment.Author</li>
+                        <li>|</li>
+                        @{
+                            if (comment.RepliesCount > 0)
+                            {
+                                <li><button type="button" class="commentLink reply" data-id="@comment.Id"><i class="far fa-comment-dots"></i> @comment.RepliesCount View Replies</button></li>
+                            }
+                            else
+                            {
+                                <li><i class="far fa-comment-dots"></i> @comment.RepliesCount View Replies</li>
+                            }
+                        }
+                        <li>|</li>
+                        <li><button type="button" class="commentLink showReplyBox" data-id="@comment.Id"><i class="fas fa-reply"></i> Reply</button></li>
+                        <li>|</li>
+                        @if (comment.Author == User.Identity.Name)
+                        {
+                            <li><button type="button" class="commentLink editComment" data-id="@comment.Id"><i class="far fa-edit"></i> Edit</button></li>
+                            <li>|</li>
+                        }
+                        @if (comment.Author == User.Identity.Name)
+                        {
+                            <li><button type="button" class="commentLink deleteComment" data-id="@comment.Id"><i class="fas fa-trash-alt"></i> Delete</button></li>
+                            <li>|</li>
+                        }
+                        <li><i class="far fa-calendar-alt"></i> @comment.DateCreated.ToString("MMMM dd, yyyy")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="replyBlock">
+                <div class="@string.Format("commentReplies" + comment.Id)">
+                    <div class="hideReplyContainer" id="@string.Format("hideReplyContainer" + comment.Id)">
+                        <button type="button" class="commentLink collapseReplies" data-id="@comment.Id">Hide Replies</button>
+                    </div>
+                    <div class="commentReplyInput" id="@string.Format("commentReplyInput" + comment.Id)">
+                        <textarea id="@string.Format("inputReply" + comment.Id)" class="form-control commentTextArea" placeholder="Leave a Reply ..."></textarea>
+                        <div class="replyButtonsContainer">
+                            <div class="replyButtons">
+                                <button type="button" class="btn btn-cancel btn-sm cancelReply" data-id="@comment.Id">Cancel</button>
+                                <button type="button" class="btn btn-primary btn-sm commentAddReply" data-id="@comment.Id"><i class="fas fa-reply"></i> Add Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>There are no comments yet. Be the first to leave one!</p>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // TOGGLE REPLIES
+        $('.reply').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("Index", "Reply")',
+                data: { commentId },
+                success: function (response) {
+
+                    if ($('div').hasClass('zoneReply' + commentId + '')) {
+                        $('div [class=zoneReply' + commentId + ']').remove();
+                        $($('#hideReplyContainer' + commentId)).hide();
+                    } else {
+                    var commentReplies = $("<div>").addClass('zoneReply' + commentId);
+                    commentReplies.append(response);
+                    commentReplies.prependTo($('.commentReplies' + commentId));
+
+                    $('.commentReplies' + commentId).show();
+                    $($('#hideReplyContainer' + commentId)).show();
+                    }
+                },
+                error: function (response) {
+                    alert('Unable to show replies');
+                }
+            });
+        });
+
+        // ADD REPLY
+        $('.commentAddReply').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+            var replyContent = $('#inputReply' + commentId).val();
+
+            var model = {
+                Content: replyContent,
+                CommentId: commentId
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Create", "Reply")',
+                data: { model },
+                success: function (response) {
+
+                    if ($('div').hasClass('zoneReply' + commentId + '')) {
+                        $('div [class=zoneReply' + commentId + ']').remove();
+                    }
+
+                    var commentReplies = $("<div>").addClass('zoneReply' + commentId);
+
+                    commentReplies.append(response);
+                    commentReplies.prependTo($('.commentReplies' + commentId));
+
+                    $('.commentReplies' + commentId).show();
+                },
+                error: function (response) {
+                    alert('Unable to add reply');
+                }
+            });
+        });
+
+        // TOGGLE REPLY BOX
+        $('.showReplyBox').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+
+            if ($('#commentReplyInput' + commentId).is(':visible')) {
+                $($('#commentReplyInput' + commentId)).hide();
+            } else {
+                $($('#commentReplyInput' + commentId)).show();
+            }
+        });
+
+        // HIDE REPLY BOX
+        $('.cancelReply').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+
+            $($('#commentReplyInput' + commentId)).hide();
+        })
+
+        // HIDE REPLIES
+        $('.collapseReplies').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+
+            $($("#hideReplyContainer" + commentId)).hide();
+
+            if ($('div').hasClass('zoneReply' + commentId + '')) {
+                $('div [class=zoneReply' + commentId + ']').remove();
+            };
+        });
+
+        // TOGGLE EDIT COMMENT BOX
+        $('.editComment').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+            if ($('#editCommentBlock' + commentId).is(':visible')) {
+                $($('#editCommentBlock' + commentId)).hide();
+            } else {
+                $($('#editCommentBlock' + commentId)).show();
+            }
+        });
+
+        // HIDE EDIT COMMENT BOX
+        $('.cancelUpdateComment').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+            $($('#editCommentBlock' + commentId)).hide();
+        })
+
+        // EDIT COMMENT
+        $('.updateComment').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+            var updatedComment = $('#comment' + commentId).val();
+
+            var model = {
+                Content: updatedComment,
+                Id: commentId
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit", "Comment")',
+                data: { model },
+                success: function (response) {
+                    setTimeout(function () { location.reload(); }, 1000);
+                },
+                error: function (response) {
+                    alert('Unable to update comment');
+                }
+            });
+        });
+
+        // DELETE COMMENT
+        $('.deleteComment').on('click', function () {
+
+            var commentId = $(this).attr('data-id');
+            var message = confirm('Are you sure you wish to delete this comment?');
+
+            if (message) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Delete", "Comment")',
+                    data: { commentId },
+                    success: function (response) {
+                        setTimeout(function () { location.reload(); }, 1000);
+                    },
+                    error: function (response) {
+                        alert('Unable to delete comment');
+                    }
+                });
+            };
+        });
+    });
+
+</script>
+

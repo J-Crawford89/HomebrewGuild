@@ -218,12 +218,31 @@ h2 {
             font-weight: bold;
         }
 
+.commentLink {
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: #8e130e;
+    padding: 0;
+}
+
+    .commentLink:hover, .commentLink:active, .commentLink:focus {
+        border: none;
+        background: none;
+        text-decoration: none;
+        color: #FFBC0A;
+    }
+
 .indexCreateLink {
     padding: 1rem;
 }
 /*LIST*/
 .horizontalList li {
     display: inline;
+}
+
+.horizontalList {
+    padding: 0;
 }
 
 .listButtons {
@@ -379,6 +398,101 @@ h2 {
 .displayCard {
     margin-top: 1rem;
 }
+
+.commentsTitle {
+    margin: 1rem;
+}
+
+.commentBlock {
+    margin-top: 1rem;
+}
+
+.addCommentArea {
+    margin-bottom: 5rem;
+}
+
+.commentTextArea {
+    min-width: 100%;
+}
+
+.addComment {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    float: right;
+}
+
+/*COMMENT*/
+
+.commentGroup {
+    border-bottom: 1px solid #BB1711;
+    margin: 1rem;
+}
+
+.editCommentBlock {
+    display: none;
+}
+
+.editCommentArea {
+    margin-bottom: 3rem;
+}
+
+.updateButtons {
+    float: right;
+}
+
+.updateButtonsContainer {
+    padding-top: 1rem;
+}
+
+.replyGroup {
+    border-bottom: 1px solid #FFBC0A;
+    margin: 1rem;
+}
+
+.editReplyBlock {
+    display: none;
+}
+
+.editReplyArea {
+    margin-bottom: 3rem;
+}
+
+.commentInfo li {
+    padding: 2px;
+}
+
+.commentAuthor {
+    padding-left: 0 !important;
+    font-weight: bold;
+}
+
+.replyBlock {
+    margin-top: 1rem;
+}
+
+.replyButtonsContainer {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+.replyButtons {
+    float: right;
+}
+
+.commentReplyInput {
+    display: none;
+}
+
+.hideReplyContainer {
+    display: none;
+    margin-bottom: 4rem;
+}
+
+.collapseReplies {
+    float: right;
+    padding-right: 15px;
+}
+
 /*SPELL*/
 .spellCheckboxList {
     padding-right: 2.25rem;
@@ -534,6 +648,16 @@ h2 {
         background-size: 575px;
     }
 }
+
+/*ABOUT*/
+.aboutSubtitle {
+    margin: 2rem 0;
+}
+
+.aboutTest {
+
+}
+
 /*MY CREATIONS*/
 .myCreationsCategories {
     margin-top: 1rem;

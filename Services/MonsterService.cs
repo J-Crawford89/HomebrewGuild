@@ -88,9 +88,10 @@ namespace Services
             string formattedSkills = "";
             string skill = "";
             string bonus = "";
+            var enumService = new EnumService();
             foreach (var kvp in entity.Skills)
             {
-                skill = kvp.Key.ToString() + " ";
+                skill = enumService.ConvertSkill(kvp.Key) + " ";
                 if (kvp.Value.Contains('+') || kvp.Value.Contains('-'))
                 {
                     bonus = kvp.Value + " ";
