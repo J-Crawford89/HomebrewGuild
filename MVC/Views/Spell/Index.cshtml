@@ -63,7 +63,7 @@
                         @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
                     </th>
                     <th>
-                        @Html.ActionLink("Spell Level", "Index", new { sortOrder = ViewBag.SpellLevelSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                        @Html.ActionLink("Level", "Index", new { sortOrder = ViewBag.SpellLevelSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
                     </th>
                     <th>
                         @Html.ActionLink("Ritual", "Index", new { sortOrder = ViewBag.RitualSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
@@ -129,7 +129,7 @@
         $(document).ready(function () {
             $('.deleteItem').on('click', function () {
                 var itemId = $(this).attr('data-id');
-                var message = confirm('Are you sure you wish to delete this comment?');
+                var message = confirm('Are you sure you wish to delete this item?');
 
                 if (message) {
                     $.ajax({

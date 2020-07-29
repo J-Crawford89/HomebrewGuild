@@ -169,11 +169,12 @@ namespace MVC.Controllers
             ModelState.AddModelError("", "Monster was not updated");
             return View(model);
         }
-        // GET: UserMonster/Delete/{id}
-        public ActionResult Delete(int id)
+        // POST: UserMonster/Delete/{id}
+        [HttpPost]
+        public ActionResult Delete(int itemId)
         {
             var userMonsterService = CreateUserMonsterService();
-            userMonsterService.Delete(id);
+            userMonsterService.Delete(itemId);
             TempData["SaveResult"] = "Monster Deleted!";
             return RedirectToAction("Index");
         }

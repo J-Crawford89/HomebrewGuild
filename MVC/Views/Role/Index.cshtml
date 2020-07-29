@@ -8,24 +8,35 @@
     <h1>Roles</h1>
 </div>
 
-@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-{
-    <div class="indexCreateLink">
-        <button type="button" value="createRole" class="btn btn-primary">@Html.ActionLink("Create a Role", "Create", "Role")</button>
+<div class="container-md">
+
+    <div class="row">
+
+
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="col-lg-11 col-12">
+                <div class="indexCreateLink">
+                    <button type="button" value="createRole" class="btn btn-primary">@Html.ActionLink("Create a Role", "Create", "Role")</button>
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <div class=" col-lg-10 offset-lg-1">
+                <table class="table">
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-}
-
-<div class="row justify-content-center">
-    <table class="table col-md-10">
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
 </div>
 

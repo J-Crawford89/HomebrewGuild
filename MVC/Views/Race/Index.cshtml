@@ -11,60 +11,118 @@
     <h1>Races</h1>
 </div>
 
-@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-{
-    <div class="indexCreateLink">
-        <button type="button" value="createRace" class="btn btn-primary">@Html.ActionLink("Create a Race", "Create", "Race")</button>
-    </div>
-}
+<div class="container-md">
 
-<div class="row justify-content-center">
-    <table class="table col-md-10">
-        <tr>
-            <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
-            </th>
-            <th>
-                @using (Html.BeginForm("Index", "Race", FormMethod.Get))
-                {
-                    <div class="input-group">
-                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                }
-            </th>
-        </tr>
+    <div class="row">
 
-        @foreach (var item in Model)
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "linkStandard" })
-                </td>
-                <td class="listButtons">
-                    <ul class="horizontalList">
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                        {
-                            <li><button type="button" class="btn btn-cancel btn-sm">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this race?')" })</button></li>
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details", new { id = item.Id })</button></li>
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width:108px;">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button></li>
-                        }
-                        else
-                        {
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details")</button></li>
-                        }
-                    </ul>
-                </td>
-            </tr>
-        }
+            <div class="offset-lg-1 col-5">
+                <div class="indexCreateLink">
+                    <button type="button" value="createRace" class="btn btn-primary">@Html.ActionLink("Create a Race", "Create", "Race")</button>
+                </div>
+            </div>
+            <div class="col-lg-5 col-7">
+                <div class="searchBar">
+                    @using (Html.BeginForm("Index", "UserSpell", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
 
-    </table>
-</div>
-@if (Model.PageCount > 1)
-{
-    <div class="pagerContainer">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        }
+        else
+        {
+            <div class="col-lg-11 col-12">
+                <div class="searchBar">
+                    @using (Html.BeginForm("Index", "UserSpell", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
     </div>
-}
+
+    <div class="row">
+        <div class=" col-lg-10 offset-lg-1">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "linkStandard" })
+                        </td>
+                        <td class="listButtonsContainer">
+                            <div class="listButtons">
+                                <ul class="horizontalList">
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <li><button type="button" class="btn btn-cancel btn-sm deleteItem indexButton" data-id="@item.Id"><i class="far fa-trash-alt"></i></button></li>
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/Race/Details/@item.Id"><i class="fas fa-info"></i></a></button></li>
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/Race/Edit/@item.Id"><i class="fas fa-edit"></i></a></button></li>
+                                    }
+                                    else
+                                    {
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/Race/Details/@item.Id"><i class="fas fa-info"></i></a></button></li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    @if (Model.PageCount > 1)
+    {
+        <div class="pagerContainer">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteItem').on('click', function () {
+                var itemId = $(this).attr('data-id');
+                var message = confirm('Are you sure you wish to delete this item?');
+
+                if (message) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Delete", "UserSpell")',
+                        data: { itemId },
+                        success: function () {
+                            setTimeout(function () { location.reload(); }, 1000);
+                        },
+                        error: function () {
+                            alert('Unable to delete item');
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+    }

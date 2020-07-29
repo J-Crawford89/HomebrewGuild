@@ -285,18 +285,26 @@ h2 {
 .table th {
     font-size: 1.04rem;
 }
-@media(max-width: 614px){
+@media(max-width: 680px){
     .spellTable td:nth-child(5), .spellTable th:nth-child(5) {
         display: none;
     }
 }
-@media(max-width: 486px) {
+@media(max-width: 545px) {
     .spellTable td:nth-child(4), .spellTable th:nth-child(4) {
         display: none;
     }
 }
-@media(max-width: 419px) {
+@media(max-width: 480px) {
     .spellTable td:nth-child(1), .spellTable th:nth-child(1) {
+        display: none;
+    }
+    .monsterTable td:nth-child(4), .monsterTable th:nth-child(4) {
+        display: none;
+    }
+}
+@media(max-width: 580px) {
+    .monsterTable td:nth-child(3), .monsterTable th:nth-child(3) {
         display: none;
     }
 }
