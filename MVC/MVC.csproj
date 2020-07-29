@@ -371,7 +371,6 @@
     <Content Include="Views\UserMonster\Create.cshtml" />
     <Content Include="Views\UserMonster\Index.cshtml" />
     <Content Include="Views\MyCreations\Index.cshtml" />
-    <Content Include="Views\UserMonster\Details.cshtml" />
     <Content Include="Views\UserMonster\Edit.cshtml" />
     <Content Include="Views\AdminContent\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
@@ -395,7 +394,6 @@
     <Content Include="Views\UserSpell\Index.cshtml" />
     <Content Include="Views\UserSpell\Create.cshtml" />
     <Content Include="Views\UserSpell\Edit.cshtml" />
-    <Content Include="Views\UserSpell\Details.cshtml" />
     <Content Include="Views\Subrace\Index.cshtml" />
     <Content Include="Views\Subrace\Details.cshtml" />
     <Content Include="Views\Subrace\Create.cshtml" />

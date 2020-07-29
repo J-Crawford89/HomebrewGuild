@@ -31,7 +31,6 @@
                     }
                 </div>
             </div>
-
         }
         else
         {
@@ -98,7 +97,7 @@
                                     @if (User.Identity.IsAuthenticated && User.Identity.Name == item.Creator || User.IsInRole("Admin"))
                                     {
                                         <li><button type="button" class="btn btn-cancel btn-sm deleteItem indexButton" data-id="@item.Id"><i class="far fa-trash-alt"></i></button></li>
-                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/UserSpell/Details/@item.Id"><i class="fas fa-info"></i></a></button></li>
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/Spell/Details/@item.Id"><i class="fas fa-info"></i></a></button></li>
                                         <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/UserSpell/Edit/@item.Id"><i class="fas fa-edit"></i></a></button></li>
                                     }
                                     else

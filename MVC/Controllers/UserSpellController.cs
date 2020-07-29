@@ -83,6 +83,7 @@ namespace MVC.Controllers
 
             return View(model.ToPagedList(pageNumber, pageSize));
         }
+        /*
         // GET: UserSpell/Details/{id}
         public ActionResult Details(int id)
         {
@@ -90,7 +91,7 @@ namespace MVC.Controllers
             var model = userSpellService.GetSpellDetailViewById(id);
             return View(model);
         }
-
+        */
         // POST: UserSpell/Delete/{id}
         [HttpPost]
         public ActionResult Delete(int itemId)

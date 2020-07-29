@@ -76,7 +76,8 @@ namespace MVC.Controllers
             ModelState.AddModelError("", "Unable to create class");
             return View(model);
         }
-        // GET: CharacterClass/Delete/{id}
+        // POST: CharacterClass/Delete/{id}
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             _characterClassService.Delete(id);

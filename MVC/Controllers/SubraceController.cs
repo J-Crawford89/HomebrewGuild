@@ -63,7 +63,8 @@ namespace MVC.Controllers
             var model = _subraceService.GetSubraceDetailViewById(id);
             return View(model);
         }
-        // GET: Subrace/Delete/{id}
+        // POST: Subrace/Delete/{id}
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             _subraceService.Delete(id);

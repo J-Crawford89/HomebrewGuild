@@ -62,7 +62,8 @@ namespace MVC.Controllers
             var model = _subclassService.GetSubclassDetailById(id);
             return View(model);
         }
-        //GET: Subclass/Delete/{id}
+        //POST: Subclass/Delete/{id}
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             _subclassService.Delete(id);

@@ -100,6 +100,7 @@ namespace MVC.Controllers
             ModelState.AddModelError("", "There was an error creating your monster.");
             return View(model);
         }
+        /*
         // GET: UserMonster/Details/{id}
         public ActionResult Details(int id)
         {
@@ -108,6 +109,7 @@ namespace MVC.Controllers
 
             return View(model);
         }
+        */
         // GET: UserMonster/Edit/{id}
         public ActionResult Edit(int id)
         {

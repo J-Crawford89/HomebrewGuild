@@ -112,7 +112,8 @@ namespace MVC.Controllers
             ModelState.AddModelError("", "There was an error updating the background");
             return View(model);
         }
-        // GET: Background/Delete/{id}
+        // POST: Background/Delete/{id}
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             _backgroundService.Delete(id);

@@ -82,7 +82,8 @@ namespace MVC.Controllers
 
             return View(model);
         }
-        // GET: Race/Delete/{id}
+        // POST: Race/Delete/{id}
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             _raceService.Delete(id);

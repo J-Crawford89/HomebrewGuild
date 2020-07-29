@@ -8,62 +8,92 @@
     <h1>@Html.DisplayFor(model => model.Name)</h1>
 </div>
 
-<div class="row justify-content-center">
-    <div class="col-10 col-md-5">
-        <div class="card displayCard">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
-                <h6><strong>@Html.DisplayNameFor(model => model.HitDie): </strong>@Html.DisplayFor(model => model.HitDie)</h6>
-                <p>
-                    <strong>@Html.DisplayNameFor(model => model.SavingThrows): </strong>
-                    @foreach (var ability in Model.SavingThrows)
-                    {
-                        string text = ability + " ";
-                        @text;
-                    }
-                </p>
-                <p>
-                    <strong>@Html.DisplayNameFor(model => model.SkillChoices): </strong>
-                    Choose @Model.NumberOfSkillProficiencies from
-                    @{ int i = 0;
-                        foreach (var skill in Model.SkillChoices)
+<div class="container-md">
+    <div class="row">
+        <div class="col-10 col-lg-8 offset-1 offset-lg-2">
+            <div class="card displayCard">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+                    <h6><strong>@Html.DisplayNameFor(model => model.HitDie): </strong>@Html.DisplayFor(model => model.HitDie)</h6>
+                    <p>
+                        <strong>@Html.DisplayNameFor(model => model.SavingThrows): </strong>
+                        @foreach (var ability in Model.SavingThrows)
                         {
-                            i++;
-                            string text = "";
-                            if (i < Model.SkillChoices.Count)
-                            {
-                                text = skill + ", ";
-                            }
-                            else { text = skill.ToString(); }
+                            string text = ability + " ";
                             @text;
                         }
-                    }.
-                </p>
-                @if (Model.Features != null)
-                {
-                    <hr />
-                    foreach (var kvp in Model.Features)
+                    </p>
+                    <p>
+                        <strong>@Html.DisplayNameFor(model => model.SkillChoices): </strong>
+                        Choose @Model.NumberOfSkillProficiencies from
+                        @{ int i = 0;
+                            foreach (var skill in Model.SkillChoices)
+                            {
+                                i++;
+                                string text = "";
+                                if (i < Model.SkillChoices.Count)
+                                {
+                                    text = skill + ", ";
+                                }
+                                else { text = skill.ToString(); }
+                                @text;
+                            }
+                        }.
+                    </p>
+                    @if (Model.Features != null)
                     {
-                        <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                        <hr />
+                        foreach (var kvp in Model.Features)
+                        {
+                            <p><strong><i>@kvp.Key</i>. </strong>@kvp.Value</p>
+                        }
                     }
-                }
 
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="formButtonsContainer row">
+        <div class="col-12 col-lg-10">
+            <ul class="horizontalList formButtons">
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li><button type="button" class="btn btn-cancel deleteItem" data-id="@Model.Id"><i class="far fa-trash-alt"></i></button></li>
+                    <li><button type="button" class="btn btn-primary"><a href="/CharacterClass/"><i class="far fa-list-alt"></i></a></button></li>
+                    <li><button type="button" class="btn btn-primary"><a href="/CharacterClass/Edit/@Model.Id"><i class="fas fa-edit"></i></a></button></li>
+                }
+                else
+                {
+                    <li><button type="button" class="btn btn-primary"><a href="/CharacterClass/"><i class="far fa-list-alt"></i></a></button></li>
+                }
+            </ul>
         </div>
     </div>
 </div>
 
-<div class="formButtons" align="center">
-    <ul class="horizontalList">
-        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-        {
-            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { onclick = "return confirm('Are you sure you want to delete this class?')" })</button></li>
-            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
-            <li><button type="button" class="btn btn-primary" style="width:108px;">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button></li>
-        }
-        else
-        {
-            <li><button type="button" class="btn btn-primary" style="width: 108px;">@Html.ActionLink("Back to List", "Index")</button></li>
-        }
-    </ul>
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteItem').on('click', function () {
+                var itemId = $(this).attr('data-id');
+                var message = confirm('Are you sure you wish to delete this item?');
+
+                if (message) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Delete", "CharacterClass")',
+                        data: { itemId },
+                        success: function () {
+                            setTimeout(function () { location.reload(); }, 1000);
+                        },
+                        error: function () {
+                            alert('Unable to delete item');
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+}
