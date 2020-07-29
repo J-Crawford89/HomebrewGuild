@@ -218,6 +218,15 @@ h2 {
             font-weight: bold;
         }
 
+.btn-sm {
+    padding-top: 0.15rem;
+    padding-bottom: 0.1rem;
+}
+
+.indexButton {
+    width: 40px;
+}
+
 .commentLink {
     border: none;
     background: none;
@@ -248,9 +257,6 @@ h2 {
         color: #FFBC0A;
     }
 
-.indexCreateLink {
-    padding: 1rem;
-}
 /*LIST*/
 .horizontalList li {
     display: inline;
@@ -260,14 +266,47 @@ h2 {
     padding: 0;
 }
 
+.listButtonsContainer {
+    padding-right: 0 !important;
+}
+
 .listButtons {
-    padding: 8px !important;
+    float: right;
 }
 
     .listButtons ul {
         margin-bottom: 0;
     }
+
 /*TABLE*/
+.table {
+
+}
+.table th {
+    font-size: 1.04rem;
+}
+@media(max-width: 614px){
+    .spellTable td:nth-child(5), .spellTable th:nth-child(5) {
+        display: none;
+    }
+}
+@media(max-width: 486px) {
+    .spellTable td:nth-child(4), .spellTable th:nth-child(4) {
+        display: none;
+    }
+}
+@media(max-width: 419px) {
+    .spellTable td:nth-child(1), .spellTable th:nth-child(1) {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
 .tableForm {
     margin-top: 1rem;
 }
@@ -291,6 +330,7 @@ h2 {
         width: 100vw !important;
     }
 }
+
 /*FORM*/
 .formStandard {
     margin-left: 0.5rem;
@@ -403,6 +443,15 @@ h2 {
         padding-left: 0 !important;
     }
 
+/*INDEX*/
+.indexCreateLink {
+    padding: 1rem 0;
+}
+
+.searchBar {
+    float: right;
+    padding: 1rem 0;
+}
 
 /*DETAILS*/
 .displaySubtext {

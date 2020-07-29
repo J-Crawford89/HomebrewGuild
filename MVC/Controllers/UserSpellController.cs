@@ -91,11 +91,12 @@ namespace MVC.Controllers
             return View(model);
         }
 
-        // GET: UserSpell/Delete/{id}
-        public ActionResult Delete(int id)
+        // POST: UserSpell/Delete/{id}
+        [HttpPost]
+        public ActionResult Delete(int itemId)
         {
             var userSpellService = CreateUserSpellService();
-            userSpellService.Delete(id);
+            userSpellService.Delete(itemId);
             TempData["SaveResult"] = "Spell Deleted!";
             return RedirectToAction("Index");
         }

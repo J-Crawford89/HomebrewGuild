@@ -9,88 +9,143 @@
     <h1>Spells</h1>
 </div>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <div class="indexCreateLink">
-        <button type="button" value="createSpell" class="btn btn-primary">@Html.ActionLink("Create a Spell", "Create", "UserSpell")</button>
-    </div>
-}
+<div class="container-md">
 
-<div class="row justify-content-center">
-    <table class="table col-md-10">
-        <tr>
-            <th>
-                @Html.ActionLink("Creator", "Index", new { sortOrder = ViewBag.CreatorSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
-            </th>
-            <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
-            </th>
-            <th>
-                @Html.ActionLink("Spell Level", "Index", new { sortOrder = ViewBag.SpellLevelSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
-            </th>
-            <th>
-                @Html.ActionLink("Ritual", "Index", new { sortOrder = ViewBag.RitualSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
-            </th>
-            <th>
-                @Html.ActionLink("Concentration", "Index", new { sortOrder = ViewBag.ConcentrationSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
-            </th>
-            <th>
-                @using (Html.BeginForm("Index", "Spell", FormMethod.Get))
-                {
-                    <div class="input-group">
-                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                }
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
+    <div class="row">
+        @if (User.Identity.IsAuthenticated)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Creator)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "linkStandard" })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpellLevel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsRitual)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequiresConcentration)
-                </td>
-                <td class="listButtons">
-                    <ul class="horizontalList">
-                        @if (User.Identity.IsAuthenticated && User.Identity.Name == item.Creator || User.IsInRole("Admin"))
-                        {
-                            <li><button type="button" class="btn btn-cancel btn-sm">@Html.ActionLink("Delete", "Delete", "UserSpell", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this spell?')" })</button></li>
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details", new { id = item.Id })</button></li>
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width:108px;">@Html.ActionLink("Edit", "Edit", "UserSpell", new { id = item.Id }, "")</button></li>
-                        }
-                        else
-                        {
-                            <li><button type="button" class="btn btn-primary btn-sm" style="width: 108px;">@Html.ActionLink("More", "Details", new { id = item.Id })</button></li>
-                        }
-                    </ul>
-                </td>
-            </tr>
-        }
+            <div class="offset-lg-1 col-5">
+                <div class="indexCreateLink">
+                    <button type="button" value="createSpell" class="btn btn-primary">@Html.ActionLink("Create a Spell", "Create", "UserSpell")</button>
+                </div>
+            </div>
+            <div class="col-lg-5 col-7">
+                <div class="searchBar">
+                    @using (Html.BeginForm("Index", "UserSpell", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
 
-    </table>
-</div>
-@if (Model.PageCount > 1)
-{
-    <div class="pagerContainer">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        }
+        else
+        {
+            <div class="col-lg-11 col-12">
+                <div class="searchBar">
+                    @using (Html.BeginForm("Index", "UserSpell", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
     </div>
-}
+
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <table class="table spellTable">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Creator", "Index", new { sortOrder = ViewBag.CreatorSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Spell Level", "Index", new { sortOrder = ViewBag.SpellLevelSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Ritual", "Index", new { sortOrder = ViewBag.RitualSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Concentration", "Index", new { sortOrder = ViewBag.ConcentrationSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "linkStandard" })
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Creator)
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "linkStandard" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpellLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsRitual)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequiresConcentration)
+                        </td>
+                        <td class="listButtonsContainer">
+                            <div class="listButtons">
+                                <ul class="horizontalList">
+                                    @if (User.Identity.IsAuthenticated && User.Identity.Name == item.Creator || User.IsInRole("Admin"))
+                                    {
+                                        <li><button type="button" class="btn btn-cancel btn-sm deleteItem indexButton" data-id="@item.Id"><i class="far fa-trash-alt"></i></button></li>
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/Spell/Details/@item.Id"><i class="fas fa-info"></i></a></button></li>
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/UserSpell/Edit/@item.Id"><i class="fas fa-edit"></i></a></button></li>
+                                    }
+                                    else
+                                    {
+                                        <li><button type="button" class="btn btn-primary btn-sm indexButton"><a href="/Spell/Details/@item.Id"><i class="fas fa-info"></i></a></button></li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    @if (Model.PageCount > 1)
+    {
+        <div class="pagerContainer">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    }
+
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteItem').on('click', function () {
+                var itemId = $(this).attr('data-id');
+                var message = confirm('Are you sure you wish to delete this comment?');
+
+                if (message) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Delete", "UserSpell")',
+                        data: { itemId },
+                        success: function () {
+                            setTimeout(function () { location.reload(); }, 1000);
+                        },
+                        error: function () {
+                            alert('Unable to delete item');
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+
 }
