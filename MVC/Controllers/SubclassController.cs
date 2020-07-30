@@ -64,9 +64,9 @@ namespace MVC.Controllers
         }
         //POST: Subclass/Delete/{id}
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int itemId)
         {
-            _subclassService.Delete(id);
+            _subclassService.Delete(itemId);
             TempData["SaveResult"] = "Subclass deleted";
             return RedirectToAction("Index");
         }

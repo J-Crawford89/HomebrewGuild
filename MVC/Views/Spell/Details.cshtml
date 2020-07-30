@@ -18,10 +18,13 @@
                     <h6 class="card-subtitle"><strong>@Html.DisplayNameFor(model => model.Range):</strong> @Html.DisplayFor(model => model.Range)</h6>
                     <h6 class="card-subtitle mt-1">
                         <strong>@Html.DisplayNameFor(model => model.Components):</strong>
-                        @foreach (var component in Model.Components)
+                        @if (Model.Components != null)
                         {
-                            string componentString = component.ToString();
-                            @componentString[0]
+                            foreach (var component in Model.Components)
+                            {
+                                string componentString = component.ToString();
+                                @componentString[0]
+                            }
                         }
                     </h6>
                     @if (Model.MaterialComponent != null)
@@ -161,7 +164,7 @@
                             url: '@Url.Action("Delete", "UserSpell")',
                             data: { itemId },
                             success: function () {
-                                setTimeout(function () { location.reload(); }, 1000);
+                                history.back();
                             },
                             error: function () {
                                 alert('Unable to delete item');

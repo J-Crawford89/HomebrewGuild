@@ -100,17 +100,7 @@ namespace MVC.Controllers
             ModelState.AddModelError("", "There was an error creating your monster.");
             return View(model);
         }
-        /*
-        // GET: UserMonster/Details/{id}
-        public ActionResult Details(int id)
-        {
-            var userMonsterService = CreateUserMonsterService();
-            var model = userMonsterService.GetMonsterDetailViewById(id);
 
-            return View(model);
-        }
-        */
-        // GET: UserMonster/Edit/{id}
         public ActionResult Edit(int id)
         {
             var userMonsterService = CreateUserMonsterService();

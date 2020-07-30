@@ -114,9 +114,9 @@ namespace MVC.Controllers
         }
         // POST: Background/Delete/{id}
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int itemId)
         {
-            _backgroundService.Delete(id);
+            _backgroundService.Delete(itemId);
             TempData["SaveResult"] = "Background Deleted";
             return RedirectToAction("Index");
         }

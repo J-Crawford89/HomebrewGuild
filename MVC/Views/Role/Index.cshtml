@@ -15,28 +15,29 @@
 
         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
-            <div class="col-lg-11 col-12">
+            <div class="col-lg-11 col-12 offset-lg-1">
                 <div class="indexCreateLink">
                     <button type="button" value="createRole" class="btn btn-primary">@Html.ActionLink("Create a Role", "Create", "Role")</button>
                 </div>
             </div>
         }
+    </div>
 
-        <div class="row">
-            <div class=" col-lg-10 offset-lg-1">
-                <table class="table">
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.Name</td>
-                            </tr>
-                        }
+    <div class="row">
+        <div class=" col-lg-10 offset-lg-1">
+            <table class="table">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                        </tr>
+                    }
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 </div>
 

@@ -7,93 +7,99 @@
 <div class="pageTitle adminTitle">
     <h1>Create a Subrace</h1>
 </div>
+<div class="container-md">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="formStandardStart">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-row justify-content-center">
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Subrace Name" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.RaceId, htmlAttributes: new { @class = "labelStandard" })
-                @Html.DropDownListFor(model => model.RaceId, Model.Races, "", new { @class = "form-control inputStandard", @placeholder = "Race" })
-                @Html.ValidationMessageFor(model => model.RaceId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="formStandardStart">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-lg-2 offset-md-1 offset-sm-0 offset-1">
+                    <div class="form-group col-12">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Subrace Name" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-12">
+                        @Html.LabelFor(model => model.RaceId, htmlAttributes: new { @class = "labelStandard" })
+                        @Html.DropDownListFor(model => model.RaceId, Model.Races, "", new { @class = "form-control inputStandard", @placeholder = "Race" })
+                        @Html.ValidationMessageFor(model => model.RaceId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <!--ABILITY SCORE INCREASE - Dictionary<Ability, string> -->
-        <div class="form-row justify-content-center tableForm">
-            <div class="form-group">
-                <h5>@Html.LabelFor(model => model.AbilityScoreIncrease, htmlAttributes: new { @class = "tableHeader" })</h5>
-                <table class="checkbox table">
-                    <thead>
-                        <tr>
-                            <th>Ability</th>
-                            <th>Bonus</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var ability in Enum.GetNames(typeof(Data.Enums.Ability)))
-                            {
-                                var kvp = new KeyValuePair<Data.Enums.Ability, string>();
-                                Guid index = Guid.NewGuid();
+                <!--ABILITY SCORE INCREASE - Dictionary<Ability, string> -->
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-1 offset-sm-0 tableForm">
+                    <div class="form-group">
+                        <h5>@Html.LabelFor(model => model.AbilityScoreIncrease, htmlAttributes: new { @class = "tableHeader" })</h5>
+                        <table class="checkbox table-sm">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <input type="checkbox" name="AbilityScoreIncrease[@index].Key" value="@ability" />
-                                    </td>
-                                    <td>@ability</td>
-                                    <td>
-                                        <input class="form-control" type="text" name="AbilityScoreIncrease[@index].Value" value="@kvp.Value" />
-                                    </td>
-                                    <td><input type="hidden" name="AbilityScoreIncrease.Index" value="@index" /></td>
+                                    <th>Ability</th>
+                                    <th>Bonus</th>
                                 </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var ability in Enum.GetNames(typeof(Data.Enums.Ability)))
+                                    {
+                                        var kvp = new KeyValuePair<Data.Enums.Ability, string>();
+                                        Guid index = Guid.NewGuid();
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="AbilityScoreIncrease[@index].Key" value="@ability" />
+                                            </td>
+                                            <td>@ability</td>
+                                            <td>
+                                                <input class="form-control" type="text" name="AbilityScoreIncrease[@index].Value" value="@kvp.Value" />
+                                            </td>
+                                            <td><input type="hidden" name="AbilityScoreIncrease.Index" value="@index" /></td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--TRAITS-->
+            <div class="form-row tableForm">
+                <div class="form-group col-10 offset-1 col-sm-12 offset-sm-0 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <h5>Traits</h5>
+                    <table class="table" id="traitTable">
+                        <thead>
+                            <tr>
+                                <th>Trait Name</th>
+                                <th>Trait Description</th>
+                                <th>
+                                    <button type="button" id="btnAdd" class="btn btn-sm btn-primary addTrait"><i class="fas fa-plus"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="traitRow">
+                                <td><input type="text" name="Traits[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="Traits[0].Value" class="form-control tableTextArea value01"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="formButtonsContainer row">
+                <div class="col-11 col-lg-10 col-sm-12 col-md-11">
+                    <div class="formButtons">
+                        <ul class="horizontalList">
+                            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Race", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                            <li><input type="submit" value="Create" class="btn btn-primary" /></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!--TRAITS-->
-        <div class="form-row justify-content-center tableForm">
-            <div class="form-group">
-                <h5>Traits</h5>
-                <table class="table" id="traitTable">
-                    <thead>
-                        <tr>
-                            <th>Trait Name</th>
-                            <th>Trait Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="traitRow">
-                            <td><input type="text" name="Traits[0].Key" class="form-control key01" /></td>
-                            <td><textarea name="Traits[0].Value" class="form-control tableTextArea value01"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="form-row">
-            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addTrait">Add Trait</button>
-        </div>
-
-        <div class="formButtons" align="center">
-            <ul class="horizontalList">
-                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Subrace", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-                <li><input type="submit" value="Create" class="btn btn-primary" /></li>
-            </ul>
-        </div>
-    </div>
-}
-
+    }
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
@@ -102,7 +108,8 @@
                 var rowCount = $('.traitRow').length;
                 var traitTable = '<tr class="traitRow">' + '<td><input type="text" name="Traits[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Traits[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+                    '<td><button type="button" id="btnDelete" class="deleteTrait btn btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td>' +
+                    '</tr>';
                 $('#traitTable').append(traitTable);
             });
             $(document).on("click", ".deleteTrait", function () {

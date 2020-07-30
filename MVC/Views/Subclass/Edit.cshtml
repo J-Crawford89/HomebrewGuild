@@ -8,75 +8,79 @@
     <h1>Edit: <i>@Html.DisplayFor(model => model.Name)</i></h1>
 </div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="container-md">
 
-    <div class="formStandardStart">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-row justify-content-center">
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Subclass Name" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.CharacterClassId, htmlAttributes: new { @class = "labelStandard" })
-                @Html.DropDownListFor(model => model.CharacterClassId, Model.CharacterClasses, "", new { @class = "form-control inputStandard", @placeholder = "Class" })
-                @Html.ValidationMessageFor(model => model.CharacterClassId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <!--FEATURES-->
-        <div class="form-row justify-content-center tableForm">
-            <div class="form-group">
-                <h5>Features</h5>
-                <table class="table" id="featureTable">
-                    <thead>
-                        <tr>
-                            <th>Feature Name</th>
-                            <th>Feature Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Features != null)
-                        {
-                            int i = -1;
-                            foreach (var kvp in Model.Features)
+        <div class="formStandardStart">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-lg-2 offset-md-1 offset-sm-0 offset-1">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Subclass Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-1 offset-sm-0">
+                    @Html.LabelFor(model => model.CharacterClassId, htmlAttributes: new { @class = "labelStandard" })
+                    @Html.DropDownListFor(model => model.CharacterClassId, Model.CharacterClasses, "", new { @class = "form-control inputStandard", @placeholder = "Class" })
+                    @Html.ValidationMessageFor(model => model.CharacterClassId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!--FEATURES-->
+            <div class="form-row tableForm">
+                <div class="form-group col-10 offset-1 col-sm-12 offset-sm-0 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <h5>Features</h5>
+                    <table class="table" id="featureTable">
+                        <thead>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Feature Description</th>
+                                <th>
+                                    <button type="button" id="btnAdd" class="btn btn-sm btn-primary addFeature"><i class="fas fa-plus"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Features != null)
                             {
-                                i++;
+                                int i = -1;
+                                foreach (var kvp in Model.Features)
+                                {
+                                    i++;
+                                    <tr class="featureRow">
+                                        <td><input type="hidden" name="Features.Index" value="@i" /><input type="text" name="Features[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
+                                        <td><textarea name="Features[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
+                                        <td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
                                 <tr class="featureRow">
-                                    <td><input type="text" name="Features[@i].Key" class="form-control key01" value="@kvp.Key" /></td>
-                                    <td><textarea name="Features[@i].Value" class="form-control tableTextArea value01">@kvp.Value</textarea></td>
-                                    <td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-xs">Delete Row</button></td>
-                                    <td><input type="hidden" name="Features.Index" value="@i" /></td>
+                                    <td><input type="text" name="Features[0].Key" class="form-control key01" /></td>
+                                    <td><textarea name="Features[0].Value" class="form-control tableTextArea value01"></textarea></td>
                                 </tr>
                             }
-                        }
-                        else
-                        {
-                            <tr class="featureRow">
-                                <td><input type="text" name="Features[0].Key" class="form-control key01" /></td>
-                                <td><textarea name="Features[0].Value" class="form-control tableTextArea value01"></textarea></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="formButtonsContainer row">
+                <div class="col-11 col-lg-10 col-sm-12 col-md-11">
+                    <div class="formButtons">
+                        <ul class="horizontalList">
+                            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "CharacterClass", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                            <li><input type="submit" value="Update" class="btn btn-primary" /></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addFeature">Add Feature</button>
-        </div>
-
-
-        <div class="formButtons" align="center">
-            <ul class="horizontalList">
-                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Subclass", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-                <li><input type="submit" value="Update" class="btn btn-primary" /></li>
-            </ul>
-        </div>
-    </div>
-}
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -86,8 +90,8 @@
                 var rowCount = $('.featureRow').length;
                 var featureTable = '<tr class="featureRow">' + '<td><input type="text" name="Features[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Features[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-xs">Remove</button></td>' +
-                    '<td><input type="hidden" name="Features.Index" value="' + rowCount + '" /><td>' + '</tr>';
+                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td>' +
+                    '</tr>';
                 $('#featureTable').append(featureTable);
             });
             $(document).on("click", ".deleteFeature", function () {

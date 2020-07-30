@@ -65,9 +65,9 @@ namespace MVC.Controllers
         }
         // POST: Subrace/Delete/{id}
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int itemId)
         {
-            _subraceService.Delete(id);
+            _subraceService.Delete(itemId);
             TempData["SaveResult"] = "Subrace deleted";
             return RedirectToAction("Index");
         }

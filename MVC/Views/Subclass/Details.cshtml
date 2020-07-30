@@ -60,7 +60,7 @@
                         url: '@Url.Action("Delete", "Subclass")',
                         data: { itemId },
                         success: function () {
-                            setTimeout(function () { location.reload(); }, 1000);
+                            history.back();
                         },
                         error: function () {
                             alert('Unable to delete item');

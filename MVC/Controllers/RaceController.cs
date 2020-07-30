@@ -84,9 +84,9 @@ namespace MVC.Controllers
         }
         // POST: Race/Delete/{id}
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int itemId)
         {
-            _raceService.Delete(id);
+            _raceService.Delete(itemId);
             TempData["SaveResult"] = "Race deleted";
             return RedirectToAction("Index");
         }
