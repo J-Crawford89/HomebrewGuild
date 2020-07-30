@@ -25,7 +25,7 @@
             </div>
             <div class="col-lg-5 col-7">
                 <div class="searchBar">
-                    @using (Html.BeginForm("Index", "UserSpell", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "CharacterClass", FormMethod.Get))
                     {
                         <div class="input-group">
                             @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
@@ -41,7 +41,7 @@
         {
             <div class="col-lg-11 col-12">
                 <div class="searchBar">
-                    @using (Html.BeginForm("Index", "UserSpell", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "CharacterClass", FormMethod.Get))
                     {
                         <div class="input-group">
                             @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", style = "border-color: #FFBC0A;", placeholder = "Search ... " })
@@ -114,10 +114,10 @@
                         type: 'POST',
                         url: '@Url.Action("Delete", "CharacterClass")',
                         data: { itemId },
-                        success: function () {
+                        success: function (response) {
                             setTimeout(function () { location.reload(); }, 1000);
                         },
-                        error: function () {
+                        error: function (response) {
                             alert('Unable to delete item');
                         }
                     })

@@ -8,91 +8,128 @@
     <h1>Create a Class</h1>
 </div>
 
+<div class="container-md">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="formStandardStart">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-row justify-content-center">
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Class Name" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.HitDie, htmlAttributes: new { @class = "labelStandard" })
-                @Html.EditorFor(model => model.HitDie, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Hit Die" } })
-                @Html.ValidationMessageFor(model => model.HitDie, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-row justify-content-center">
-            <div class="form-group spellCheckboxList">
-                @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "labelStandard" })
-                <div class="checkbox inputStandard">
-                    @foreach (var ability in Enum.GetNames(typeof(Data.Enums.Ability)))
-                    {
-                        <input type="checkbox" name="SavingThrows" value="@ability" />
-                        @ability
-                    }
+        <div class="formStandardStart">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-lg-2 offset-md-1 offset-sm-0 offset-1">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Class Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
-                <hr />
-            </div>
-        </div>
-
-        <div class="form-row justify-content-center">
-            <div class="form-group col-sm-4 col-xl-3 formStandard">
-                @Html.LabelFor(model => model.NumberOfSkillProficiencies, htmlAttributes: new { @class = "labelStandard" })
-                @Html.EditorFor(model => model.NumberOfSkillProficiencies, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Number of Skill Proficiencies" } })
-                @Html.ValidationMessageFor(model => model.NumberOfSkillProficiencies, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-sm-4 col-xl-3 formStandard spellCheckboxList">
-                @Html.LabelFor(model => model.SkillChoices, htmlAttributes: new { @class = "labelStandard" })
-                <div class="checkbox inputStandard">
-                    <ul class="list-unstyled">
-                        @foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
-                        {
-                            <li><input type="checkbox" name="SkillChoices" value="@skill" /> @skill</li>
-                        }
-                    </ul>
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-1 offset-sm-0">
+                    @Html.LabelFor(model => model.HitDie, htmlAttributes: new { @class = "labelStandard" })
+                    @Html.EditorFor(model => model.HitDie, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Hit Die" } })
+                    @Html.ValidationMessageFor(model => model.HitDie, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-lg-2 offset-md-1 offset-sm-0 offset-1">
+                    @Html.LabelFor(model => model.SavingThrows, htmlAttributes: new { @class = "labelStandard" })
+                    <div class="checkbox">
+                        <ul class="list-unstyled">
+                            @foreach (var ability in Enum.GetNames(typeof(Data.Enums.Ability)))
+                            {
+                                <li>
+                                    <input type="checkbox" name="SavingThrows" value="@ability" />
+                                    @ability
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
 
-        <!--FEATURES-->
-        <div class="form-row justify-content-center tableForm">
-            <div class="form-group">
-                <h5>Features</h5>
-                <table class="table" id="featureTable">
-                    <thead>
-                        <tr>
-                            <th>Feature Name</th>
-                            <th>Feature Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="featureRow">
-                            <td><input type="text" name="Features[0].Key" class="form-control key01" /></td>
-                            <td><textarea name="Features[0].Value" class="form-control tableTextArea value01"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-lg-4 col-md-5 col-sm-6 col-10 offset-1 offset-sm-0">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NumberOfSkillProficiencies, htmlAttributes: new { @class = "labelStandard" })
+                        @Html.EditorFor(model => model.NumberOfSkillProficiencies, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Number of Skill Proficiencies" } })
+                        @Html.ValidationMessageFor(model => model.NumberOfSkillProficiencies, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SkillChoices, htmlAttributes: new { @class = "labelStandard" })
+                        <div class="checkbox">
+                            <ul class="list-unstyled">
+                                @{
+                                    var firstColumn = new List<Data.Enums.Skill>();
+                                    var secondColumn = new List<Data.Enums.Skill>();
+                                    var counter = 0;
+                                    foreach (var skill in (Data.Enums.Skill[])Enum.GetValues(typeof(Data.Enums.Skill)))
+                                    {
+                                        counter++;
+                                        if (counter % 2 == 0)
+                                        {
+                                            secondColumn.Add(skill);
+                                        }
+                                        else
+                                        {
+                                            firstColumn.Add(skill);
+                                        }
+                                    }
+                                    for (int i = 0; i < firstColumn.Count(); i++)
+                                    {
+                                        var firstColumnSkill = firstColumn[i];
+                                        var secondColumnSkill = secondColumn[i];
+                                        var enumService = new Services.EnumService();
+                                        <li class="row">
+                                            <div class="col-6" style="padding-right: 0;">
+                                                <input type="checkbox" name="SkillChoices" value="@firstColumnSkill.ToString()" />
+                                                @enumService.ConvertSkill(firstColumnSkill)
+                                            </div>
+                                            <div class="col-6" style="padding: 0;">
+                                                <input type="checkbox" name="SkillChoices" value="@secondColumnSkill.ToString()" />
+                                                @enumService.ConvertSkill(secondColumnSkill)
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--FEATURES-->
+            <div class="form-row tableForm">
+                <div class="form-group col-10 offset-1 col-sm-12 offset-sm-0 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <h5>Features</h5>
+                    <table class="table" id="featureTable">
+                        <thead>
+                            <tr>
+                                <th>Feature Name</th>
+                                <th>Feature Description</th>
+                                <th>
+                                    <button type="button" id="btnAdd" class="btn btn-sm btn-primary addFeature"><i class="fas fa-plus"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="featureRow">
+                                <td><input type="text" name="Features[0].Key" class="form-control key01" /></td>
+                                <td><textarea name="Features[0].Value" class="form-control tableTextArea value01"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="formButtonsContainer row">
+                <div class="col-11 col-lg-10 col-sm-12 col-md-11">
+                    <div class="formButtons">
+                        <ul class="horizontalList">
+                            <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "CharacterClass", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                            <li><input type="submit" value="Create" class="btn btn-primary" /></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <button type="button" id="btnAdd" class="offset-sm-10 btn btn-xs btn-primary addFeature">Add Feature</button>
-        </div>
-
-
-        <div class="formButtons" align="center">
-            <ul class="horizontalList">
-                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "CharacterClass", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-                <li><input type="submit" value="Create" class="btn btn-primary" /></li>
-            </ul>
-        </div>
-    </div>
-}
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -102,7 +139,8 @@
                 var rowCount = $('.featureRow').length;
                 var featureTable = '<tr class="featureRow">' + '<td><input type="text" name="Features[' + rowCount + '].Key" class="form-control key01" /></td>' +
                     '<td><textarea name="Features[' + rowCount + '].Value" class="form-control tableTextArea value01"></textarea></td>' +
-                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-xs">Remove</button></td>' + '</tr>';
+                    '<td><button type="button" id="btnDelete" class="deleteFeature btn btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td>' +
+                    '</tr>';
                 $('#featureTable').append(featureTable);
             });
             $(document).on("click", ".deleteFeature", function () {

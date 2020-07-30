@@ -8,7 +8,7 @@
     <h1>Edit: <i>@Html.DisplayFor(model => model.Name)</i></h1>
 </div>
 
-
+<div class="container-md">
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -16,15 +16,15 @@
     <div class="formStandardStart">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row justify-content-center">
-            <div class="form-group col-sm-4, col-xl-3, formStandard">
+        <div class="row">
+            <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-lg-2 offset-md-1 offset-sm-0 offset-1">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "labelStandard" })
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control inputStandard", @placeholder = "Background Name" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-sm-4 col-xl-3 formStandard spellCheckboxList">
+            <div class="form-group col-lg-4 col-md-5 col-sm-6 col-10 offset-1 offset-sm-0">
                 @Html.LabelFor(model => model.SkillProficiencies, htmlAttributes: new { @class = "labelStandard" })
-                <div class="checkbox inputStandard">
+                <div class="checkbox">
                     <ul class="list-unstyled">
                         @foreach (var skill in Enum.GetNames(typeof(Data.Enums.Skill)))
                         {
@@ -35,14 +35,19 @@
             </div>
         </div>
 
-        <div class="formButtons" align="center">
-            <ul class="horizontalList">
-                <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Background", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
-                <li><input type="submit" value="Update" class="btn btn-primary" /></li>
-            </ul>
+        <div class="formButtonsContainer row">
+            <div class="col-11 col-lg-10 col-sm-12 col-md-11">
+                <div class="formButtons">
+                    <ul class="horizontalList">
+                        <li><button type="button" class="btn btn-cancel">@Html.ActionLink("Cancel", "Index", "Background", new { onclick = "return confirm('Are you sure you would like to cancel changes and return?')" })</button></li>
+                        <li><input type="submit" value="Update" class="btn btn-primary" /></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

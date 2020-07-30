@@ -78,9 +78,9 @@ namespace MVC.Controllers
         }
         // POST: CharacterClass/Delete/{id}
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int itemId)
         {
-            _characterClassService.Delete(id);
+            _characterClassService.Delete(itemId);
             TempData["SaveResult"] = "Class Deleted";
             return RedirectToAction("Index");
         }
