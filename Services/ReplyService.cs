@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Data;
 using Data.Entities;
+using Models.NotificationModels;
 using Models.ReplyModels;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,30 @@ namespace Services
                 IsDeleted = false
             };
             _ctx.Replies.Add(entity);
-            return _ctx.SaveChanges() == 1;
+            if (_ctx.SaveChanges() == 1)
+            {
+                var notificationService = new NotificationService(_userId);
+                var comment = _ctx.Comments.Single(e => e.Id == entity.CommentId);
+                var notificationModel = new NotificationCreate
+                {
+                    ReplyId = entity.Id,
+                    CommentId = entity.CommentId,
+                    MonsterId = comment.MonsterId,
+                    SpellId = comment.SpellId
+                };
+                if(notificationService.CreateReplyNotificationForContentCreator(notificationModel))
+                {
+                    if(notificationService.CreateReplyNotificationForCommentCreator(notificationModel))
+                    {
+                        if(notificationService.CreateReplyNotificationForOtherReplyCreators(notificationModel))
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            else { return false; }
         }
 
         public bool Delete(int id)

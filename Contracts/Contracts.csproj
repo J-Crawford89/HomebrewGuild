@@ -72,6 +72,7 @@
     <Compile Include="ICharacterClassService.cs" />
     <Compile Include="IBackgroundService.cs" />
     <Compile Include="ICharacterService.cs" />
+    <Compile Include="INotificationService.cs" />
     <Compile Include="IRaceService.cs" />
     <Compile Include="IReplyService.cs" />
     <Compile Include="ISpellService.cs" />
