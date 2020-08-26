@@ -74,6 +74,7 @@
     <Compile Include="CharacterService.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="EnumService.cs" />
+    <Compile Include="NotificationService.cs" />
     <Compile Include="UserCharacterService.cs" />
     <Compile Include="MonsterService.cs" />
     <Compile Include="RaceService.cs" />

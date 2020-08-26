@@ -51,6 +51,8 @@ textarea {
     color: #FFBC0A;
 }
 
+
+
 .nav-link {
     color: #EBEBEB !important;
 }
@@ -75,7 +77,7 @@ textarea {
 }
 
 @media(min-width:829px) {
-    .nav-item:hover {
+    .nav-item:hover, .nav-item:active, .nav-item:focus {
         background-color: #1d2021;
         margin-top: -0.5rem;
         margin-bottom: -0.5rem;
@@ -90,6 +92,35 @@ textarea {
 
     .navbar-brand a {
     }
+
+.navbarDropdown:hover .dropdown-menu {
+    margin-top:0rem;
+}
+
+.dropdown-menu {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.dropdown-menu {
+    color: #EBEBEB;
+    background-color: #313638;
+    border-radius: 0;
+    border: 2px solid #BB1711;
+    border-top: 1px solid #313638;
+}
+    .dropdown-menu a {
+        color: #EBEBEB;
+    }
+
+.dropdown-item:hover {
+    background-color: #1d2021;
+    color: #FFBC0A;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
 
 /*BODY*/
 .body-content {
@@ -569,6 +600,19 @@ h2 {
     background-color: #BB1711;
     border: none;
 }
+
+.notifList a {
+    text-decoration: none;
+    color: #313638;
+    padding-right: 10px;
+}
+.dim a {
+    color: #A5ABAF;
+}
+.deleteNotification {
+    color: #BB1711 !important;
+}
+
 /*HOME*/
 .jumbotron {
     margin-bottom: 0 !important;

@@ -197,6 +197,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MonsterController.cs" />
     <Compile Include="Controllers\MyCreationsController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -425,6 +426,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Controllers\WebAPI\" />
+    <Folder Include="Views\Notification\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

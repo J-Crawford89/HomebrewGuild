@@ -12,21 +12,71 @@
     <div class="row">
         <div class="col-10 col-sm-8 col-md-6 col-lg-4, offset-1, offset-md-2, offset-lg-3">
             <h4><strong>Password: </strong><button type="button" class="btn btn-primary">@Html.ActionLink("Change Password", "ChangePassword")</button></h4>
+            <br />
+            <h4><strong>Notifications:</strong></h4>
+            <table class="table-sm notifList">
+                <tr>
+                    <th></th>
+                    <th>
+                    @if(Model.Notifications.Count() > 0)
+                    {
+                                    <button class="btn btn-sm btn-cancel deleteAllNotifications">Delete All</button>
+                    }
+                    </th>
+                </tr>
+                @foreach (var item in Model.Notifications)
+                {
+                    if (item.IsRead)
+                    {
+                        if (item.MonsterId != null)
+                        {
+                            <tr class="dim @string.Format("notification" + item.Id)">
+                                <td><a href="javascript:void(0)" class="monsterItem" data-parentId="@item.MonsterId" data-id="@item.Id">@item.Content</a></td>
+                                <td align="right"><a href="javascript:void(0)" class="deleteNotification" data-parentId="@item.MonsterId" data-id="@item.Id"><i class="fas fa-times"></i></a></td>
+                            </tr>
+                        }
+                        if (item.SpellId != null)
+                        {
+                            <tr class="dim @string.Format("notification" + item.Id)">
+                                <td><a href="javascript:void(0)" class="spellItem" data-parentId="@item.SpellId" data-id="@item.Id">@item.Content</a></td>
+                                <td align="right"><a href="javascript:void(0)" class="deleteNotification" data-parentId="@item.SpellId" data-id="@item.Id"><i class="fas fa-times"></i></a></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        if (item.MonsterId != null)
+                        {
+                            <tr class="@string.Format("notification" + item.Id)">
+                                <td><a href="javascript:void(0)" class="monsterItem" data-parentId="@item.MonsterId" data-id="@item.Id">@item.Content</a></td>
+                                <td align="right"><a href="javascript:void(0)" class="deleteNotification" data-parentId="@item.MonsterId" data-id="@item.Id"><i class="fas fa-times"></i></a></td>
+                            </tr>
+                        }
+                        if (item.SpellId != null)
+                        {
+                            <tr class="@string.Format("notification" + item.Id)">
+                                <td><a href="javascript:void(0)" class="spellItem" data-parentId="@item.SpellId" data-id="@item.Id">@item.Content</a></td>
+                                <td align="right"><a href="javascript:void(0)" class="deleteNotification" data-parentId="@item.SpellId" data-id="@item.Id"><i class="fas fa-times"></i></a></td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
         </div>
         @*<dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>*@
+            <dd>
+                @Model.Logins.Count [
+                @Html.ActionLink("Manage", "ManageLogins") ]
+            </dd>*@
         @*
             Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
+
              See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
+
              Uncomment the following block after you have set up two-factor authentication
         *@
-        @*  
+        @*
             <dt>Phone Number:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None")
@@ -46,31 +96,107 @@
                 }
             </dd>
         *@@*
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>*@
-            @*@if (Model.TwoFactor)
+            <dt>Two-Factor Authentication:</dt>
+            <dd>
+                <p>
+                    There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                    for details on setting up this ASP.NET application to support two-factor authentication.
+                </p>*@
+        @*@if (Model.TwoFactor)
+            {
+                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
+                    @Html.AntiForgeryToken()
+                    <text>Enabled
+                    <input type="submit" value="Disable" class="btn btn-link" />
+                    </text>
                 }
-                else
+            }
+            else
+            {
+                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
+                    @Html.AntiForgeryToken()
+                    <text>Disabled
+                    <input type="submit" value="Enable" class="btn btn-link" />
+                    </text>
+                }
+            }*@
     </div>
 </div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+        $('.monsterItem').on('click', function () {
+            var id = $(this).attr('data-id');
+            var monsterId = $(this).attr('data-parentId');
+            var notif = {
+                Id: id,
+                MonsterId: monsterId
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("MarkAsRead", "Notification")',
+                data: { notif },
+                success: function (data) {
+                    window.location.href = data;
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
+        });
+
+        $('.spellItem').on('click', function () {
+            var id = $(this).attr('data-id');
+            var spellId = $(this).attr('data-parentId');
+            var notif = {
+                Id: id,
+                SpellId: spellId
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("MarkAsRead", "Notification")',
+                data: { notif },
+                success: function (data) {
+                    window.location.href = data;
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
+        });
+
+            $('.deleteNotification').on('click', function () {
+                var id = $(this).attr('data-id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Delete", "Notification")',
+                    data: { id },
+                    success: function () {
+                        $('.notification' + id).closest("tr").remove();
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                })
+            })
+
+            $('.deleteAllNotifications').on('click', function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("DeleteAll", "Notification")',
+                    success: function () {
+                        setTimeout(function () { location.reload(); }, 500);
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                })
+            })
+    });
+</script>

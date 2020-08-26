@@ -2,6 +2,7 @@
 using Data;
 using Data.Entities;
 using Models.CommentModels;
+using Models.NotificationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,17 @@ namespace Services
                 MonsterId = model.ParentId
             };
             _ctx.Comments.Add(entity);
-            return _ctx.SaveChanges() == 1;
+            if(_ctx.SaveChanges() == 1)
+            {
+                var notificationService = new NotificationService(_userId);
+                var notificationModel = new NotificationCreate
+                {
+                    CommentId = entity.Id,
+                    MonsterId = entity.MonsterId
+                };
+                return notificationService.CreateCommentNotification(notificationModel);
+            }
+            else { return false; }
         }
 
         public bool CreateSpellComment(CommentCreate model)
@@ -55,7 +66,17 @@ namespace Services
                 SpellId = model.ParentId
             };
             _ctx.Comments.Add(entity);
-            return _ctx.SaveChanges() == 1;
+            if (_ctx.SaveChanges() == 1)
+            {
+                var notificationService = new NotificationService(_userId);
+                var notificationModel = new NotificationCreate
+                {
+                    CommentId = entity.Id,
+                    SpellId = entity.SpellId
+                };
+                return notificationService.CreateCommentNotification(notificationModel);
+            }
+            else { return false; }
         }
 
         public bool Delete(int id)

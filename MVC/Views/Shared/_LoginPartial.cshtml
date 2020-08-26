@@ -1,21 +1,98 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="userNav navbar-nav ml-auto">
-        <li class="nav-item">
-            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link"})
-        </li>
-        <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="userNav navbar-nav ml-auto">
+            <li class="nav-item dropdown navbarDropdown">
+                @{
+                    var notificationService = new Services.NotificationService(Guid.Parse(User.Identity.GetUserId()));
+                    var notificationList = notificationService.GetAllNotificationsByUserId(Guid.Parse(User.Identity.GetUserId()));
+                    var unreadNotifications = notificationList.Where(e => e.IsRead == false).ToList();
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if (unreadNotifications.Count > 0)
+                        {
+                            <i class="fas fa-bell" style="color: #FFBC0A"></i>
+                        }
+                        else
+                        {
+                            <i class="far fa-bell"></i>
+                        }
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        @foreach (var item in unreadNotifications)
+                        {
+                            if (item.MonsterId != null)
+                            {
+                                <a href="javascript:void(0)" class="dropdown-item monsterItem" data-parentId="@item.MonsterId" data-id="@item.Id">@item.Content</a>
+                            }
+                            else if (item.SpellId != null)
+                            {
+                                <a href="javascript:void(0)" class="dropdown-item spellItem" data-parentId="@item.SpellId" data-id="@item.Id">@item.Content</a>
+                            }
+                        }
+                    </div>
+                }
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+            </li>
+            <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="userNav navbar-nav mr-auto">
-        <li class="nav-item">@Html.ActionLink("Log in/Register", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link" })</li>
+        <li class="nav-item">@Html.ActionLink("Log in/Register", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>
 }
+
+<script type="text/javascript">
+        $(document).ready(function () {
+        $('.monsterItem').on('click', function () {
+            var id = $(this).attr('data-id');
+            var monsterId = $(this).attr('data-parentId');
+            var notif = {
+                Id: id,
+                MonsterId: monsterId
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("MarkAsRead", "Notification")',
+                data: { notif },
+                success: function (data) {
+                    window.location.href = data;
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
+        });
+
+        $('.spellItem').on('click', function () {
+            var id = $(this).attr('data-id');
+            var spellId = $(this).attr('data-parentId');
+            var notif = {
+                Id: id,
+                SpellId: spellId
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("MarkAsRead", "Notification")',
+                data: { notif },
+                success: function (data) {
+                    window.location.href = data;
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
+        });
+    });
+</script>

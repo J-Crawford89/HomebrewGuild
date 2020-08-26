@@ -110,6 +110,8 @@
     <Compile Include="MonsterModels\MonsterDetailView.cs" />
     <Compile Include="MonsterModels\MonsterEdit.cs" />
     <Compile Include="MonsterModels\MonsterListItem.cs" />
+    <Compile Include="NotificationModels\NotificationCreate.cs" />
+    <Compile Include="NotificationModels\NotificationListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaceModels\RaceCreate.cs" />
     <Compile Include="RaceModels\RaceDetail.cs" />

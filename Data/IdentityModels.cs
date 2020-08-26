@@ -33,6 +33,7 @@ namespace Data
         public DbSet<CharacterClass> CharacterClasses { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Monster> Monsters { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Spell> Spells { get; set; }
